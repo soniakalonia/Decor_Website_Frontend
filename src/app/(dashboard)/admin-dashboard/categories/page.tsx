@@ -1,0 +1,249 @@
+'use client';
+
+import { useState, useEffect } from 'react';
+// import type { Metadata } from 'next';
+import Breadcrumb from '@/components/common/Breadcrumb';
+import AdminSidebar from '../components/AdminSidebar';
+import { config } from '@/config/env';
+
+interface Category {
+  id: number;
+  name: string;
+  slug: string;
+  image: string;
+  status: 'active' | 'inactive';
+  created_at: string;
+}
+
+export default function CategoriesPage() {
+  const [categories, setCategories] = useState<Category[]>([]);
+  const [showForm, setShowForm] = useState(false);
+  const [formData, setFormData] = useState({ name: '', image: null as File | null, status: 'active' });
+  const [editingId, setEditingId] = useState<number | null>(null);
+  const [loading, setLoading] = useState(false);
+
+  useEffect(() => {
+    fetchCategories();
+  }, []);
+
+  const fetchCategories = async () => {
+    try {
+      const token = localStorage.getItem('auth_token');
+      const response = await fetch(`${config.apiUrl}/admin/categories`, {
+        headers: { 'Authorization': `Bearer ${token}` }
+      });
+      const data = await response.json();
+      if (response.ok) setCategories(data.categories);
+    } catch (error) {
+      console.error('Error fetching categories:', error);
+    }
+  };
+
+  const handleSubmit = async (e: React.FormEvent) => {
+    e.preventDefault();
+    setLoading(true);
+
+    try {
+      const token = localStorage.getItem('auth_token');
+      if (!token) {
+        alert('No authentication token found. Please login again.');
+        return;
+      }
+
+      const url = editingId
+        ? `${config.apiUrl}/admin/category/${editingId}`
+        : `${config.apiUrl}/admin/category`;
+
+      const formDataToSend = new FormData();
+      formDataToSend.append('name', formData.name);
+      formDataToSend.append('status', formData.status);
+      if (formData.image) {
+        formDataToSend.append('image', formData.image);
+      }
+
+      const response = await fetch(url, {
+        method: editingId ? 'PUT' : 'POST',
+        headers: {
+          'Authorization': `Bearer ${token}`
+        },
+        body: formDataToSend
+      });
+
+      if (response.ok) {
+        fetchCategories();
+        resetForm();
+      }
+    } catch (error) {
+      console.error('Error saving category:', error);
+    } finally {
+      setLoading(false);
+    }
+  };
+
+  const handleEdit = (category: Category) => {
+    setFormData({ name: category.name, image: null, status: category.status });
+    setEditingId(category.id);
+    setShowForm(true);
+  };
+
+  const handleDelete = async (id: number) => {
+    if (!confirm('Are you sure you want to delete this category?')) return;
+
+    try {
+      const token = localStorage.getItem('auth_token');
+      const response = await fetch(`${config.apiUrl}/admin/category/${id}`, {
+        method: 'DELETE',
+        headers: { 'Authorization': `Bearer ${token}` }
+      });
+
+      if (response.ok) fetchCategories();
+    } catch (error) {
+      console.error('Error deleting category:', error);
+    }
+  };
+
+  const resetForm = () => {
+    setFormData({ name: '', image: null, status: 'active' });
+    setEditingId(null);
+    setShowForm(false);
+  };
+
+  return (
+    <div className="min-h-screen bg-background">
+      <main className="flex flex-col sm:flex-row">
+        <AdminSidebar />
+        <div className="flex-1 p-6">
+          <Breadcrumb />
+          <div className="space-y-6">
+            <div className="flex justify-between items-center ">
+              <h1 className="text-3xl font-bold text-espresso">Categories</h1>
+              <button
+                onClick={() => setShowForm(!showForm)}
+                className="bg-espresso text-white px-4 py-2 rounded-lg hover:bg-opacity-90"
+              >
+                {showForm ? 'Cancel' : 'Add Category'}
+              </button>
+            </div>
+
+            {showForm && (
+              <div className="bg-white p-6 rounded-2xl shadow-sm border border-border ">
+                <h2 className="text-xl font-semibold mb-4">
+                  {editingId ? 'Edit Category' : 'Add New Category'}
+                </h2>
+                <form onSubmit={handleSubmit} className="space-y-4">
+                  <div>
+                    <label className="block text-sm font-medium mb-2">Name</label>
+                    <input
+                      type="text"
+                      value={formData.name}
+                      onChange={(e) => setFormData({ ...formData, name: e.target.value })}
+                      className="w-full p-3 border border-border rounded-lg focus:outline-none focus:ring-2 focus:ring-espresso"
+                      required
+                    />
+                  </div>
+                  <div>
+                    <label className="block text-sm font-medium mb-2">Image</label>
+                    <input
+                      type="file"
+                      accept="image/*"
+                      onChange={(e) => setFormData({ ...formData, image: e.target.files?.[0] || null })}
+                      className="w-full p-3 border border-border rounded-lg focus:outline-none focus:ring-2 focus:ring-espresso"
+                    />
+                  </div>
+                  <div>
+                    <label className="block text-sm font-medium mb-2">Status</label>
+                    <select
+                      value={formData.status}
+                      onChange={(e) => setFormData({ ...formData, status: e.target.value as 'active' | 'inactive' })}
+                      className="w-full p-3 border border-border rounded-lg focus:outline-none focus:ring-2 focus:ring-espresso"
+                    >
+                      <option value="active">Active</option>
+                      <option value="inactive">Inactive</option>
+                    </select>
+                  </div>
+                  <div className="flex gap-3">
+                    <button
+                      type="submit"
+                      disabled={loading}
+                      className="bg-espresso text-white px-6 py-2 rounded-lg hover:bg-opacity-90 disabled:opacity-50"
+                    >
+                      {loading ? 'Saving...' : editingId ? 'Update' : 'Create'}
+                    </button>
+                    <button
+                      type="button"
+                      onClick={resetForm}
+                      className="bg-gray-500 text-white px-6 py-2 rounded-lg hover:bg-opacity-90"
+                    >
+                      Cancel
+                    </button>
+                  </div>
+                </form>
+              </div>
+            )}
+
+            <div className="bg-white rounded-2xl shadow-sm border border-border ">
+              <div className="p-6 border-b border-border">
+                <h2 className="text-xl font-semibold">All Categories</h2>
+              </div>
+              <div className="overflow-x-auto sm:overflow-visible">
+                <table className="min-w-[800px] sm:min-w-full w-full">
+                  <thead className="bg-gray-50">
+                    <tr>
+                      <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Name</th>
+                      <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Image</th>
+                      <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Status</th>
+                      <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Created</th>
+                      <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Actions</th>
+                    </tr>
+                  </thead>
+                  <tbody className="bg-white divide-y divide-gray-200">
+                    {categories.map((category) => (
+                      <tr key={category.id}>
+                        <td className="px-6 py-4 whitespace-nowrap font-medium">{category.name}</td>
+                        <td className="px-6 py-4">
+                          {category.image && category.image.trim() ? (
+                            <img src={category.image.startsWith('http') ? category.image : `${config.apiUrl.replace('/api', '')}${category.image}`} alt={category.name} className="w-12 h-12 object-cover rounded" />
+                          ) : (
+                            <span className="text-gray-400">No image</span>
+                          )}
+                        </td>
+                        <td className="px-6 py-4 whitespace-nowrap">
+                          <span className={`px-2 py-1 text-xs rounded-full ${category.status === 'active' ? 'bg-green-100 text-green-800' : 'bg-red-100 text-red-800'
+                            }`}>
+                            {category.status}
+                          </span>
+                        </td>
+                        <td className="px-6 py-4 whitespace-nowrap text-gray-600">
+                          {new Date(category.created_at).toLocaleDateString('en-GB')}
+                        </td>
+                        <td className="px-6 py-4 whitespace-nowrap space-x-2">
+                          <button
+                            onClick={() => handleEdit(category)}
+                            className="text-blue-600 hover:text-blue-800"
+                          >
+                            Edit
+                          </button>
+                          <button
+                            onClick={() => handleDelete(category.id)}
+                            className="text-red-600 hover:text-red-800"
+                          >
+                            Delete
+                          </button>
+                        </td>
+                      </tr>
+                    ))}
+                  </tbody>
+                </table>
+                {categories.length === 0 && (
+                  <div className="text-center py-8 text-gray-500">
+                    No categories found. Create your first category!
+                  </div>
+                )}
+              </div>
+            </div>
+          </div>
+        </div>
+      </main>
+    </div>
+  );
+}

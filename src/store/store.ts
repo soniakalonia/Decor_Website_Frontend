@@ -8,6 +8,7 @@ import { baseApi } from './api/baseApi'
 import { blogApi } from './api/blogApi'
 import { orderApi } from './api/orderApi'
 import { reviewsApi } from './api/reviewsApi'
+import { bulkProductApi } from './api/bulkProductApi'
 
 export const store = configureStore({
   reducer: {
@@ -19,19 +20,17 @@ export const store = configureStore({
     [blogApi.reducerPath]: blogApi.reducer,
     [orderApi.reducerPath]: orderApi.reducer,
     [reviewsApi.reducerPath]: reviewsApi.reducer,
+    [bulkProductApi.reducerPath]: bulkProductApi.reducer,
   },
   middleware: (getDefaultMiddleware) =>
     getDefaultMiddleware({
       serializableCheck: {
         ignoredActions: ['persist/PERSIST', 'persist/REHYDRATE'],
       },
-    }).concat(baseApi.middleware, blogApi.middleware, orderApi.middleware, reviewsApi.middleware),
+    }).concat(baseApi.middleware, blogApi.middleware, orderApi.middleware, reviewsApi.middleware, bulkProductApi.middleware),
 })
 
 setupListeners(store.dispatch)
 
 export type RootState = ReturnType<typeof store.getState>
 export type AppDispatch = typeof store.dispatch
-
-
-

@@ -23,13 +23,14 @@ const AdminSidebar = () => {
       groupName: 'PRODUCTS',
       items: [
         { title: 'Add Product', icon: 'PlusCircleIcon', href: '/admin-dashboard/addProduct' },
+        { title: 'Bulk Upload', icon: 'CloudArrowUpIcon', href: '/admin-dashboard/bulk-upload' },
         { title: 'Products', icon: 'ArchiveBoxIcon', href: '/admin-dashboard/products' },
         { title: 'Inventory', icon: 'RectangleStackIcon', href: '/admin-dashboard/inventory' },
         { title: 'Categories', icon: 'TableCellsIcon', href: '/admin-dashboard/categories' },
         { title: 'Brands', icon: 'TagIcon', href: '/admin-dashboard/brands' },
       ],
     },
-     {
+    {
       groupName: 'CONTENT',
       items: [
         { title: 'Blog', icon: 'DocumentTextIcon', href: '/admin-dashboard/blog' },
@@ -46,7 +47,7 @@ const AdminSidebar = () => {
         { title: 'Subscribe', icon: 'CreditCardIcon', href: '/admin-dashboard/subscription' },
       ],
     },
-   
+
   ];
 
   return (

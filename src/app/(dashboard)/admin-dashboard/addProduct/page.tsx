@@ -6,7 +6,7 @@ import { useAuth } from '@/features/auth/hooks/useAuth';
 import { useAddAdminProductMutation, useUpdateAdminProductMutation, useGetAdminProductsQuery, useGetCategoriesQuery, useGetBrandsQuery } from '@/store/api/productsApi';
 import { useSearchParams, useRouter } from 'next/navigation';
 import { HexColorPicker } from "react-colorful";
-import AdminSidebar from '../components/AdminSidebar';
+// ❌ REMOVED: import AdminSidebar from '../components/AdminSidebar';
 import Breadcrumb from '@/components/common/Breadcrumb';
 import {
   Archive,
@@ -682,7 +682,7 @@ const AddProduct = () => {
           </div>
 
           <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
-            {/* // Color Selection */}
+            {/* Color Selection */}
             <div className="space-y-3">
               <label className="text-sm font-medium text-gray-700">Color</label>
               <div className="flex flex-wrap gap-2 p-2 border border-gray-300 rounded-lg bg-white min-h-[50px]">
@@ -784,7 +784,7 @@ const AddProduct = () => {
   );
 
   return (
-    <div className="h-[calc(100vh-64px)] bg-background overflow-hidden font-header">
+    <>
       <ToastContainer position="top-right" autoClose={3000} />
       {!mounted ? (
         <div className="flex items-center justify-center h-full">
@@ -794,233 +794,228 @@ const AddProduct = () => {
           </div>
         </div>
       ) : (
-        <main className="flex h-full">
-          <AdminSidebar />
-          <div className="flex-1 overflow-y-auto p-6 lg:p-10 scroll-smooth">
-            <Breadcrumb />
-            <div className="mt-8">
-              <div className="p-8 bg-white rounded-2xl shadow-sm border border-border max-w-6xl mx-auto">
-                {loading && (
-                  <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50">
-                    <div className="bg-white p-6 rounded-lg">
-                      <div className="flex items-center gap-3">
-                        <div className="w-6 h-6 border-2 border-primary border-t-transparent rounded-full animate-spin"></div>
-                        <span>Processing...</span>
-                      </div>
+        <div className="flex-1 overflow-y-auto p-6 lg:p-10 scroll-smooth">
+          <Breadcrumb />
+          <div className="mt-8">
+            <div className="p-8 bg-white rounded-2xl shadow-sm border border-border max-w-6xl mx-auto">
+              {loading && (
+                <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50">
+                  <div className="bg-white p-6 rounded-lg">
+                    <div className="flex items-center gap-3">
+                      <div className="w-6 h-6 border-2 border-primary border-t-transparent rounded-full animate-spin"></div>
+                      <span>Processing...</span>
                     </div>
                   </div>
-                )}
-                <form onSubmit={handleSubmit} className="space-y-10">
-                  <div className="text-center">
-                    <h1 className="text-3xl font-bold text-espresso">{editId ? 'Edit Product' : 'Add Product'}</h1>
-                    <p className="text-mocha-grey mt-1">Manage your product details, inventory, and media assets.</p>
-                  </div>
+                </div>
+              )}
+              <form onSubmit={handleSubmit} className="space-y-10">
+                <div className="text-center">
+                  <h1 className="text-3xl font-bold text-espresso">{editId ? 'Edit Product' : 'Add Product'}</h1>
+                  <p className="text-mocha-grey mt-1">Manage your product details, inventory, and media assets.</p>
+                </div>
 
-                  {/* Section 1: Basic Information */}
-                  <div className="space-y-6">
-                    <h2 className="text-xl font-bold text-espresso py-2">Basic Information</h2>
-                    <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-                      {renderInputField("Product Name", "name", "text", Tag, "#6B3F26", true)}
-                      {renderInputField("Slug", "slug", "text", Sliders, "#6B3F26", true)}
-                    </div>
-                    <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-                      {renderInputField("Description", "description", "text", FileText, "#6B3F26", true)}
-                      {renderInputField("Long Description", "longDescription", "text", FileText, "#6B3F26")}
-                    </div>
+                {/* Section 1: Basic Information */}
+                <div className="space-y-6">
+                  <h2 className="text-xl font-bold text-espresso py-2">Basic Information</h2>
+                  <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+                    {renderInputField("Product Name", "name", "text", Tag, "#6B3F26", true)}
+                    {renderInputField("Slug", "slug", "text", Sliders, "#6B3F26", true)}
                   </div>
+                  <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+                    {renderInputField("Description", "description", "text", FileText, "#6B3F26", true)}
+                    {renderInputField("Long Description", "longDescription", "text", FileText, "#6B3F26")}
+                  </div>
+                </div>
 
-                  {/* Section 2: Physical Attributes & Category */}
-                  <div className="space-y-6">
-                    <h2 className="text-xl font-bold text-espresso py-2">Physical Details & Categorization</h2>
-                    <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
-                      <div className="flex flex-col gap-1">
-                        <label className="font-semibold text-gray-800 mb-1 flex items-center gap-1">
-                          Category<span className="text-red-500">*</span>
-                        </label>
-                        <select
-                          className="w-full border border-gray-300 rounded-xl px-4 py-3 text-sm focus:outline-none focus:ring-2 focus:ring-primary focus:border-primary transition-all duration-200"
-                          value={selectedCategory}
-                          onChange={(e) => setSelectedCategory(e.target.value)}
-                        >
-                          <option value="">Select a category</option>
-                          {categoriesData?.categories?.map((cat: any) => (
-                            <option key={cat.id} value={cat.name}>
-                              {cat.name}
-                            </option>
-                          ))}
-                          <option value="Others">Others</option>
-                        </select>
-                        {selectedCategory === "Others" && (
-                          <input
-                            type="text"
-                            className="mt-2 w-full border border-gray-300 rounded-xl px-4 py-3 text-sm focus:outline-none focus:ring-2 focus:ring-primary focus:border-primary transition-all duration-200"
-                            placeholder="Enter custom category"
-                            value={customCategory}
-                            onChange={(e) => setCustomCategory(e.target.value)}
-                          />
-                        )}
-                      </div>
-                      <div className="flex flex-col gap-1">
-                        <label className="font-semibold text-gray-800 mb-1 flex items-center gap-1">
-                          Brand<span className="text-red-500">*</span>
-                        </label>
-                        <select
-                          className="w-full border border-gray-300 rounded-xl px-4 py-3 text-sm focus:outline-none focus:ring-2 focus:ring-primary focus:border-primary transition-all duration-200"
-                          value={selectedBrand}
-                          onChange={(e) => setSelectedBrand(e.target.value)}
+                {/* Section 2: Physical Attributes & Category */}
+                <div className="space-y-6">
+                  <h2 className="text-xl font-bold text-espresso py-2">Physical Details & Categorization</h2>
+                  <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
+                    <div className="flex flex-col gap-1">
+                      <label className="font-semibold text-gray-800 mb-1 flex items-center gap-1">
+                        Category<span className="text-red-500">*</span>
+                      </label>
+                      <select
+                        className="w-full border border-gray-300 rounded-xl px-4 py-3 text-sm focus:outline-none focus:ring-2 focus:ring-primary focus:border-primary transition-all duration-200"
+                        value={selectedCategory}
+                        onChange={(e) => setSelectedCategory(e.target.value)}
+                      >
+                        <option value="">Select a category</option>
+                        {categoriesData?.categories?.map((cat: any) => (
+                          <option key={cat.id} value={cat.name}>
+                            {cat.name}
+                          </option>
+                        ))}
+                        <option value="Others">Others</option>
+                      </select>
+                      {selectedCategory === "Others" && (
+                        <input
+                          type="text"
+                          className="mt-2 w-full border border-gray-300 rounded-xl px-4 py-3 text-sm focus:outline-none focus:ring-2 focus:ring-primary focus:border-primary transition-all duration-200"
+                          placeholder="Enter custom category"
+                          value={customCategory}
+                          onChange={(e) => setCustomCategory(e.target.value)}
+                        />
+                      )}
+                    </div>
+                    <div className="flex flex-col gap-1">
+                      <label className="font-semibold text-gray-800 mb-1 flex items-center gap-1">
+                        Brand<span className="text-red-500">*</span>
+                      </label>
+                      <select
+                        className="w-full border border-gray-300 rounded-xl px-4 py-3 text-sm focus:outline-none focus:ring-2 focus:ring-primary focus:border-primary transition-all duration-200"
+                        value={selectedBrand}
+                        onChange={(e) => setSelectedBrand(e.target.value)}
+                        required
+                      >
+                        <option value="">Select a brand</option>
+                        {brandsData?.brands?.map((brand: any) => (
+                          <option key={brand.id} value={brand.name}>
+                            {brand.name}
+                          </option>
+                        ))}
+                        <option value="Others">Others</option>
+                      </select>
+                      {selectedBrand === "Others" && (
+                        <input
+                          type="text"
+                          className="mt-2 w-full border border-gray-300 rounded-xl px-4 py-3 text-sm focus:outline-none focus:ring-2 focus:ring-primary focus:border-primary transition-all duration-200"
+                          placeholder="Enter custom brand"
+                          value={customBrand}
+                          onChange={(e) => setCustomBrand(e.target.value)}
                           required
-                        >
-                          <option value="">Select a brand</option>
-                          {brandsData?.brands?.map((brand: any) => (
-                            <option key={brand.id} value={brand.name}>
-                              {brand.name}
-                            </option>
-                          ))}
-                          <option value="Others">Others</option>
-                        </select>
-                        {selectedBrand === "Others" && (
-                          <input
-                            type="text"
-                            className="mt-2 w-full border border-gray-300 rounded-xl px-4 py-3 text-sm focus:outline-none focus:ring-2 focus:ring-primary focus:border-primary transition-all duration-200"
-                            placeholder="Enter custom brand"
-                            value={customBrand}
-                            onChange={(e) => setCustomBrand(e.target.value)}
-                            required
+                        />
+                      )}
+                    </div>
+                    {renderInputField("Packing Standard", "packingStandard", "text", Box, "#6B3F26")}
+                    {renderInputField("Weight (kg)", "weight", "number", Weight, "#6B3F26")}
+                  </div>
+                  <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
+                    {renderInputField("Materials", "materials", "text", Box, "#6B3F26")}
+                    {renderInputField("Warranty", "warranty", "text", Shield, "#6B3F26")}
+                    {renderInputField("Care Instructions", "careInstructions", "text", Info, "#6B3F26")}
+                  </div>
+                  <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+                    {renderInputField("Additional Info", "additionalInfo", "text", Info, "#6B3F26")}
+                  </div>
+                  {renderKeyValueField("Specifications", specifications, setSpecifications)}
+                </div>
+
+                {/* Section 3: Pricing & Inventory */}
+                <div className="space-y-6">
+                  <h2 className="text-xl font-bold text-espresso py-2">Pricing & Inventory</h2>
+                  <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
+                    {renderInputField("Regular Price", "price", "number", DollarSign, "#6B3F26", true)}
+                    {renderInputField("Discount Price", "discountPrice", "number", DollarSign, "#6B3F26", true)}
+                    {renderInputField("Stock Quantity", "stockQuantity", "number", Archive, "#6B3F26", true)}
+                  </div>
+                </div>
+
+                {/* Section 4: Media & Attributes */}
+                <div className="space-y-8">
+                  <h2 className="text-xl font-bold text-espresso py-2">Media & Attributes</h2>
+
+                  <div className="bg-gray-50/50 p-6 rounded-2xl border border-dashed border-gray-300">
+                    {renderArrayField("Product Images", productImages, setProductImages, true)}
+                  </div>
+
+                  <div className="grid grid-cols-1 md:grid-cols-2 gap-10">
+                    <div className="space-y-8">
+                      {renderArrayField("Sizes", sizes, setSizes)}
+                      <div className="pt-4">
+                        {renderVariantImageUploader()}
+                      </div>
+                    </div>
+
+                    <div className="space-y-6">
+                      <div className="bg-white p-4 rounded-2xl border border-gray-200 shadow-sm">
+                        <label className="block text-sm font-bold text-gray-800 mb-3">
+                          Product Colors
+                        </label>
+                        <div className="flex flex-col gap-4">
+                          <HexColorPicker
+                            color={currentColor}
+                            onChange={setCurrentColor}
+                            className="w-full !h-36 rounded-lg shadow-sm"
                           />
-                        )}
-                      </div>
-                      {renderInputField("Packing Standard", "packingStandard", "text", Box, "#6B3F26")}
-                      {renderInputField("Weight (kg)", "weight", "number", Weight, "#6B3F26")}
-                    </div>
-                    <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
-                      {renderInputField("Materials", "materials", "text", Box, "#6B3F26")}
-                      {renderInputField("Warranty", "warranty", "text", Shield, "#6B3F26")}
-                      {renderInputField("Care Instructions", "careInstructions", "text", Info, "#6B3F26")}
-                    </div>
-                    <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-                      {renderInputField("Additional Info", "additionalInfo", "text", Info, "#6B3F26")}
-                    </div>
-                    {renderKeyValueField("Specifications", specifications, setSpecifications)}
-                  </div>
-
-                  {/* Section 3: Pricing & Inventory */}
-                  <div className="space-y-6">
-                    <h2 className="text-xl font-bold text-espresso py-2">Pricing & Inventory</h2>
-                    <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
-                      {renderInputField("Regular Price", "price", "number", DollarSign, "#6B3F26", true)}
-                      {renderInputField("Discount Price", "discountPrice", "number", DollarSign, "#6B3F26", true)}
-                      {renderInputField("Stock Quantity", "stockQuantity", "number", Archive, "#6B3F26", true)}
-                    </div>
-                  </div>
-
-                  {/* Section 4: Media & Attributes */}
-                  <div className="space-y-8">
-                    <h2 className="text-xl font-bold text-espresso py-2">Media & Attributes</h2>
-
-                    <div className="bg-gray-50/50 p-6 rounded-2xl border border-dashed border-gray-300">
-                      {renderArrayField("Product Images", productImages, setProductImages, true)}
-                    </div>
-
-                    <div className="grid grid-cols-1 md:grid-cols-2 gap-10">
-                      <div className="space-y-8">
-                        {renderArrayField("Sizes", sizes, setSizes)}
-                        <div className="pt-4">
-                          {renderVariantImageUploader()}
-                        </div>
-                      </div>
-
-                      <div className="space-y-6">
-                        <div className="bg-white p-4 rounded-2xl border border-gray-200 shadow-sm">
-                          <label className="block text-sm font-bold text-gray-800 mb-3">
-                            Product Colors
-                          </label>
-                          <div className="flex flex-col gap-4">
-                            <HexColorPicker
-                              color={currentColor}
-                              onChange={setCurrentColor}
-                              className="w-full !h-36 rounded-lg shadow-sm"
+                          <div className="flex items-center gap-2">
+                            <div
+                              className="w-8 h-8 rounded-full border shadow-sm"
+                              style={{ backgroundColor: currentColor }}
                             />
-                            <div className="flex items-center gap-2">
-                              <div
-                                className="w-8 h-8 rounded-full border shadow-sm"
-                                style={{ backgroundColor: currentColor }}
-                              />
-                              <input
-                                type="text"
-                                value={currentColor}
-                                onChange={(e) => setCurrentColor(e.target.value)}
-                                className="border border-gray-200 rounded-lg px-3 py-1.5 text-xs w-24 focus:outline-none focus:ring-2 focus:ring-primary"
-                              />
-                              <button
-                                type="button"
-                                onClick={addColor}
-                                className="bg-primary hover:bg-primary/90 text-white px-4 py-1.5 rounded-lg text-xs font-bold transition-all"
-                              >
-                                Add Color
-                              </button>
-                            </div>
-                            {colors.length > 0 && (
-                              <div className="flex flex-wrap gap-2 p-2 bg-gray-50 rounded-lg">
-                                {colors.map((color) => (
-                                  <div
-                                    key={color}
-                                    onClick={() => removeColor(color)}
-                                    className="w-6 h-6 rounded-full border-2 border-white shadow-sm cursor-pointer hover:scale-110 transition-transform"
-                                    style={{ backgroundColor: color }}
-                                    title={`Remove ${color}`}
-                                  />
-                                ))}
-                              </div>
-                            )}
+                            <input
+                              type="text"
+                              value={currentColor}
+                              onChange={(e) => setCurrentColor(e.target.value)}
+                              className="border border-gray-200 rounded-lg px-3 py-1.5 text-xs w-24 focus:outline-none focus:ring-2 focus:ring-primary"
+                            />
+                            <button
+                              type="button"
+                              onClick={addColor}
+                              className="bg-primary hover:bg-primary/90 text-white px-4 py-1.5 rounded-lg text-xs font-bold transition-all"
+                            >
+                              Add Color
+                            </button>
                           </div>
-                        </div>
-
-                        <div className="flex gap-6 p-4 bg-gray-50 rounded-2xl border border-gray-200">
-                          <label className="flex items-center gap-3 text-gray-700 font-bold cursor-pointer">
-                            <input
-                              type="checkbox"
-                              className="w-5 h-5 rounded border-gray-300 text-primary focus:ring-primary"
-                              checked={isFeatured}
-                              onChange={(e) => setIsFeatured(e.target.checked)}
-                            />
-                            Featured Product
-                          </label>
-                          <label className="flex items-center gap-3 text-gray-700 font-bold cursor-pointer">
-                            <input
-                              type="checkbox"
-                              className="w-5 h-5 rounded border-gray-300 text-primary focus:ring-primary"
-                              checked={isNewArrival}
-                              onChange={(e) => setIsNewArrival(e.target.checked)}
-                            />
-                            New Arrival
-                          </label>
+                          {colors.length > 0 && (
+                            <div className="flex flex-wrap gap-2 p-2 bg-gray-50 rounded-lg">
+                              {colors.map((color) => (
+                                <div
+                                  key={color}
+                                  onClick={() => removeColor(color)}
+                                  className="w-6 h-6 rounded-full border-2 border-white shadow-sm cursor-pointer hover:scale-110 transition-transform"
+                                  style={{ backgroundColor: color }}
+                                  title={`Remove ${color}`}
+                                />
+                              ))}
+                            </div>
+                          )}
                         </div>
                       </div>
+
+                      <div className="flex gap-6 p-4 bg-gray-50 rounded-2xl border border-gray-200">
+                        <label className="flex items-center gap-3 text-gray-700 font-bold cursor-pointer">
+                          <input
+                            type="checkbox"
+                            className="w-5 h-5 rounded border-gray-300 text-primary focus:ring-primary"
+                            checked={isFeatured}
+                            onChange={(e) => setIsFeatured(e.target.checked)}
+                          />
+                          Featured Product
+                        </label>
+                        <label className="flex items-center gap-3 text-gray-700 font-bold cursor-pointer">
+                          <input
+                            type="checkbox"
+                            className="w-5 h-5 rounded border-gray-300 text-primary focus:ring-primary"
+                            checked={isNewArrival}
+                            onChange={(e) => setIsNewArrival(e.target.checked)}
+                          />
+                          New Arrival
+                        </label>
+                      </div>
                     </div>
-
-
                   </div>
+                </div>
 
-                  <div className="space-y-6">
-                    <h2 className="text-xl font-bold text-espresso py-2">Additional Features</h2>
-                    {renderArrayField("Features", features, setFeatures)}
-                  </div>
+                <div className="space-y-6">
+                  <h2 className="text-xl font-bold text-espresso py-2">Additional Features</h2>
+                  {renderArrayField("Features", features, setFeatures)}
+                </div>
 
-                  <div className="pt-6">
-                    <button
-                      type="submit"
-                      className="bg-primary text-white px-10 py-5 rounded-2xl hover:bg-primary/90 w-full text-xl font-black shadow-lg shadow-primary/20 transition-all hover:-translate-y-1 active:scale-[0.98]"
-                    >
-                      {editId ? 'UPDATE PRODUCT' : 'CREATE PRODUCT'}
-                    </button>
-                  </div>
-                </form>
-              </div>
+                <div className="pt-6">
+                  <button
+                    type="submit"
+                    className="bg-primary text-white px-10 py-5 rounded-2xl hover:bg-primary/90 w-full text-xl font-black shadow-lg shadow-primary/20 transition-all hover:-translate-y-1 active:scale-[0.98]"
+                  >
+                    {editId ? 'UPDATE PRODUCT' : 'CREATE PRODUCT'}
+                  </button>
+                </div>
+              </form>
             </div>
           </div>
-        </main>
+        </div>
       )}
-    </div>
+    </>
   );
 };
 

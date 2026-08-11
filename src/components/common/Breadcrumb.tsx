@@ -43,6 +43,13 @@ const Breadcrumb = () => {
     return null;
   }
 
+  if (pathname.includes('/admin-dashboard/bulk-upload')) {
+  return [
+    { label: 'Dashboard', href: '/admin-dashboard' },
+    { label: 'Bulk Upload', href: '/admin-dashboard/bulk-upload' },
+  ];
+}
+
   return (
     <nav aria-label="Breadcrumb" className="mb-6">
       <ol className="flex flex-wrap items-center space-x-2 text-sm">

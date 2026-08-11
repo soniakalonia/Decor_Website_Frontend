@@ -1,7 +1,7 @@
 'use client';
 import { useEffect, useState } from 'react';
 import Breadcrumb from '@/components/common/Breadcrumb';
-import AdminSidebar from '../components/AdminSidebar';
+// ❌ REMOVE THIS LINE: import AdminSidebar from '../components/AdminSidebar';
 import { useGetAllNotificationsQuery, useMarkAsReadMutation, useMarkAllAsReadMutation, useDeleteNotificationMutation, useGetNotificationStatsQuery, useCreateNotificationMutation, Notification } from '@/store/api/notificationApi';
 import { Check, Trash2, Filter, Plus, X } from 'lucide-react';
 
@@ -85,184 +85,181 @@ export default function NotificationsPage() {
   const paginatedNotifications = data?.notifications.slice(pageStart, pageEnd) || [];
 
   return (
-    <div className="min-h-screen bg-background overflow-x-auto">
-      <main className="flex w-max min-w-full">
-        <AdminSidebar />
-        <div className="flex-1 p-6 min-w-0">
-          <Breadcrumb />
-          <div className="space-y-6">
-            <div className="flex justify-between items-center">
-              <h1 className="text-3xl font-bold text-espresso">Notifications</h1>
-              <div className="flex gap-3">
-                <button onClick={handleMarkAllAsRead} className="px-4 py-2 bg-blue-600 text-white rounded-lg hover:bg-blue-700 flex items-center gap-2">
-                  <Check size={18} /> Mark All Read
-                </button>
-                <button onClick={() => setShowCreateModal(true)} className="px-4 py-2 bg-green-600 text-white rounded-lg hover:bg-green-700 flex items-center gap-2">
-                  <Plus size={18} /> Create
-                </button>
-              </div>
-            </div>
-
-            {stats && (
-              <div className="grid grid-cols-1 md:grid-cols-4 gap-4">
-                <div className="bg-white p-4 rounded-lg shadow-sm border">
-                  <p className="text-sm text-gray-600">Total</p>
-                  <p className="text-2xl font-bold">{stats.stats.total}</p>
-                </div>
-                <div className="bg-white p-4 rounded-lg shadow-sm border">
-                  <p className="text-sm text-gray-600">Unread</p>
-                  <p className="text-2xl font-bold text-blue-600">{stats.stats.unread}</p>
-                </div>
-                <div className="bg-white p-4 rounded-lg shadow-sm border">
-                  <p className="text-sm text-gray-600">By Type</p>
-                  <div className="text-xs mt-1">{stats.stats.byType.map(t => `${t.type}: ${t.count}`).join(', ')}</div>
-                </div>
-                <div className="bg-white p-4 rounded-lg shadow-sm border">
-                  <p className="text-sm text-gray-600">By Priority</p>
-                  <div className="text-xs mt-1">{stats.stats.byPriority.map(p => `${p.priority}: ${p.count}`).join(', ')}</div>
-                </div>
-              </div>
-            )}
-
-            <div className="bg-white p-4 rounded-lg shadow-sm border flex gap-3 items-center">
-              <Filter size={18} />
-              <select
-                value={filter.type || ''}
-                onChange={(e) =>
-                  setFilter((prev) => {
-                    const next = { ...prev };
-                    if (e.target.value) {
-                      next.type = e.target.value as Notification['type'];
-                    } else {
-                      delete next.type;
-                    }
-                    return next;
-                  })
-                }
-                className="px-3 py-1 border rounded"
-              >
-                <option value="">All Types</option>
-                <option value="order">Order</option>
-                <option value="inventory">Inventory</option>
-                <option value="system">System</option>
-                <option value="promotion">Promotion</option>
-                <option value="alert">Alert</option>
-              </select>
-              <select
-                value={filter.is_read === undefined ? '' : filter.is_read.toString()}
-                onChange={(e) =>
-                  setFilter((prev) => {
-                    const next = { ...prev };
-                    if (e.target.value === '') {
-                      delete next.is_read;
-                    } else {
-                      next.is_read = e.target.value === 'true';
-                    }
-                    return next;
-                  })
-                }
-                className="px-3 py-1 border rounded"
-              >
-                <option value="">All Status</option>
-                <option value="false">Unread</option>
-                <option value="true">Read</option>
-              </select>
-              <select
-                value={filter.priority || ''}
-                onChange={(e) =>
-                  setFilter((prev) => {
-                    const next = { ...prev };
-                    if (e.target.value) {
-                      next.priority = e.target.value as Notification['priority'];
-                    } else {
-                      delete next.priority;
-                    }
-                    return next;
-                  })
-                }
-                className="px-3 py-1 border rounded"
-              >
-                <option value="">All Priorities</option>
-                <option value="low">Low</option>
-                <option value="medium">Medium</option>
-                <option value="high">High</option>
-                <option value="critical">Critical</option>
-              </select>
-            </div>
-
-            <div className="bg-white rounded-2xl shadow-sm border">
-              {isLoading ? (
-                <div className="p-8 text-center">Loading...</div>
-              ) : totalNotifications === 0 ? (
-                <div className="p-8 text-center text-gray-500">No notifications found</div>
-              ) : (
-                <div className="divide-y">
-                  {paginatedNotifications.map((notification) => (
-                    <div key={notification.id} className={`p-4 hover:bg-gray-50 transition ${!notification.is_read ? 'bg-blue-50' : ''}`}>
-                      <div className="flex items-start justify-between">
-                        <div className="flex gap-3 flex-1">
-                          <span className="text-2xl">{getTypeIcon(notification.type)}</span>
-                          <div className="flex-1">
-                            <div className="flex items-center gap-2 mb-1">
-                              <h3 className="font-semibold text-lg">{notification.title}</h3>
-                              <span className={`px-2 py-1 rounded text-xs ${getPriorityColor(notification.priority)}`}>{notification.priority}</span>
-                              {!notification.is_read && <span className="w-2 h-2 bg-blue-600 rounded-full"></span>}
-                            </div>
-                            <p className="text-gray-600 text-sm mb-2">{notification.message}</p>
-                            {notification.link && (
-                              <a href={notification.link} className="text-blue-600 text-sm hover:underline">View Details →</a>
-                            )}
-                            <p className="text-xs text-gray-400 mt-2">{new Date(notification.created_at).toLocaleString()}</p>
-                          </div>
-                        </div>
-                        <div className="flex gap-2">
-                          {!notification.is_read && (
-                            <button onClick={() => handleMarkAsRead(notification.id)} className="p-2 text-blue-600 hover:bg-blue-100 rounded" title="Mark as read">
-                              <Check size={18} />
-                            </button>
-                          )}
-                          <button onClick={() => handleDelete(notification.id)} className="p-2 text-red-600 hover:bg-red-100 rounded" title="Delete">
-                            <Trash2 size={18} />
-                          </button>
-                        </div>
-                      </div>
-                    </div>
-                  ))}
-                </div>
-              )}
-            </div>
-
-            {totalNotifications > 0 && (
-              <div className="flex items-center justify-between text-sm">
-                <div className="text-gray-600">
-                  Showing {pageStart + 1} to {pageEnd} of {totalNotifications}
-                </div>
-                <div className="flex items-center gap-2">
-                  <button
-                    type="button"
-                    className="px-3 py-1 border rounded disabled:opacity-50"
-                    onClick={() => setPage((prev) => Math.max(1, prev - 1))}
-                    disabled={safePage === 1}
-                  >
-                    Prev
-                  </button>
-                  <span className="px-2 text-gray-700">
-                    Page {safePage} of {totalPages}
-                  </span>
-                  <button
-                    type="button"
-                    className="px-3 py-1 border rounded disabled:opacity-50"
-                    onClick={() => setPage((prev) => Math.min(totalPages, prev + 1))}
-                    disabled={safePage === totalPages}
-                  >
-                    Next
-                  </button>
-                </div>
-              </div>
-            )}
+    // ✅ REMOVE the outer div and main wrapper with flex
+    // ✅ Start directly with the content
+    <div className="flex-1 p-6 min-w-0">
+      <Breadcrumb />
+      <div className="space-y-6">
+        <div className="flex justify-between items-center">
+          <h1 className="text-3xl font-bold text-espresso">Notifications</h1>
+          <div className="flex gap-3">
+            <button onClick={handleMarkAllAsRead} className="px-4 py-2 bg-blue-600 text-white rounded-lg hover:bg-blue-700 flex items-center gap-2">
+              <Check size={18} /> Mark All Read
+            </button>
+            <button onClick={() => setShowCreateModal(true)} className="px-4 py-2 bg-green-600 text-white rounded-lg hover:bg-green-700 flex items-center gap-2">
+              <Plus size={18} /> Create
+            </button>
           </div>
         </div>
-      </main>
+
+        {stats && (
+          <div className="grid grid-cols-1 md:grid-cols-4 gap-4">
+            <div className="bg-white p-4 rounded-lg shadow-sm border">
+              <p className="text-sm text-gray-600">Total</p>
+              <p className="text-2xl font-bold">{stats.stats.total}</p>
+            </div>
+            <div className="bg-white p-4 rounded-lg shadow-sm border">
+              <p className="text-sm text-gray-600">Unread</p>
+              <p className="text-2xl font-bold text-blue-600">{stats.stats.unread}</p>
+            </div>
+            <div className="bg-white p-4 rounded-lg shadow-sm border">
+              <p className="text-sm text-gray-600">By Type</p>
+              <div className="text-xs mt-1">{stats.stats.byType.map(t => `${t.type}: ${t.count}`).join(', ')}</div>
+            </div>
+            <div className="bg-white p-4 rounded-lg shadow-sm border">
+              <p className="text-sm text-gray-600">By Priority</p>
+              <div className="text-xs mt-1">{stats.stats.byPriority.map(p => `${p.priority}: ${p.count}`).join(', ')}</div>
+            </div>
+          </div>
+        )}
+
+        <div className="bg-white p-4 rounded-lg shadow-sm border flex gap-3 items-center">
+          <Filter size={18} />
+          <select
+            value={filter.type || ''}
+            onChange={(e) =>
+              setFilter((prev) => {
+                const next = { ...prev };
+                if (e.target.value) {
+                  next.type = e.target.value as Notification['type'];
+                } else {
+                  delete next.type;
+                }
+                return next;
+              })
+            }
+            className="px-3 py-1 border rounded"
+          >
+            <option value="">All Types</option>
+            <option value="order">Order</option>
+            <option value="inventory">Inventory</option>
+            <option value="system">System</option>
+            <option value="promotion">Promotion</option>
+            <option value="alert">Alert</option>
+          </select>
+          <select
+            value={filter.is_read === undefined ? '' : filter.is_read.toString()}
+            onChange={(e) =>
+              setFilter((prev) => {
+                const next = { ...prev };
+                if (e.target.value === '') {
+                  delete next.is_read;
+                } else {
+                  next.is_read = e.target.value === 'true';
+                }
+                return next;
+              })
+            }
+            className="px-3 py-1 border rounded"
+          >
+            <option value="">All Status</option>
+            <option value="false">Unread</option>
+            <option value="true">Read</option>
+          </select>
+          <select
+            value={filter.priority || ''}
+            onChange={(e) =>
+              setFilter((prev) => {
+                const next = { ...prev };
+                if (e.target.value) {
+                  next.priority = e.target.value as Notification['priority'];
+                } else {
+                  delete next.priority;
+                }
+                return next;
+              })
+            }
+            className="px-3 py-1 border rounded"
+          >
+            <option value="">All Priorities</option>
+            <option value="low">Low</option>
+            <option value="medium">Medium</option>
+            <option value="high">High</option>
+            <option value="critical">Critical</option>
+          </select>
+        </div>
+
+        <div className="bg-white rounded-2xl shadow-sm border">
+          {isLoading ? (
+            <div className="p-8 text-center">Loading...</div>
+          ) : totalNotifications === 0 ? (
+            <div className="p-8 text-center text-gray-500">No notifications found</div>
+          ) : (
+            <div className="divide-y">
+              {paginatedNotifications.map((notification) => (
+                <div key={notification.id} className={`p-4 hover:bg-gray-50 transition ${!notification.is_read ? 'bg-blue-50' : ''}`}>
+                  <div className="flex items-start justify-between">
+                    <div className="flex gap-3 flex-1">
+                      <span className="text-2xl">{getTypeIcon(notification.type)}</span>
+                      <div className="flex-1">
+                        <div className="flex items-center gap-2 mb-1">
+                          <h3 className="font-semibold text-lg">{notification.title}</h3>
+                          <span className={`px-2 py-1 rounded text-xs ${getPriorityColor(notification.priority)}`}>{notification.priority}</span>
+                          {!notification.is_read && <span className="w-2 h-2 bg-blue-600 rounded-full"></span>}
+                        </div>
+                        <p className="text-gray-600 text-sm mb-2">{notification.message}</p>
+                        {notification.link && (
+                          <a href={notification.link} className="text-blue-600 text-sm hover:underline">View Details →</a>
+                        )}
+                        <p className="text-xs text-gray-400 mt-2">{new Date(notification.created_at).toLocaleString()}</p>
+                      </div>
+                    </div>
+                    <div className="flex gap-2">
+                      {!notification.is_read && (
+                        <button onClick={() => handleMarkAsRead(notification.id)} className="p-2 text-blue-600 hover:bg-blue-100 rounded" title="Mark as read">
+                          <Check size={18} />
+                        </button>
+                      )}
+                      <button onClick={() => handleDelete(notification.id)} className="p-2 text-red-600 hover:bg-red-100 rounded" title="Delete">
+                        <Trash2 size={18} />
+                      </button>
+                    </div>
+                  </div>
+                </div>
+              ))}
+            </div>
+          )}
+        </div>
+
+        {totalNotifications > 0 && (
+          <div className="flex items-center justify-between text-sm">
+            <div className="text-gray-600">
+              Showing {pageStart + 1} to {pageEnd} of {totalNotifications}
+            </div>
+            <div className="flex items-center gap-2">
+              <button
+                type="button"
+                className="px-3 py-1 border rounded disabled:opacity-50"
+                onClick={() => setPage((prev) => Math.max(1, prev - 1))}
+                disabled={safePage === 1}
+              >
+                Prev
+              </button>
+              <span className="px-2 text-gray-700">
+                Page {safePage} of {totalPages}
+              </span>
+              <button
+                type="button"
+                className="px-3 py-1 border rounded disabled:opacity-50"
+                onClick={() => setPage((prev) => Math.min(totalPages, prev + 1))}
+                disabled={safePage === totalPages}
+              >
+                Next
+              </button>
+            </div>
+          </div>
+        )}
+      </div>
 
       {showCreateModal && (
         <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50">

@@ -3,7 +3,7 @@
 import { useState } from 'react';
 import Breadcrumb from '@/components/common/Breadcrumb';
 import Icon from '@/components/ui/AppIcon';
-import AdminSidebar from '../components/AdminSidebar';
+// ❌ REMOVED: import AdminSidebar from '../components/AdminSidebar';
 import { Editor } from '@tinymce/tinymce-react';
 
 type ContentForm = {
@@ -49,28 +49,25 @@ export default function ContentPage() {
   };
 
   return (
-    <div className="min-h-screen bg-background">
-      <main className="flex">
-        <AdminSidebar />
-        <div className="flex-1 p-6 min-w-0 h-[calc(100vh-64px)] overflow-y-auto">
-          <Breadcrumb />
-          <div className="space-y-6">
-            <div className="flex items-center justify-between">
-              <h1 className="text-3xl font-bold text-espresso">Content</h1>
-              <button
-                onClick={handleOpenModal}
-                className="inline-flex items-center gap-2 px-4 py-2 bg-primary text-white rounded-lg hover:bg-primary/90"
-              >
-                <Icon name="PlusIcon" size={18} />
-                Add Content
-              </button>
-            </div>
-            <div className="bg-white p-8 rounded-2xl shadow-sm border border-border">
-              <p className="text-mocha-grey">Create and manage SEO content from the Add Content form.</p>
-            </div>
+    <>
+      <div className="flex-1 p-6 min-w-0 h-[calc(100vh-64px)] overflow-y-auto">
+        <Breadcrumb />
+        <div className="space-y-6">
+          <div className="flex items-center justify-between">
+            <h1 className="text-3xl font-bold text-espresso">Content</h1>
+            <button
+              onClick={handleOpenModal}
+              className="inline-flex items-center gap-2 px-4 py-2 bg-primary text-white rounded-lg hover:bg-primary/90"
+            >
+              <Icon name="PlusIcon" size={18} />
+              Add Content
+            </button>
+          </div>
+          <div className="bg-white p-8 rounded-2xl shadow-sm border border-border">
+            <p className="text-mocha-grey">Create and manage SEO content from the Add Content form.</p>
           </div>
         </div>
-      </main>
+      </div>
 
       {isModalOpen && (
         <div className="fixed inset-0 bg-black/50 flex items-center justify-center z-50">
@@ -228,6 +225,6 @@ export default function ContentPage() {
           </div>
         </div>
       )}
-    </div>
+    </>
   );
 }

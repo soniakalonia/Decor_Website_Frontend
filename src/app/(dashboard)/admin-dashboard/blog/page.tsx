@@ -1,7 +1,7 @@
 "use client";
 
 import { useState, useRef } from 'react';
-import AdminSidebar from '../components/AdminSidebar';
+// ❌ REMOVED: import AdminSidebar from '../components/AdminSidebar';
 import Breadcrumb from '@/components/common/Breadcrumb';
 import Icon from '@/components/ui/AppIcon';
 import { toast, ToastContainer } from 'react-toastify';
@@ -89,84 +89,81 @@ export default function BlogPage() {
   };
 
   return (
-    <div className="min-h-screen bg-background">
+    <>
       <ToastContainer position="top-right" autoClose={3000} />
-      <main className="flex">
-        <AdminSidebar />
-        <div className="flex-1 p-6 min-w-0 h-[calc(100vh-64px)] overflow-y-auto">
-          <Breadcrumb />
-          <div className="space-y-6">
-            <div className="flex justify-between items-center">
-              <h1 className="text-3xl font-bold text-espresso">Blog Posts ({data?.blogs?.length || 0})</h1>
-              <button onClick={() => { setEditingBlog(null); setFormData({ title: '', content: '', excerpt: '', category: 'General', status: 'draft' }); setImagePreview(''); setIsModalOpen(true); }} className="flex items-center gap-2 px-4 py-2 bg-primary text-white rounded-lg hover:bg-primary/90">
-                <Icon name="PlusIcon" size={20} />
-                Add New Post
-              </button>
-            </div>
-
-            {isLoading ? (
-              <div className="text-center py-8">Loading...</div>
-            ) : (
-              <div className="bg-white rounded-2xl shadow-sm border border-border ">
-                <div className='overflow-x-auto sm:overflow-visible'>
-                  <table className="min-w-[1200px] md:min-w-full w-full text-sm">
-                    <thead className="bg-gray-50">
-                      <tr>
-                        <th className="px-4 py-3 text-left text-xs font-medium text-gray-500 uppercase">ID</th>
-                        <th className="px-4 py-3 text-left text-xs font-medium text-gray-500 uppercase">Image</th>
-                        <th className="px-4 py-3 text-left text-xs font-medium text-gray-500 uppercase">Title</th>
-                        <th className="px-4 py-3 text-left text-xs font-medium text-gray-500 uppercase">Author</th>
-                        <th className="px-4 py-3 text-left text-xs font-medium text-gray-500 uppercase">Status</th>
-                        <th className="px-4 py-3 text-left text-xs font-medium text-gray-500 uppercase">Date</th>
-                        <th className="px-4 py-3 text-left text-xs font-medium text-gray-500 uppercase">Views</th>
-                        <th className="px-4 py-3 text-left text-xs font-medium text-gray-500 uppercase">Actions</th>
-                      </tr>
-                    </thead>
-                    <tbody className="divide-y divide-gray-200">
-                      {data?.blogs?.map((blog: any) => (
-                        <tr key={blog.id} className="hover:bg-gray-50">
-                          <td className="px-4 py-3 font-mono text-xs">{blog.id}</td>
-                          <td className="px-4 py-3">
-                            {blog.image ? (
-                              <div className="relative w-12 h-12 rounded overflow-hidden">
-                                <Image src={blog.image} alt={blog.title} fill className="object-cover" />
-                              </div>
-                            ) : (
-                              <div className="w-12 h-12 bg-gray-200 rounded flex items-center justify-center">
-                                <Icon name="PhotoIcon" size={20} className="text-gray-400" />
-                              </div>
-                            )}
-                          </td>
-                          <td className="px-4 py-3 font-medium">{blog.title}</td>
-                          <td className="px-4 py-3 text-xs">{blog.author}</td>
-                          <td className="px-4 py-3">
-                            <span className={`inline-flex px-2 py-1 text-xs rounded-full ${blog.status === 'published' ? 'bg-green-100 text-green-800' : 'bg-yellow-100 text-yellow-800'
-                              }`}>
-                              {blog.status}
-                            </span>
-                          </td>
-                          <td className="px-4 py-3 text-xs">{new Date(blog.created_at).toLocaleDateString()}</td>
-                          <td className="px-4 py-3 text-xs">{blog.views}</td>
-                          <td className="px-4 py-3">
-                            <div className="flex items-center space-x-2">
-                              <button className="p-1.5 rounded-lg bg-green-50 text-green-600 hover:bg-green-100" title="Edit" onClick={() => handleEdit(blog)}>
-                                <Icon name="PencilSquareIcon" size={16} />
-                              </button>
-                              <button className="p-1.5 rounded-lg bg-red-50 text-red-600 hover:bg-red-100" title="Delete" onClick={() => handleDelete(blog.id)}>
-                                <Icon name="TrashIcon" size={16} />
-                              </button>
-                            </div>
-                          </td>
-                        </tr>
-                      ))}
-                    </tbody>
-                  </table>
-                </div>
-              </div>
-            )}
+      <div className="flex-1 p-6 min-w-0 h-[calc(100vh-64px)] overflow-y-auto">
+        <Breadcrumb />
+        <div className="space-y-6">
+          <div className="flex justify-between items-center">
+            <h1 className="text-3xl font-bold text-espresso">Blog Posts ({data?.blogs?.length || 0})</h1>
+            <button onClick={() => { setEditingBlog(null); setFormData({ title: '', content: '', excerpt: '', category: 'General', status: 'draft' }); setImagePreview(''); setIsModalOpen(true); }} className="flex items-center gap-2 px-4 py-2 bg-primary text-white rounded-lg hover:bg-primary/90">
+              <Icon name="PlusIcon" size={20} />
+              Add New Post
+            </button>
           </div>
+
+          {isLoading ? (
+            <div className="text-center py-8">Loading...</div>
+          ) : (
+            <div className="bg-white rounded-2xl shadow-sm border border-border ">
+              <div className='overflow-x-auto sm:overflow-visible'>
+                <table className="min-w-[1200px] md:min-w-full w-full text-sm">
+                  <thead className="bg-gray-50">
+                    <tr>
+                      <th className="px-4 py-3 text-left text-xs font-medium text-gray-500 uppercase">ID</th>
+                      <th className="px-4 py-3 text-left text-xs font-medium text-gray-500 uppercase">Image</th>
+                      <th className="px-4 py-3 text-left text-xs font-medium text-gray-500 uppercase">Title</th>
+                      <th className="px-4 py-3 text-left text-xs font-medium text-gray-500 uppercase">Author</th>
+                      <th className="px-4 py-3 text-left text-xs font-medium text-gray-500 uppercase">Status</th>
+                      <th className="px-4 py-3 text-left text-xs font-medium text-gray-500 uppercase">Date</th>
+                      <th className="px-4 py-3 text-left text-xs font-medium text-gray-500 uppercase">Views</th>
+                      <th className="px-4 py-3 text-left text-xs font-medium text-gray-500 uppercase">Actions</th>
+                    </tr>
+                  </thead>
+                  <tbody className="divide-y divide-gray-200">
+                    {data?.blogs?.map((blog: any) => (
+                      <tr key={blog.id} className="hover:bg-gray-50">
+                        <td className="px-4 py-3 font-mono text-xs">{blog.id}</td>
+                        <td className="px-4 py-3">
+                          {blog.image ? (
+                            <div className="relative w-12 h-12 rounded overflow-hidden">
+                              <Image src={blog.image} alt={blog.title} fill className="object-cover" />
+                            </div>
+                          ) : (
+                            <div className="w-12 h-12 bg-gray-200 rounded flex items-center justify-center">
+                              <Icon name="PhotoIcon" size={20} className="text-gray-400" />
+                            </div>
+                          )}
+                        </td>
+                        <td className="px-4 py-3 font-medium">{blog.title}</td>
+                        <td className="px-4 py-3 text-xs">{blog.author}</td>
+                        <td className="px-4 py-3">
+                          <span className={`inline-flex px-2 py-1 text-xs rounded-full ${blog.status === 'published' ? 'bg-green-100 text-green-800' : 'bg-yellow-100 text-yellow-800'
+                            }`}>
+                            {blog.status}
+                          </span>
+                        </td>
+                        <td className="px-4 py-3 text-xs">{new Date(blog.created_at).toLocaleDateString()}</td>
+                        <td className="px-4 py-3 text-xs">{blog.views}</td>
+                        <td className="px-4 py-3">
+                          <div className="flex items-center space-x-2">
+                            <button className="p-1.5 rounded-lg bg-green-50 text-green-600 hover:bg-green-100" title="Edit" onClick={() => handleEdit(blog)}>
+                              <Icon name="PencilSquareIcon" size={16} />
+                            </button>
+                            <button className="p-1.5 rounded-lg bg-red-50 text-red-600 hover:bg-red-100" title="Delete" onClick={() => handleDelete(blog.id)}>
+                              <Icon name="TrashIcon" size={16} />
+                            </button>
+                          </div>
+                        </td>
+                      </tr>
+                    ))}
+                  </tbody>
+                </table>
+              </div>
+            </div>
+          )}
         </div>
-      </main>
+      </div>
 
       {isModalOpen && (
         <div className="fixed inset-0 bg-black/50 flex items-center justify-center z-50">
@@ -230,7 +227,6 @@ export default function BlogPage() {
                   className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-primary focus:border-transparent"
                   placeholder="Enter a brief excerpt (50-250 characters)"
                 />
-                {/* <div className="text-xs text-gray-500 mt-1">{formData.excerpt.length}/250 characters</div> */}
               </div>
               <div>
                 <label className="block text-sm font-medium text-gray-700 mb-2">Content</label>
@@ -266,7 +262,7 @@ export default function BlogPage() {
               </div>
               <div className="flex gap-3 pt-4">
                 <button type="submit" className="flex-1 px-4 py-2 bg-primary text-white rounded-lg hover:bg-primary/90">
-                  Create Post
+                  {editingBlog ? 'Update Post' : 'Create Post'}
                 </button>
                 <button type="button" onClick={() => setIsModalOpen(false)} className="px-4 py-2 border border-gray-300 rounded-lg hover:bg-gray-50">
                   Cancel
@@ -276,6 +272,6 @@ export default function BlogPage() {
           </div>
         </div>
       )}
-    </div>
+    </>
   );
 }

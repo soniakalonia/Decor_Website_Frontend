@@ -293,22 +293,20 @@ export default function BulkUploadPage() {
       <div className="flex gap-2 border-b border-border">
         <button
           onClick={() => setActiveTab('csv')}
-          className={`px-4 py-2 text-sm font-medium transition-colors border-b-2 ${
-            activeTab === 'csv'
+          className={`px-4 py-2 text-sm font-medium transition-colors border-b-2 ${activeTab === 'csv'
               ? 'border-primary text-primary'
               : 'border-transparent text-mocha-grey hover:text-espresso'
-          }`}
+            }`}
         >
           <Icon name="DocumentTextIcon" size={16} className="inline mr-2" />
           CSV Upload
         </button>
         <button
           onClick={() => setActiveTab('manual')}
-          className={`px-4 py-2 text-sm font-medium transition-colors border-b-2 ${
-            activeTab === 'manual'
+          className={`px-4 py-2 text-sm font-medium transition-colors border-b-2 ${activeTab === 'manual'
               ? 'border-primary text-primary'
               : 'border-transparent text-mocha-grey hover:text-espresso'
-          }`}
+            }`}
         >
           <Icon name="PencilSquareIcon" size={16} className="inline mr-2" />
           Manual Entry
@@ -385,10 +383,17 @@ export default function BulkUploadPage() {
               )}
             </div>
 
+// Where you pass props to BulkUploadTable
             <BulkUploadTable
               products={state.products}
-              onRemove={removeManualRow}
-              onEdit={startEdit}    // ✅ Added
+              onRemove={(index) => {
+                console.log('🗑️ Remove called for index:', index);
+                removeManualRow(index);
+              }}
+              onEdit={(index) => {
+                console.log('✏️ Edit called for index:', index);
+                startEdit(index);
+              }}
             />
 
             {/* Import Button */}

@@ -462,11 +462,10 @@ export const BulkUploadTable = ({ products, onRemove, onEdit }: BulkUploadTableP
                   )}
                 </td>
                 <td className="px-3 py-2">
-                  <span className={`text-xs px-2 py-1 rounded-full ${
-                    product.status === 'active' ? 'bg-success/20 text-success' :
+                  <span className={`text-xs px-2 py-1 rounded-full ${product.status === 'active' ? 'bg-success/20 text-success' :
                     product.status === 'inactive' ? 'bg-error/20 text-error' :
-                    'bg-muted text-mocha-grey'
-                  }`}>
+                      'bg-muted text-mocha-grey'
+                    }`}>
                     {product.status || 'draft'}
                   </span>
                 </td>
@@ -474,7 +473,12 @@ export const BulkUploadTable = ({ products, onRemove, onEdit }: BulkUploadTableP
                   <div className="flex items-center justify-center gap-1">
                     {/* ✅ Edit Button */}
                     <button
-                      onClick={() => onEdit(index)}
+                      onClick={() => {
+                        console.log('🖊️ Edit button clicked for index:', index);
+                        console.log('Product data:', products[index]);
+                        onEdit(index);
+                      }}
+
                       className="text-primary hover:text-primary/80 transition-colors p-1 hover:bg-primary/10 rounded"
                       title="Edit Product"
                     >

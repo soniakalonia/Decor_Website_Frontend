@@ -439,6 +439,9 @@ export const useBulkUpload = () => {
 
   // ✅ Start editing a product
   const startEdit = useCallback((index: number) => {
+  console.log('🔧 startEdit called with index:', index);
+  console.log('📦 Product at index:', state.products[index]);
+  console.log('📝 Current editingIndex:', editingIndex);
     setEditingIndex(index);
     // Scroll to the form
     const formElement = document.querySelector('.bulk-upload-form');

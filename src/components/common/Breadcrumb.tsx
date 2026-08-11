@@ -1,81 +1,90 @@
+// src/components/common/Breadcrumb.tsx
 'use client';
 
 import Link from 'next/link';
 import { usePathname } from 'next/navigation';
+import { useEffect, useState } from 'react';
 import Icon from '@/components/ui/AppIcon';
 
 interface BreadcrumbItem {
   label: string;
-  path: string;
+  href: string;
 }
 
-const Breadcrumb = () => {
+export default function Breadcrumb() {
   const pathname = usePathname();
+  const [breadcrumbs, setBreadcrumbs] = useState<BreadcrumbItem[]>([]);
+  const [mounted, setMounted] = useState(false);
 
-  const routeMapping: Record<string, string> = {
-    'products': 'Products',
-    'product-details': 'Product Details',
-    'shopping-cart': 'Shopping Cart',
-    'checkout-process': 'Checkout',
-    'dashboard': 'Dashboard',
-    'order-tracking': 'Order Tracking',
-  };
+  useEffect(() => {
+    setMounted(true);
+    
+    if (pathname) {
+      const pathSegments = pathname.split('/').filter((segment) => segment !== '');
+      
+      // Build breadcrumb items
+      const crumbs: BreadcrumbItem[] = [];
+      
+      // Add Home as first breadcrumb
+      crumbs.push({ label: 'Home', href: '/' });
+      
+      // Build path segments
+      let currentPath = '';
+      pathSegments.forEach((segment, index) => {
+        currentPath += '/' + segment;
+        
+        // Format label: replace hyphens with spaces and capitalize
+        let label = segment.replace(/-/g, ' ');
+        // Handle camelCase like "admin-dashboard" -> "Admin Dashboard"
+        label = label.replace(/([A-Z])/g, ' $1').trim();
+        // Capitalize first letter of each word
+        label = label.replace(/\b\w/g, (char) => char.toUpperCase());
+        
+        crumbs.push({ label, href: currentPath });
+      });
+      
+      setBreadcrumbs(crumbs);
+    }
+  }, [pathname]);
 
-  const generateBreadcrumbs = (): BreadcrumbItem[] => {
-    const paths = pathname.split('/').filter(Boolean);
-    const breadcrumbs: BreadcrumbItem[] = [
-      { label: 'Home', path: '/' },
-    ];
-
-    let currentPath = '';
-    paths.forEach((path) => {
-      currentPath += `/${path}`;
-      const label = routeMapping[path] || path.charAt(0).toUpperCase() + path.slice(1);
-      breadcrumbs.push({ label, path: currentPath });
-    });
-
-    return breadcrumbs;
-  };
-
-  const breadcrumbs = generateBreadcrumbs();
-
-  if (breadcrumbs.length <= 1) {
-    return null;
+  // Return empty div during server-side rendering to avoid hydration mismatch
+  if (!mounted) {
+    return <div className="h-6" />;
   }
 
-  if (pathname.includes('/admin-dashboard/bulk-upload')) {
-  return [
-    { label: 'Dashboard', href: '/admin-dashboard' },
-    { label: 'Bulk Upload', href: '/admin-dashboard/bulk-upload' },
-  ];
-}
+  // Return empty div if no breadcrumbs
+  if (breadcrumbs.length === 0) {
+    return <div className="h-6" />;
+  }
 
   return (
     <nav aria-label="Breadcrumb" className="mb-6">
       <ol className="flex flex-wrap items-center space-x-2 text-sm">
-        {breadcrumbs.map((crumb, index) => {
+        {breadcrumbs.map((item, index) => {
           const isLast = index === breadcrumbs.length - 1;
-          const isFirst = index === 0;
-
+          
           return (
-            <li key={crumb.path} className="flex items-center">
-              {!isFirst && (
-                <Icon
-                  name="ChevronRightIcon"
-                  size={16}
-                  className="mr-2 text-muted-foreground"
+            <li key={item.href} className="flex items-center">
+              {index > 0 && (
+                <Icon 
+                  name="ChevronRightIcon" 
+                  size={16} 
+                  className="mx-2 text-gray-400 flex-shrink-0" 
                 />
               )}
               {isLast ? (
-                <span className="font-medium text-foreground" aria-current="page">
-                  {crumb.label}
+                <span 
+                  className="font-medium text-gray-900 capitalize" 
+                  aria-current="page"
+                >
+                  {item.label}
                 </span>
               ) : (
-                <Link
-                  href={crumb.path}
-                  className="text-muted-foreground transition-smooth hover:text-primary"
+                <Link 
+                  href={item.href} 
+                  className="text-gray-500 hover:text-primary transition-colors capitalize"
                 >
-                  {crumb.label}
+                  {item.label}
                 </Link>
               )}
             </li>
@@ -84,9 +93,4 @@ const Breadcrumb = () => {
       </ol>
     </nav>
   );
-};
-
-export default Breadcrumb;
-
-
-
+}

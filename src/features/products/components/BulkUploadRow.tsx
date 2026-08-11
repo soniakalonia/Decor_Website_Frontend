@@ -770,7 +770,11 @@ export const BulkUploadRow = ({
 
   // ✅ Load edit data when in edit mode
   useEffect(() => {
+  console.log('🔄 BulkUploadRow useEffect - isEditing:', isEditing);
+  console.log('🔄 editProduct:', editProduct);
+  console.log('🔄 editingIndex:', editingIndex);
     if (isEditing && editProduct) {
+      console.log('📝 Loading product for edit:', editProduct);
       setProduct({
         name: editProduct.name || '',
         description: editProduct.description || '',

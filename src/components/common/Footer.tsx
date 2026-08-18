@@ -81,8 +81,8 @@ const Footer = () => {
                 <li><Link href="/" className="text-[#6B7280] hover:text-[#FF6B8A] transition-smooth">Home</Link></li>
                 <li><Link href="/products" className="text-[#6B7280] hover:text-[#FF6B8A] transition-smooth">Shop</Link></li>
                 <li><Link href="/products" className="text-[#6B7280] hover:text-[#FF6B8A] transition-smooth">Categories</Link></li>
-                <li><Link href="#" className="text-[#6B7280] hover:text-[#FF6B8A] transition-smooth">About Us</Link></li>
-                <li><Link href="#" className="text-[#6B7280] hover:text-[#FF6B8A] transition-smooth">Contact Us</Link></li>
+                <li><Link href="/about" className="text-[#6B7280] hover:text-[#FF6B8A] transition-smooth">About Us</Link></li>
+                <li><Link href="/contact" className="text-[#6B7280] hover:text-[#FF6B8A] transition-smooth">Contact Us</Link></li>
                 <li><Link href="#" className="text-[#6B7280] hover:text-[#FF6B8A] transition-smooth">Bulk Orders</Link></li>
               </ul>
             )}
@@ -117,12 +117,12 @@ const Footer = () => {
             </button>
             {openSection === 'support' && (
               <ul className="mt-2 space-y-2 text-sm">
-                <li><Link href="#" className="text-[#6B7280] hover:text-[#FF6B8A] transition-smooth">FAQs</Link></li>
-                <li><Link href="#" className="text-[#6B7280] hover:text-[#FF6B8A] transition-smooth">Shipping & Delivery</Link></li>
-                <li><Link href="#" className="text-[#6B7280] hover:text-[#FF6B8A] transition-smooth">Return Policy</Link></li>
+                <li><Link href="/faqs" className="text-[#6B7280] hover:text-[#FF6B8A] transition-smooth">FAQs</Link></li>
+                <li><Link href="/shipping-delivery" className="text-[#6B7280] hover:text-[#FF6B8A] transition-smooth">Shipping & Delivery</Link></li>
+                <li><Link href="/return-policy" className="text-[#6B7280] hover:text-[#FF6B8A] transition-smooth">Return Policy</Link></li>
                 <li><Link href="/order-tracking" className="text-[#6B7280] hover:text-[#FF6B8A] transition-smooth">Order Tracking</Link></li>
-                <li><Link href="#" className="text-[#6B7280] hover:text-[#FF6B8A] transition-smooth">Privacy Policy</Link></li>
-                <li><Link href="#" className="text-[#6B7280] hover:text-[#FF6B8A] transition-smooth">Terms & Conditions</Link></li>
+                <li><Link href="/privacy-policy" className="text-[#6B7280] hover:text-[#FF6B8A] transition-smooth">Privacy Policy</Link></li>
+              <li><Link href="/terms-and-conditions" className="text-[#6B7280] hover:text-[#FF6B8A] transition-smooth">Terms & Conditions</Link></li>
               </ul>
             )}
           </div>
@@ -134,8 +134,8 @@ const Footer = () => {
               <li><Link href="/" className="text-[#6B7280] hover:text-[#FF6B8A] transition-smooth">Home</Link></li>
               <li><Link href="/products" className="text-[#6B7280] hover:text-[#FF6B8A] transition-smooth">Shop</Link></li>
               <li><Link href="/products" className="text-[#6B7280] hover:text-[#FF6B8A] transition-smooth">Categories</Link></li>
-              <li><Link href="#" className="text-[#6B7280] hover:text-[#FF6B8A] transition-smooth">About Us</Link></li>
-              <li><Link href="#" className="text-[#6B7280] hover:text-[#FF6B8A] transition-smooth">Contact Us</Link></li>
+              <li><Link href="/about" className="text-[#6B7280] hover:text-[#FF6B8A] transition-smooth">About Us</Link></li>
+              <li><Link href="/contact" className="text-[#6B7280] hover:text-[#FF6B8A] transition-smooth">Contact Us</Link></li>
               <li><Link href="#" className="text-[#6B7280] hover:text-[#FF6B8A] transition-smooth">Bulk Orders</Link></li>
             </ul>
           </div>
@@ -154,12 +154,12 @@ const Footer = () => {
           <div className="hidden lg:block" data-aos="fade-up">
             <h4 className="font-semibold text-[#1A2A3A] mb-4">Support</h4>
             <ul className="space-y-2 text-sm">
-              <li><Link href="#" className="text-[#6B7280] hover:text-[#FF6B8A] transition-smooth">FAQs</Link></li>
-              <li><Link href="#" className="text-[#6B7280] hover:text-[#FF6B8A] transition-smooth">Shipping & Delivery</Link></li>
-              <li><Link href="#" className="text-[#6B7280] hover:text-[#FF6B8A] transition-smooth">Return Policy</Link></li>
+              <li><Link href="/faqs" className="text-[#6B7280] hover:text-[#FF6B8A] transition-smooth">FAQs</Link></li>
+              <li><Link href="/shipping-delivery" className="text-[#6B7280] hover:text-[#FF6B8A] transition-smooth">Shipping & Delivery</Link></li>
+              <li><Link href="/return-policy" className="text-[#6B7280] hover:text-[#FF6B8A] transition-smooth">Return Policy</Link></li>
               <li><Link href="/order-tracking" className="text-[#6B7280] hover:text-[#FF6B8A] transition-smooth">Order Tracking</Link></li>
-              <li><Link href="#" className="text-[#6B7280] hover:text-[#FF6B8A] transition-smooth">Privacy Policy</Link></li>
-              <li><Link href="#" className="text-[#6B7280] hover:text-[#FF6B8A] transition-smooth">Terms & Conditions</Link></li>
+              <li><Link href="/privacy-policy" className="text-[#6B7280] hover:text-[#FF6B8A] transition-smooth">Privacy Policy</Link></li>
+             <li><Link href="/terms-and-conditions" className="text-[#6B7280] hover:text-[#FF6B8A] transition-smooth">Terms & Conditions</Link></li>
             </ul>
           </div>
 

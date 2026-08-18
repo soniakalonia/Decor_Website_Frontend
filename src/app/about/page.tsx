@@ -1,5 +1,6 @@
 import type { Metadata } from 'next';
 import Link from 'next/link';
+import Image from 'next/image';
 import Icon from '@/components/ui/AppIcon';
 
 export const metadata: Metadata = {
@@ -79,11 +80,20 @@ export default function AboutPage() {
       {/* Hero Section */}
       <div className="bg-gradient-to-br from-[#1A1A2E]/5 via-[#D4AF37]/10 to-[#FAFAFA] py-12 sm:py-16">
         <div className="mx-auto max-w-4xl px-4 sm:px-6 text-center">
+          {/* ✅ Logo - Updated with actual image */}
           <div className="mb-4 flex items-center justify-center gap-3">
-            <div className="w-14 h-14 bg-[#D4AF37] rounded-xl flex items-center justify-center shadow-md">
-              <span className="text-[#1A1A2E] font-heading text-xl font-bold">DV</span>
+            <div className="w-14 h-14 rounded-xl flex items-center justify-center shadow-md overflow-hidden bg-white p-1">
+              <Image
+                src="/assets/images/logo.png"
+                alt="DecorVault"
+                width={56}
+                height={56}
+                className="w-full h-full object-contain"
+              />
             </div>
-            <span className="font-heading text-3xl font-bold text-[#1A1A2E]">Decor<span className="text-[#D4AF37]">Vault</span></span>
+            <span className="font-heading text-3xl font-bold text-[#1A1A2E]">
+              Decor<span className="text-[#D4AF37]">Vault</span>
+            </span>
           </div>
           <h1 className="font-heading text-4xl font-bold text-[#1A1A2E] sm:text-5xl">
             Our Story

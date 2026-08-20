@@ -6,6 +6,7 @@ import Image from 'next/image';
 import { usePathname } from 'next/navigation';
 import Icon from '@/components/ui/AppIcon';
 import { useCart } from '@/features/cart/hooks/useCart';
+// import SearchBar from './SearchBar'; // Commented out - file doesn't exist
 
 const Header = () => {
   const pathname = usePathname();
@@ -15,14 +16,13 @@ const Header = () => {
   const [isUserMenuOpen, setIsUserMenuOpen] = useState(false);
   const [isAuthenticated, setIsAuthenticated] = useState(false);
   const [userName, setUserName] = useState('');
-  const [isMounted, setIsMounted] = useState(false); // ✅ Add this
 
   const totalItems = items.reduce((sum, item) => sum + item.quantity, 0);
 
+  // ✅ Check if we're on admin page
   const isAdminPage = pathname?.startsWith('/admin-dashboard');
 
   useEffect(() => {
-    setIsMounted(true); // ✅ Mark as mounted
     const handleScroll = () => {
       setIsScrolled(window.scrollY > 10);
     };
@@ -59,11 +59,14 @@ const Header = () => {
     { href: '/contact', label: 'Contact' },
   ];
 
+  // ✅ Don't show header on admin pages (optional - or keep it simple)
+  // If you want to hide the header completely on admin pages:
   if (isAdminPage) {
     return (
       <header className="sticky top-0 z-50 bg-white border-b border-border h-16">
         <div className="container mx-auto px-4 flex items-center h-16">
           <Link href="/admin-dashboard" className="flex items-center space-x-2">
+            {/* ✅ Admin Logo - Using Image */}
             <Image
               src="/assets/images/logo-icon.png"
               alt="DecorVault"
@@ -91,6 +94,7 @@ const Header = () => {
     }`}>
       <div className="container mx-auto px-4">
         <div className="flex h-16 items-center justify-between gap-4">
+          {/* ✅ Logo - REPLACED with actual image */}
           <Link href="/" className="flex items-center space-x-2 flex-shrink-0">
             <Image
               src="/assets/images/logo.png"
@@ -105,6 +109,7 @@ const Header = () => {
             </span>
           </Link>
 
+          {/* Navigation - Desktop */}
           <nav className="hidden lg:flex items-center space-x-8">
             {navLinks.map((link) => {
               const isActive = pathname === link.href;
@@ -122,7 +127,9 @@ const Header = () => {
             })}
           </nav>
 
+          {/* Right Actions */}
           <div className="flex items-center gap-2">
+            {/* Search Bar - Replaced with simple input since SearchBar component doesn't exist */}
             <div className="hidden md:flex items-center">
               <input
                 type="text"
@@ -145,8 +152,7 @@ const Header = () => {
               aria-label="Cart"
             >
               <Icon name="ShoppingBagIcon" size={20} className="text-[#1A1A2E]" />
-              {/* ✅ FIX: Only show badge after component mounts */}
-              {isMounted && totalItems > 0 && (
+              {totalItems > 0 && (
                 <span className="absolute -top-1 -right-1 flex h-5 w-5 items-center justify-center rounded-full bg-[#D4AF37] text-[#1A1A2E] text-xs font-bold">
                   {totalItems > 9 ? '9+' : totalItems}
                 </span>
@@ -190,6 +196,7 @@ const Header = () => {
               </Link>
             )}
 
+            {/* Mobile Menu Toggle - HIDE on admin pages */}
             {!isAdminPage && (
               <button
                 onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
@@ -202,6 +209,7 @@ const Header = () => {
           </div>
         </div>
 
+        {/* Mobile Menu - HIDE on admin pages */}
         {!isAdminPage && isMobileMenuOpen && (
           <div className="lg:hidden border-t border-[#E8E4E0] py-4 space-y-3">
             {navLinks.map((link) => {

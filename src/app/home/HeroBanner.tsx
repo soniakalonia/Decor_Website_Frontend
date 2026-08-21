@@ -68,16 +68,30 @@ const HeroBanner = () => {
             </p>
           </div>
 
-          {/* Right Image - Hero Image */}
-          <div className="flex-1 max-w-md">
-            <div className="relative aspect-square rounded-2xl overflow-hidden shadow-2xl border-4 border-white">
-              <Image
-                src="/assets/images/hero/hero-banner-1.jpg"
-                alt="Home Decor"
-                fill
-                className="object-cover"
-                priority
-              />
+          {/* Right Side - Two Images Side by Side */}
+          <div className="flex-1 max-w-2xl">
+            <div className="flex flex-row items-center gap-4 md:gap-6 justify-center">
+              {/* Image 1 - Flower */}
+              <div className="relative w-1/2 aspect-square rounded-2xl overflow-hidden hover:scale-105 transition-transform duration-300">
+                <Image
+                  src="/assets/images/hero/flower-gold.jpg"
+                  alt="Golden Flower"
+                  fill
+                  className="object-cover"
+                  priority
+                />
+              </div>
+
+              {/* Image 2 - Mirror */}
+              <div className="relative w-1/2 aspect-square rounded-2xl overflow-hidden hover:scale-105 transition-transform duration-300">
+                <Image
+                  src="/assets/images/hero/mirror-ornate.jpg"
+                  alt="Ornate Mirror"
+                  fill
+                  className="object-cover"
+                  priority
+                />
+              </div>
             </div>
           </div>
         </div>

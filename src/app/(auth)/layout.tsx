@@ -1,8 +1,8 @@
 import type { Metadata } from 'next';
 
 export const metadata: Metadata = {
-  title: 'Authentication | VMR Solutions',
-  description: 'Secure login and registration for VMR Solutions',
+  title: 'Authentication | Decor Vault',
+  description: 'Secure login and registration for Decor Vault',
 };
 
 export default function AuthLayout({

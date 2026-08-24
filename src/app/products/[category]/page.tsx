@@ -8,7 +8,7 @@ export async function generateMetadata({ params }: { params: Promise<{ category:
   const categoryName = category.replace(/-/g, ' ').replace(/\b\w/g, l => l.toUpperCase());
   
   return {
-    title: `${categoryName} - VMR Solution`,
+    title: `${categoryName} - Decor Vault`,
     description: `Browse our collection of ${categoryName.toLowerCase()} products`,
   };
 }

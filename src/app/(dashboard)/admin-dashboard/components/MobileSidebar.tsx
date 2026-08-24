@@ -93,7 +93,7 @@ const MobileSidebar = () => {
               </div>
               <div>
                 <h2 className="text-lg font-bold text-espresso font-heading">Admin Panel</h2>
-                <p className="text-xs text-mocha-grey font-medium">VMR Solution Management</p>
+                <p className="text-xs text-mocha-grey font-medium">Decor Vault Management</p>
               </div>
             </div>
             <button

@@ -58,7 +58,7 @@ const UserSidebar = () => {
           </div>
           <div>
             <h2 className="text-sm font-bold text-espresso font-heading">My Account</h2>
-            <p className="text-xs text-mocha-grey font-medium">VMR Solution</p>
+            <p className="text-xs text-mocha-grey font-medium">Decor Vault</p>
           </div>
         </div>
       </div>

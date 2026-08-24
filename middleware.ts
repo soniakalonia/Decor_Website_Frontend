@@ -5,23 +5,45 @@ export function middleware(request: NextRequest) {
   const token = request.cookies.get('auth_token')?.value;
   const { pathname } = request.nextUrl;
 
+  // ✅ Redirect common paths
+  const redirectMap: Record<string, string> = {
+    '/profile': '/user-dashboard/profile',
+    '/orders': '/user-dashboard/orders',
+    '/wishlist': '/user-dashboard/wishlist',
+    '/reviews': '/user-dashboard/reviews',
+    '/addresses': '/user-dashboard/addresses',
+    '/saved-cards': '/user-dashboard/saved-cards',
+    '/notifications': '/user-dashboard/notifications',
+    '/categories': '/products', // ✅ Categories redirect to products
+  };
+
+  // Check if path needs redirect
+  if (pathname in redirectMap) {
+    return NextResponse.redirect(new URL(redirectMap[pathname], request.url));
+  }
+
   // Protected routes that require authentication
   const protectedRoutes = ['/user-dashboard', '/admin-dashboard'];
-
-  // Check if the current path is protected
   const isProtectedRoute = protectedRoutes.some(route => pathname.startsWith(route));
 
-  // Redirect to login if accessing protected route without token
   if (isProtectedRoute && !token) {
     return NextResponse.redirect(new URL('/auth/login', request.url));
   }
-
-  // For admin routes, we need to verify the role (this would require decoding JWT)
-  // For now, we'll let the client-side AuthGuard handle role-based access
 
   return NextResponse.next();
 }
 
 export const config = {
-  matcher: ['/user-dashboard/:path*', '/admin-dashboard/:path*'],
+  matcher: [
+    '/user-dashboard/:path*',
+    '/admin-dashboard/:path*',
+    '/profile',
+    '/orders',
+    '/wishlist',
+    '/reviews',
+    '/addresses',
+    '/saved-cards',
+    '/notifications',
+    '/categories', // ✅ Add categories to matcher
+  ],
 };

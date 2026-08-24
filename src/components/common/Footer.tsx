@@ -1,6 +1,6 @@
 'use client';
 
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import Link from 'next/link';
 import Icon from '@/components/ui/AppIcon';
 import { useSubscribeMutation } from '@/store/api/subscriptionApi';
@@ -9,6 +9,11 @@ const Footer = () => {
   const [email, setEmail] = useState('');
   const [openSection, setOpenSection] = useState<string | null>(null);
   const [subscribe, { isLoading }] = useSubscribeMutation();
+  const [isMounted, setIsMounted] = useState(false);
+
+  useEffect(() => {
+    setIsMounted(true);
+  }, []);
 
   const handleNewsletterSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
@@ -27,12 +32,11 @@ const Footer = () => {
 
   return (
     <footer className="bg-white border-t border-gray-200">
-      {/* Main Footer Content */}
-      <div className="mx-auto w-full px-4 py-12 sm:px-6" data-aos="fade-up">
+      <div className="mx-auto w-full px-4 py-12 sm:px-6">
         <div className="grid grid-cols-1 gap-8 lg:grid-cols-6">
           
           {/* Brand Section */}
-          <div className="lg:col-span-2" data-aos="fade-right">
+          <div className="lg:col-span-2">
             <div className="flex items-center space-x-2 mb-4">
               <img src="/assets/images/logo.png" alt="DecorVault" width={40} height={40} className="rounded-lg" />
               <span className="font-heading text-xl font-bold text-[#1A2A3A]">DecorVault</span>
@@ -67,7 +71,7 @@ const Footer = () => {
             </div>
           </div>
 
-          {/* Mobile Accordion Sections */}
+          {/* Quick Links - Mobile */}
           <div className="lg:hidden">
             <button
               onClick={() => toggleSection('quickLinks')}
@@ -122,13 +126,13 @@ const Footer = () => {
                 <li><Link href="/return-policy" className="text-[#6B7280] hover:text-[#FF6B8A] transition-smooth">Return Policy</Link></li>
                 <li><Link href="/order-tracking" className="text-[#6B7280] hover:text-[#FF6B8A] transition-smooth">Order Tracking</Link></li>
                 <li><Link href="/privacy-policy" className="text-[#6B7280] hover:text-[#FF6B8A] transition-smooth">Privacy Policy</Link></li>
-              <li><Link href="/terms-and-conditions" className="text-[#6B7280] hover:text-[#FF6B8A] transition-smooth">Terms & Conditions</Link></li>
+                <li><Link href="/terms-and-conditions" className="text-[#6B7280] hover:text-[#FF6B8A] transition-smooth">Terms & Conditions</Link></li>
               </ul>
             )}
           </div>
 
-          {/* Desktop Layout */}
-          <div className="hidden lg:block" data-aos="fade-up">
+          {/* Quick Links - Desktop */}
+          <div className="hidden lg:block">
             <h4 className="font-semibold text-[#1A2A3A] mb-4">Quick Links</h4>
             <ul className="space-y-2 text-sm">
               <li><Link href="/" className="text-[#6B7280] hover:text-[#FF6B8A] transition-smooth">Home</Link></li>
@@ -140,7 +144,7 @@ const Footer = () => {
             </ul>
           </div>
 
-          <div className="hidden lg:block" data-aos="fade-up">
+          <div className="hidden lg:block">
             <h4 className="font-semibold text-[#1A2A3A] mb-4">Categories</h4>
             <ul className="space-y-2 text-sm">
               <li><Link href="/products" className="text-[#6B7280] hover:text-[#FF6B8A] transition-smooth">Candles</Link></li>
@@ -151,7 +155,7 @@ const Footer = () => {
             </ul>
           </div>
 
-          <div className="hidden lg:block" data-aos="fade-up">
+          <div className="hidden lg:block">
             <h4 className="font-semibold text-[#1A2A3A] mb-4">Support</h4>
             <ul className="space-y-2 text-sm">
               <li><Link href="/faqs" className="text-[#6B7280] hover:text-[#FF6B8A] transition-smooth">FAQs</Link></li>
@@ -159,23 +163,17 @@ const Footer = () => {
               <li><Link href="/return-policy" className="text-[#6B7280] hover:text-[#FF6B8A] transition-smooth">Return Policy</Link></li>
               <li><Link href="/order-tracking" className="text-[#6B7280] hover:text-[#FF6B8A] transition-smooth">Order Tracking</Link></li>
               <li><Link href="/privacy-policy" className="text-[#6B7280] hover:text-[#FF6B8A] transition-smooth">Privacy Policy</Link></li>
-             <li><Link href="/terms-and-conditions" className="text-[#6B7280] hover:text-[#FF6B8A] transition-smooth">Terms & Conditions</Link></li>
+              <li><Link href="/terms-and-conditions" className="text-[#6B7280] hover:text-[#FF6B8A] transition-smooth">Terms & Conditions</Link></li>
             </ul>
           </div>
 
-          {/* Contact & Social */}
-          <div data-aos="fade-left">
+          {/* Contact - Icons Removed */}
+          <div>
             <h4 className="font-semibold text-[#1A2A3A] mb-4">Contact & Follow</h4>
-            <div className="space-y-2 text-sm text-[#6B7280] mb-4">
+            <div className="space-y-2 text-sm text-[#6B7280]">
               <p className="flex items-center gap-2"><Icon name="PhoneIcon" size={16} />+91 98765 43210</p>
               <p className="flex items-center gap-2"><Icon name="EnvelopeIcon" size={16} />hello@decorvault.in</p>
               <p className="flex items-center gap-2"><Icon name="ClockIcon" size={16} />Mon-Sat: 10 AM - 7 PM</p>
-            </div>
-            <div className="flex space-x-2">
-              <a href="#" className="p-2 bg-[#F5F5F7] rounded-md hover:bg-[#FF6B8A] hover:text-white transition-smooth"><Icon name="ShareIcon" size={16} /></a>
-              <a href="#" className="p-2 bg-[#F5F5F7] rounded-md hover:bg-[#FF6B8A] hover:text-white transition-smooth"><Icon name="CameraIcon" size={16} /></a>
-              <a href="#" className="p-2 bg-[#F5F5F7] rounded-md hover:bg-[#FF6B8A] hover:text-white transition-smooth"><Icon name="ChatBubbleLeftRightIcon" size={16} /></a>
-              <a href="#" className="p-2 bg-[#F5F5F7] rounded-md hover:bg-[#FF6B8A] hover:text-white transition-smooth"><Icon name="BuildingOfficeIcon" size={16} /></a>
             </div>
           </div>
         </div>

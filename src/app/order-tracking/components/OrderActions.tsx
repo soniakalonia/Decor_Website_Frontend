@@ -130,7 +130,7 @@ const OrderActions = ({ orderId, canCancel, canReturn }: OrderActionsProps) => {
                   <div class="section flex">
                     <div>
                       <div class="company-name">OPTIMACONNECT PVT. LTD</div>
-                      <div class="muted">Sold By: VMR Solution</div>
+                      <div class="muted">Sold By: Decor Vault</div>
                     </div>
                     <div class="right">
                       <img class="qr" src="https://api.qrserver.com/v1/create-qr-code/?size=64x64&data=${encodeURIComponent(qrData)}" alt="Invoice QR" />

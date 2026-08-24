@@ -6,55 +6,48 @@ import Image from 'next/image';
 import { usePathname } from 'next/navigation';
 import Icon from '@/components/ui/AppIcon';
 import { useCart } from '@/features/cart/hooks/useCart';
+import { useAuth } from '@/features/auth/hooks/useAuth';
 
 const Header = () => {
   const pathname = usePathname();
   const { items } = useCart();
+  const { isAuthenticated, user, logout: authLogout } = useAuth();
   const [isScrolled, setIsScrolled] = useState(false);
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
   const [isUserMenuOpen, setIsUserMenuOpen] = useState(false);
-  const [isAuthenticated, setIsAuthenticated] = useState(false);
-  const [userName, setUserName] = useState('');
-  const [isMounted, setIsMounted] = useState(false); // ✅ Add this
+  const [isMounted, setIsMounted] = useState(false);
+  const [isClient, setIsClient] = useState(false);
+  const [isHydrated, setIsHydrated] = useState(false);
+  // ✅ Add this to track active link on client only
+  const [activePath, setActivePath] = useState('');
 
   const totalItems = items.reduce((sum, item) => sum + item.quantity, 0);
+  const userName = user?.fullName || user?.email || 'User';
 
   const isAdminPage = pathname?.startsWith('/admin-dashboard');
 
   useEffect(() => {
-    setIsMounted(true); // ✅ Mark as mounted
+    setIsMounted(true);
+    setIsClient(true);
+    setIsHydrated(true);
+    // ✅ Set active path after hydration
+    setActivePath(pathname || '');
     const handleScroll = () => {
       setIsScrolled(window.scrollY > 10);
     };
     window.addEventListener('scroll', handleScroll);
     return () => window.removeEventListener('scroll', handleScroll);
-  }, []);
-
-  useEffect(() => {
-    const token = localStorage.getItem('token');
-    const userData = localStorage.getItem('user');
-    if (token && userData) {
-      try {
-        const user = JSON.parse(userData);
-        setIsAuthenticated(true);
-        setUserName(user.name || user.email || 'User');
-      } catch {
-        setIsAuthenticated(false);
-      }
-    }
-  }, []);
+  }, [pathname]);
 
   const handleLogout = () => {
-    localStorage.removeItem('token');
-    localStorage.removeItem('user');
-    setIsAuthenticated(false);
-    setUserName('');
+    authLogout();
     window.location.href = '/';
   };
 
   const navLinks = [
+    { href: '/', label: 'Home' },
     { href: '/products', label: 'Shop' },
-    { href: '/categories', label: 'Categories' },
+    { href: '/categories', label: 'Shop by Categories' },
     { href: '/about', label: 'About' },
     { href: '/contact', label: 'Contact' },
   ];
@@ -64,13 +57,15 @@ const Header = () => {
       <header className="sticky top-0 z-50 bg-white border-b border-border h-16">
         <div className="container mx-auto px-4 flex items-center h-16">
           <Link href="/admin-dashboard" className="flex items-center space-x-2">
-            <Image
-              src="/assets/images/logo-icon.png"
-              alt="DecorVault"
-              width={32}
-              height={32}
-              className="w-8 h-8 object-contain"
-            />
+            <div className="h-8 w-8 rounded-full overflow-hidden border border-[#D4AF37]">
+              <Image
+                src="/assets/images/logo.png"
+                alt="DecorVault"
+                width={32}
+                height={32}
+                className="object-cover w-full h-full"
+              />
+            </div>
             <span className="font-heading text-lg font-bold text-[#1A1A2E]">
               Decor<span className="text-[#D4AF37]">Vault</span>
             </span>
@@ -91,15 +86,22 @@ const Header = () => {
     }`}>
       <div className="container mx-auto px-4">
         <div className="flex h-16 items-center justify-between gap-4">
+          {/* Logo with image in circle - Hydration safe */}
           <Link href="/" className="flex items-center space-x-2 flex-shrink-0">
-            <Image
-              src="/assets/images/logo.png"
-              alt="DecorVault"
-              width={120}
-              height={40}
-              className="h-8 md:h-10 w-auto object-contain"
-              priority
-            />
+            {isHydrated ? (
+              <div className="h-10 w-10 rounded-full overflow-hidden border-2 border-[#D4AF37] shadow-sm flex-shrink-0 bg-white">
+                <Image
+                  src="/assets/images/logo.png"
+                  alt="DecorVault"
+                  width={40}
+                  height={40}
+                  className="object-cover w-full h-full"
+                  priority
+                />
+              </div>
+            ) : (
+              <div className="h-10 w-10 rounded-full border-2 border-[#D4AF37] flex-shrink-0 bg-white"></div>
+            )}
             <span className="font-heading text-lg font-bold text-[#1A1A2E] md:text-xl hidden sm:block">
               Decor<span className="text-[#D4AF37]">Vault</span>
             </span>
@@ -107,7 +109,9 @@ const Header = () => {
 
           <nav className="hidden lg:flex items-center space-x-8">
             {navLinks.map((link) => {
-              const isActive = pathname === link.href;
+              // ✅ Use activePath after hydration, fallback to pathname
+              const currentPath = isHydrated ? activePath : pathname;
+              const isActive = currentPath === link.href;
               return (
                 <Link
                   key={link.href}
@@ -145,7 +149,6 @@ const Header = () => {
               aria-label="Cart"
             >
               <Icon name="ShoppingBagIcon" size={20} className="text-[#1A1A2E]" />
-              {/* ✅ FIX: Only show badge after component mounts */}
               {isMounted && totalItems > 0 && (
                 <span className="absolute -top-1 -right-1 flex h-5 w-5 items-center justify-center rounded-full bg-[#D4AF37] text-[#1A1A2E] text-xs font-bold">
                   {totalItems > 9 ? '9+' : totalItems}
@@ -153,41 +156,48 @@ const Header = () => {
               )}
             </Link>
 
-            {isAuthenticated ? (
-              <div className="relative">
-                <button
-                  onClick={() => setIsUserMenuOpen(!isUserMenuOpen)}
-                  className="flex items-center gap-2 p-2 rounded-full hover:bg-[#F0EDEA] transition-smooth"
+            {isClient ? (
+              isAuthenticated ? (
+                <div className="relative">
+                  <button
+                    onClick={() => setIsUserMenuOpen(!isUserMenuOpen)}
+                    className="flex items-center gap-2 p-2 rounded-full hover:bg-[#F0EDEA] transition-smooth"
+                  >
+                    <div className="h-8 w-8 rounded-full bg-[#D4AF37] flex items-center justify-center text-[#1A1A2E] font-semibold text-sm">
+                      {userName.charAt(0).toUpperCase()}
+                    </div>
+                  </button>
+                  {isUserMenuOpen && (
+                    <div className="absolute right-0 mt-2 w-48 bg-white rounded-lg shadow-lg border border-[#E8E4E0] py-1 z-50">
+                      <Link href="/user-dashboard/profile" className="block px-4 py-2 text-sm text-[#1A1A2E] hover:bg-[#F0EDEA] transition-smooth">
+                        My Profile
+                      </Link>
+                      <Link href="/user-dashboard/orders" className="block px-4 py-2 text-sm text-[#1A1A2E] hover:bg-[#F0EDEA] transition-smooth">
+                        Orders
+                      </Link>
+                      <button
+                        onClick={handleLogout}
+                        className="block w-full text-left px-4 py-2 text-sm text-[#E74C3C] hover:bg-[#F0EDEA] transition-smooth"
+                      >
+                        Logout
+                      </button>
+                    </div>
+                  )}
+                </div>
+              ) : (
+                <Link
+                  href="/login"
+                  className="hidden sm:flex items-center gap-2 px-4 py-2 text-sm font-medium text-[#1A1A2E] border border-[#1A1A2E] rounded-full hover:bg-[#1A1A2E] hover:text-white transition-all duration-300"
                 >
-                  <div className="h-8 w-8 rounded-full bg-[#D4AF37] flex items-center justify-center text-[#1A1A2E] font-semibold text-sm">
-                    {userName.charAt(0).toUpperCase()}
-                  </div>
-                </button>
-                {isUserMenuOpen && (
-                  <div className="absolute right-0 mt-2 w-48 bg-white rounded-lg shadow-lg border border-[#E8E4E0] py-1 z-50">
-                    <Link href="/profile" className="block px-4 py-2 text-sm text-[#1A1A2E] hover:bg-[#F0EDEA] transition-smooth">
-                      My Profile
-                    </Link>
-                    <Link href="/orders" className="block px-4 py-2 text-sm text-[#1A1A2E] hover:bg-[#F0EDEA] transition-smooth">
-                      Orders
-                    </Link>
-                    <button
-                      onClick={handleLogout}
-                      className="block w-full text-left px-4 py-2 text-sm text-[#E74C3C] hover:bg-[#F0EDEA] transition-smooth"
-                    >
-                      Logout
-                    </button>
-                  </div>
-                )}
-              </div>
+                  <Icon name="UserIcon" size={16} />
+                  <span>Sign In</span>
+                </Link>
+              )
             ) : (
-              <Link
-                href="/login"
-                className="hidden sm:flex items-center gap-2 px-4 py-2 text-sm font-medium text-[#1A1A2E] border border-[#1A1A2E] rounded-full hover:bg-[#1A1A2E] hover:text-white transition-all duration-300"
-              >
+              <div className="hidden sm:flex items-center gap-2 px-4 py-2 text-sm font-medium text-[#1A1A2E] border border-[#1A1A2E] rounded-full">
                 <Icon name="UserIcon" size={16} />
                 <span>Sign In</span>
-              </Link>
+              </div>
             )}
 
             {!isAdminPage && (
@@ -205,7 +215,8 @@ const Header = () => {
         {!isAdminPage && isMobileMenuOpen && (
           <div className="lg:hidden border-t border-[#E8E4E0] py-4 space-y-3">
             {navLinks.map((link) => {
-              const isActive = pathname === link.href;
+              const currentPath = isHydrated ? activePath : pathname;
+              const isActive = currentPath === link.href;
               return (
                 <Link
                   key={link.href}
@@ -220,7 +231,7 @@ const Header = () => {
               );
             })}
             <div className="pt-2 border-t border-[#E8E4E0]">
-              {isAuthenticated ? (
+              {isClient && isAuthenticated ? (
                 <button
                   onClick={handleLogout}
                   className="block w-full text-left text-sm font-medium text-[#E74C3C] transition-smooth"

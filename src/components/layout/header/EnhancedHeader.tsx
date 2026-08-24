@@ -59,13 +59,13 @@ const EnhancedHeader = () => {
           >
             <img
               src="/assets/images/logo.png"
-              alt="VMR Solution Logo"
+              alt="Decor Vault Logo"
               width="40"
               height="40"
               className="transition-smooth"
             />
             <span className="font-heading text-xl font-semibold text-foreground">
-              VMR Solution
+              Decor Vault
             </span>
           </Link>
 

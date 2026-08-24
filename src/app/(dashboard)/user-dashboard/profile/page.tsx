@@ -14,7 +14,9 @@ export default function ProfilePage() {
     email: user?.email || '',
     mobile: user?.mobile || '',
   });
-  const [imagePreview, setImagePreview] = useState<string>('/default-avatar.png');
+  
+  // ✅ Fix: Use null instead of default-avatar.png
+  const [imagePreview, setImagePreview] = useState<string | null>(null);
 
   const handleImageChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     const file = e.target.files?.[0];
@@ -30,6 +32,9 @@ export default function ProfilePage() {
     // TODO: Dispatch update action
     setIsEditing(false);
   };
+
+  // ✅ Get user initial for avatar
+  const userInitial = user?.fullName?.charAt(0)?.toUpperCase() || 'U';
 
   return (
     <div>
@@ -49,7 +54,20 @@ export default function ProfilePage() {
           <div className="flex flex-col items-center mb-8">
             <div className="relative">
               <div className="w-32 h-32 rounded-full overflow-hidden bg-gray-100 border-4 border-gray-200">
-                <Image src={imagePreview} alt="Profile" width={128} height={128} className="object-cover w-full h-full" />
+                {/* ✅ Fix: Show SVG avatar if no image */}
+                {imagePreview ? (
+                  <Image 
+                    src={imagePreview} 
+                    alt="Profile" 
+                    width={128} 
+                    height={128} 
+                    className="object-cover w-full h-full" 
+                  />
+                ) : (
+                  <div className="w-full h-full flex items-center justify-center bg-[#D4AF37] text-white text-4xl font-bold">
+                    {userInitial}
+                  </div>
+                )}
               </div>
               {isEditing && (
                 <label className="absolute bottom-1 right-1 bg-blue-600 text-white p-2.5 rounded-full cursor-pointer hover:bg-blue-700 transition shadow-lg">

@@ -20,7 +20,7 @@ export default function AuthGuard({
   redirectTo = '/auth/login'
 }: AuthGuardProps) {
   const router = useRouter();
-  const { isAuthenticated, isVerified, hasRole, user, loading } = useAuth();
+  const { isAuthenticated, isVerified, hasRole, user, loading } = useAuth(); // ✅ isAuthenticated is boolean
   const [mounted, setMounted] = useState(false);
 
   useEffect(() => {
@@ -32,7 +32,8 @@ export default function AuthGuard({
       return;
     }
 
-    if (requireAuth && !isAuthenticated()) {
+    // ✅ Fix: isAuthenticated is boolean, not function
+    if (requireAuth && !isAuthenticated) {  // ✅ Removed ()
       router.push(redirectTo);
       return;
     }
@@ -59,12 +60,10 @@ export default function AuthGuard({
     );
   }
 
-  if (requireAuth && !isAuthenticated()) return null;
+  // ✅ Fix: isAuthenticated is boolean, not function
+  if (requireAuth && !isAuthenticated) return null;  // ✅ Removed ()
   if (requireVerification && !isVerified()) return null;
   if (allowedRoles && allowedRoles.length > 0 && !allowedRoles.some(role => hasRole(role))) return null;
 
   return <>{children}</>;
 }
-
-
-

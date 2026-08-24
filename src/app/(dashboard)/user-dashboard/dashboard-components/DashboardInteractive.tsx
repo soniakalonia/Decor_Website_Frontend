@@ -17,6 +17,7 @@ import { useAuth } from '@/features/auth/hooks/useAuth';
 import { useGetProfileQuery } from '@/store/api/authApi';
 import { useGetUserOrdersQuery, useGetUserActivityQuery, useGetRecommendedProductsQuery, useGetUserAddressesQuery } from '@/store/api/orderApi';
 import { useGetWishlistQuery, useRemoveFromWishlistMutation } from '@/store/api/wishlistApi';
+
 interface ProfileData {
   name: string;
   email: string;
@@ -26,26 +27,34 @@ interface ProfileData {
 
 const DashboardInteractive = () => {
   const router = useRouter();
-  const { user: localUser, isAuthenticated } = useAuth();
+  const { user: localUser, isAuthenticated } = useAuth(); // ✅ isAuthenticated is boolean
+  
+  // ✅ Fix: isAuthenticated is boolean, not function
   const { data: profileDataResponse, isLoading: profileLoading } = useGetProfileQuery(undefined, {
-    skip: !isAuthenticated(),
+    skip: !isAuthenticated, // ✅ Removed ()
     refetchOnMountOrArgChange: true,
   });
+  
   const { data: ordersData, isLoading: ordersLoading } = useGetUserOrdersQuery(undefined, {
-    skip: !isAuthenticated(),
+    skip: !isAuthenticated, // ✅ Removed ()
   });
+  
   const { data: wishlistData, isLoading: wishlistLoading } = useGetWishlistQuery(undefined, {
-    skip: !isAuthenticated(),
+    skip: !isAuthenticated, // ✅ Removed ()
   });
+  
   const { data: addressesData, isLoading: addressesLoading } = useGetUserAddressesQuery(undefined, {
-    skip: !isAuthenticated(),
+    skip: !isAuthenticated, // ✅ Removed ()
   });
+  
   const { data: activityData, isLoading: activityLoading } = useGetUserActivityQuery(undefined, {
-    skip: !isAuthenticated(),
+    skip: !isAuthenticated, // ✅ Removed ()
   });
+  
   const { data: recommendedData, isLoading: recommendedLoading } = useGetRecommendedProductsQuery(undefined, {
-    skip: !isAuthenticated(),
+    skip: !isAuthenticated, // ✅ Removed ()
   });
+  
   const [removeFromWishlist] = useRemoveFromWishlistMutation();
 
   const [activeTab, setActiveTab] = useState<'orders' | 'wishlist' | 'addresses' | 'profile'>(
@@ -174,7 +183,7 @@ const DashboardInteractive = () => {
     name: user?.fullName || 'User',
     email: user?.email || '',
     phone: user?.mobile || '',
-    dateOfBirth: '15/08/1985', // Keep as example if not in User model
+    dateOfBirth: '15/08/1985',
   };
 
   const handleRemoveFromWishlist = async (productId: string) => {
@@ -186,7 +195,6 @@ const DashboardInteractive = () => {
   };
 
   const handleAddToCart = (_productId: string) => {
-    // Add to cart logic
     router.push('/shopping-cart');
   };
 
@@ -282,9 +290,13 @@ const DashboardInteractive = () => {
                       <span>Filter</span>
                     </button>
                   </div>
-                  {orders.map(order => (
-                    <OrderHistoryItem key={order.orderId} {...order} />
-                  ))}
+                  {orders.length > 0 ? (
+                    orders.map(order => (
+                      <OrderHistoryItem key={order.orderId} {...order} />
+                    ))
+                  ) : (
+                    <p className="text-center text-muted-foreground py-8">No orders yet</p>
+                  )}
                 </div>
               )}
 
@@ -296,16 +308,20 @@ const DashboardInteractive = () => {
                     </h2>
                     <p className="caption text-muted-foreground">{wishlistProducts.length} items</p>
                   </div>
-                  <div className="grid gap-4 sm:grid-cols-2">
-                    {wishlistProducts.map(product => (
-                      <WishlistItem
-                        key={product.id}
-                        {...product}
-                        onRemove={() => handleRemoveFromWishlist(product.id)}
-                        onAddToCart={() => handleAddToCart(product.id)}
-                      />
-                    ))}
-                  </div>
+                  {wishlistProducts.length > 0 ? (
+                    <div className="grid gap-4 sm:grid-cols-2">
+                      {wishlistProducts.map(product => (
+                        <WishlistItem
+                          key={product.id}
+                          {...product}
+                          onRemove={() => handleRemoveFromWishlist(product.id)}
+                          onAddToCart={() => handleAddToCart(product.id)}
+                        />
+                      ))}
+                    </div>
+                  ) : (
+                    <p className="text-center text-muted-foreground py-8">Wishlist is empty</p>
+                  )}
                 </div>
               )}
 
@@ -320,17 +336,21 @@ const DashboardInteractive = () => {
                       <span>Add New</span>
                     </button>
                   </div>
-                  <div className="grid gap-4 md:grid-cols-2">
-                    {addresses.map(address => (
-                      <AddressCard
-                        key={address.id}
-                        {...address}
-                        onEdit={() => handleEditAddress(address.id)}
-                        onDelete={() => handleDeleteAddress(address.id)}
-                        onSetDefault={() => handleSetDefaultAddress(address.id)}
-                      />
-                    ))}
-                  </div>
+                  {addresses.length > 0 ? (
+                    <div className="grid gap-4 md:grid-cols-2">
+                      {addresses.map(address => (
+                        <AddressCard
+                          key={address.id}
+                          {...address}
+                          onEdit={() => handleEditAddress(address.id)}
+                          onDelete={() => handleDeleteAddress(address.id)}
+                          onSetDefault={() => handleSetDefaultAddress(address.id)}
+                        />
+                      ))}
+                    </div>
+                  ) : (
+                    <p className="text-center text-muted-foreground py-8">No addresses saved</p>
+                  )}
                 </div>
               )}
 
@@ -347,9 +367,13 @@ const DashboardInteractive = () => {
               Recent Activity
             </h3>
             <div className="space-y-3">
-              {recentActivities.map(activity => (
-                <ActivityFeedItem key={activity.id} {...activity} />
-              ))}
+              {recentActivities.length > 0 ? (
+                recentActivities.map(activity => (
+                  <ActivityFeedItem key={activity.id} {...activity} />
+                ))
+              ) : (
+                <p className="text-center text-muted-foreground py-4">No recent activity</p>
+              )}
             </div>
           </div>
 
@@ -366,9 +390,13 @@ const DashboardInteractive = () => {
               </button>
             </div>
             <div className="space-y-3">
-              {recommendedProducts.map(product => (
-                <RecommendedProduct key={product.id} {...product} />
-              ))}
+              {recommendedProducts.length > 0 ? (
+                recommendedProducts.map(product => (
+                  <RecommendedProduct key={product.id} {...product} />
+                ))
+              ) : (
+                <p className="text-center text-muted-foreground py-4">No recommendations</p>
+              )}
             </div>
           </div>
         </div>

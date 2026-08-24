@@ -4,7 +4,7 @@ import AdminSidebar from '../components/AdminSidebar';
 
 export const metadata: Metadata = {
   title: 'Profile - Admin Dashboard',
-  description: 'Manage admin profile settings for VMR Solution.',
+  description: 'Manage admin profile settings for Decor Vault.',
 };
 
 export default function ProfilePage() {

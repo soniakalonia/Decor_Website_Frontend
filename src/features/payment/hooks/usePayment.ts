@@ -134,6 +134,16 @@ export const usePayment = (options: UsePaymentOptions = {}) => {
         theme: {
           color: '#FF6B8A',
         },
+        method: {
+          upi: true,
+          netbanking: true,
+          card: true,
+          wallet: true,
+          paylater: true,
+        },
+        upi: {
+          flow: 'collect',  // 'collect' or 'intent'
+        },
       };
 
       const razorpayInstance = new razorpay(options);

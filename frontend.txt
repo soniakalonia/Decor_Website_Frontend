@@ -1,12 +1,12 @@
 Folder PATH listing
-Volume serial number is 000000F5 E0CE:5110
+Volume serial number is 000000A0 E0CE:5110
 C:.
 ¦   .env.local
 ¦   .gitignore
 ¦   .prettierignore
 ¦   .prettierrc
 ¦   eslint.config.js
-¦   frontend_decorwebsite.txt
+¦   frontend.txt
 ¦   middleware.ts
 ¦   next-env.d.ts
 ¦   next.config.js
@@ -118,13 +118,33 @@ C:.
 ¦   ¦   ¦   ¦   ¦           server-reference-manifest.json
 ¦   ¦   ¦   ¦   ¦           
 ¦   ¦   ¦   ¦   +---login-otp
-¦   ¦   ¦   ¦   ¦       page.js
-¦   ¦   ¦   ¦   ¦       page.js.nft.json
-¦   ¦   ¦   ¦   ¦       
+¦   ¦   ¦   ¦   ¦   ¦   page.js
+¦   ¦   ¦   ¦   ¦   ¦   page.js.map
+¦   ¦   ¦   ¦   ¦   ¦   page.js.nft.json
+¦   ¦   ¦   ¦   ¦   ¦   page_client-reference-manifest.js
+¦   ¦   ¦   ¦   ¦   ¦   
+¦   ¦   ¦   ¦   ¦   +---page
+¦   ¦   ¦   ¦   ¦           app-build-manifest.json
+¦   ¦   ¦   ¦   ¦           app-paths-manifest.json
+¦   ¦   ¦   ¦   ¦           build-manifest.json
+¦   ¦   ¦   ¦   ¦           next-font-manifest.json
+¦   ¦   ¦   ¦   ¦           react-loadable-manifest.json
+¦   ¦   ¦   ¦   ¦           server-reference-manifest.json
+¦   ¦   ¦   ¦   ¦           
 ¦   ¦   ¦   ¦   +---register
-¦   ¦   ¦   ¦   ¦       page.js
-¦   ¦   ¦   ¦   ¦       page.js.nft.json
-¦   ¦   ¦   ¦   ¦       
+¦   ¦   ¦   ¦   ¦   ¦   page.js
+¦   ¦   ¦   ¦   ¦   ¦   page.js.map
+¦   ¦   ¦   ¦   ¦   ¦   page.js.nft.json
+¦   ¦   ¦   ¦   ¦   ¦   page_client-reference-manifest.js
+¦   ¦   ¦   ¦   ¦   ¦   
+¦   ¦   ¦   ¦   ¦   +---page
+¦   ¦   ¦   ¦   ¦           app-build-manifest.json
+¦   ¦   ¦   ¦   ¦           app-paths-manifest.json
+¦   ¦   ¦   ¦   ¦           build-manifest.json
+¦   ¦   ¦   ¦   ¦           next-font-manifest.json
+¦   ¦   ¦   ¦   ¦           react-loadable-manifest.json
+¦   ¦   ¦   ¦   ¦           server-reference-manifest.json
+¦   ¦   ¦   ¦   ¦           
 ¦   ¦   ¦   ¦   +---reset-password
 ¦   ¦   ¦   ¦   ¦       page.js
 ¦   ¦   ¦   ¦   ¦       page.js.nft.json
@@ -134,9 +154,19 @@ C:.
 ¦   ¦   ¦   ¦   ¦       page.js.nft.json
 ¦   ¦   ¦   ¦   ¦       
 ¦   ¦   ¦   ¦   +---verify-otp
-¦   ¦   ¦   ¦           page.js
-¦   ¦   ¦   ¦           page.js.nft.json
-¦   ¦   ¦   ¦           
+¦   ¦   ¦   ¦       ¦   page.js
+¦   ¦   ¦   ¦       ¦   page.js.map
+¦   ¦   ¦   ¦       ¦   page.js.nft.json
+¦   ¦   ¦   ¦       ¦   page_client-reference-manifest.js
+¦   ¦   ¦   ¦       ¦   
+¦   ¦   ¦   ¦       +---page
+¦   ¦   ¦   ¦               app-build-manifest.json
+¦   ¦   ¦   ¦               app-paths-manifest.json
+¦   ¦   ¦   ¦               build-manifest.json
+¦   ¦   ¦   ¦               next-font-manifest.json
+¦   ¦   ¦   ¦               react-loadable-manifest.json
+¦   ¦   ¦   ¦               server-reference-manifest.json
+¦   ¦   ¦   ¦               
 ¦   ¦   ¦   +---(dashboard)
 ¦   ¦   ¦   ¦   +---admin-dashboard
 ¦   ¦   ¦   ¦   ¦   ¦   page.js
@@ -421,57 +451,180 @@ C:.
 ¦   ¦   ¦   ¦   ¦           
 ¦   ¦   ¦   ¦   +---user-dashboard
 ¦   ¦   ¦   ¦       ¦   page.js
+¦   ¦   ¦   ¦       ¦   page.js.map
 ¦   ¦   ¦   ¦       ¦   page.js.nft.json
+¦   ¦   ¦   ¦       ¦   page_client-reference-manifest.js
 ¦   ¦   ¦   ¦       ¦   
 ¦   ¦   ¦   ¦       +---addresses
-¦   ¦   ¦   ¦       ¦       page.js
-¦   ¦   ¦   ¦       ¦       page.js.nft.json
-¦   ¦   ¦   ¦       ¦       
+¦   ¦   ¦   ¦       ¦   ¦   page.js
+¦   ¦   ¦   ¦       ¦   ¦   page.js.map
+¦   ¦   ¦   ¦       ¦   ¦   page.js.nft.json
+¦   ¦   ¦   ¦       ¦   ¦   page_client-reference-manifest.js
+¦   ¦   ¦   ¦       ¦   ¦   
+¦   ¦   ¦   ¦       ¦   +---page
+¦   ¦   ¦   ¦       ¦           app-build-manifest.json
+¦   ¦   ¦   ¦       ¦           app-paths-manifest.json
+¦   ¦   ¦   ¦       ¦           build-manifest.json
+¦   ¦   ¦   ¦       ¦           next-font-manifest.json
+¦   ¦   ¦   ¦       ¦           react-loadable-manifest.json
+¦   ¦   ¦   ¦       ¦           server-reference-manifest.json
+¦   ¦   ¦   ¦       ¦           
 ¦   ¦   ¦   ¦       +---bulk-inquiries
-¦   ¦   ¦   ¦       ¦       page.js
-¦   ¦   ¦   ¦       ¦       page.js.nft.json
-¦   ¦   ¦   ¦       ¦       
+¦   ¦   ¦   ¦       ¦   ¦   page.js
+¦   ¦   ¦   ¦       ¦   ¦   page.js.map
+¦   ¦   ¦   ¦       ¦   ¦   page.js.nft.json
+¦   ¦   ¦   ¦       ¦   ¦   page_client-reference-manifest.js
+¦   ¦   ¦   ¦       ¦   ¦   
+¦   ¦   ¦   ¦       ¦   +---page
+¦   ¦   ¦   ¦       ¦           app-build-manifest.json
+¦   ¦   ¦   ¦       ¦           app-paths-manifest.json
+¦   ¦   ¦   ¦       ¦           build-manifest.json
+¦   ¦   ¦   ¦       ¦           next-font-manifest.json
+¦   ¦   ¦   ¦       ¦           react-loadable-manifest.json
+¦   ¦   ¦   ¦       ¦           server-reference-manifest.json
+¦   ¦   ¦   ¦       ¦           
 ¦   ¦   ¦   ¦       +---coupons
-¦   ¦   ¦   ¦       ¦       page.js
-¦   ¦   ¦   ¦       ¦       page.js.nft.json
-¦   ¦   ¦   ¦       ¦       
+¦   ¦   ¦   ¦       ¦   ¦   page.js
+¦   ¦   ¦   ¦       ¦   ¦   page.js.map
+¦   ¦   ¦   ¦       ¦   ¦   page.js.nft.json
+¦   ¦   ¦   ¦       ¦   ¦   page_client-reference-manifest.js
+¦   ¦   ¦   ¦       ¦   ¦   
+¦   ¦   ¦   ¦       ¦   +---page
+¦   ¦   ¦   ¦       ¦           app-build-manifest.json
+¦   ¦   ¦   ¦       ¦           app-paths-manifest.json
+¦   ¦   ¦   ¦       ¦           build-manifest.json
+¦   ¦   ¦   ¦       ¦           next-font-manifest.json
+¦   ¦   ¦   ¦       ¦           react-loadable-manifest.json
+¦   ¦   ¦   ¦       ¦           server-reference-manifest.json
+¦   ¦   ¦   ¦       ¦           
 ¦   ¦   ¦   ¦       +---gst-info
-¦   ¦   ¦   ¦       ¦       page.js
-¦   ¦   ¦   ¦       ¦       page.js.nft.json
-¦   ¦   ¦   ¦       ¦       
+¦   ¦   ¦   ¦       ¦   ¦   page.js
+¦   ¦   ¦   ¦       ¦   ¦   page.js.map
+¦   ¦   ¦   ¦       ¦   ¦   page.js.nft.json
+¦   ¦   ¦   ¦       ¦   ¦   page_client-reference-manifest.js
+¦   ¦   ¦   ¦       ¦   ¦   
+¦   ¦   ¦   ¦       ¦   +---page
+¦   ¦   ¦   ¦       ¦           app-build-manifest.json
+¦   ¦   ¦   ¦       ¦           app-paths-manifest.json
+¦   ¦   ¦   ¦       ¦           build-manifest.json
+¦   ¦   ¦   ¦       ¦           next-font-manifest.json
+¦   ¦   ¦   ¦       ¦           react-loadable-manifest.json
+¦   ¦   ¦   ¦       ¦           server-reference-manifest.json
+¦   ¦   ¦   ¦       ¦           
 ¦   ¦   ¦   ¦       +---notifications
-¦   ¦   ¦   ¦       ¦       page.js
-¦   ¦   ¦   ¦       ¦       page.js.nft.json
-¦   ¦   ¦   ¦       ¦       
+¦   ¦   ¦   ¦       ¦   ¦   page.js
+¦   ¦   ¦   ¦       ¦   ¦   page.js.map
+¦   ¦   ¦   ¦       ¦   ¦   page.js.nft.json
+¦   ¦   ¦   ¦       ¦   ¦   page_client-reference-manifest.js
+¦   ¦   ¦   ¦       ¦   ¦   
+¦   ¦   ¦   ¦       ¦   +---page
+¦   ¦   ¦   ¦       ¦           app-build-manifest.json
+¦   ¦   ¦   ¦       ¦           app-paths-manifest.json
+¦   ¦   ¦   ¦       ¦           build-manifest.json
+¦   ¦   ¦   ¦       ¦           next-font-manifest.json
+¦   ¦   ¦   ¦       ¦           react-loadable-manifest.json
+¦   ¦   ¦   ¦       ¦           server-reference-manifest.json
+¦   ¦   ¦   ¦       ¦           
 ¦   ¦   ¦   ¦       +---orders
-¦   ¦   ¦   ¦       ¦       page.js
-¦   ¦   ¦   ¦       ¦       page.js.nft.json
+¦   ¦   ¦   ¦       ¦   ¦   page.js
+¦   ¦   ¦   ¦       ¦   ¦   page.js.map
+¦   ¦   ¦   ¦       ¦   ¦   page.js.nft.json
+¦   ¦   ¦   ¦       ¦   ¦   page_client-reference-manifest.js
+¦   ¦   ¦   ¦       ¦   ¦   
+¦   ¦   ¦   ¦       ¦   +---page
+¦   ¦   ¦   ¦       ¦           app-build-manifest.json
+¦   ¦   ¦   ¦       ¦           app-paths-manifest.json
+¦   ¦   ¦   ¦       ¦           build-manifest.json
+¦   ¦   ¦   ¦       ¦           next-font-manifest.json
+¦   ¦   ¦   ¦       ¦           react-loadable-manifest.json
+¦   ¦   ¦   ¦       ¦           server-reference-manifest.json
+¦   ¦   ¦   ¦       ¦           
+¦   ¦   ¦   ¦       +---page
+¦   ¦   ¦   ¦       ¦       app-build-manifest.json
+¦   ¦   ¦   ¦       ¦       app-paths-manifest.json
+¦   ¦   ¦   ¦       ¦       build-manifest.json
+¦   ¦   ¦   ¦       ¦       next-font-manifest.json
+¦   ¦   ¦   ¦       ¦       react-loadable-manifest.json
+¦   ¦   ¦   ¦       ¦       server-reference-manifest.json
 ¦   ¦   ¦   ¦       ¦       
 ¦   ¦   ¦   ¦       +---profile
 ¦   ¦   ¦   ¦       ¦   ¦   page.js
+¦   ¦   ¦   ¦       ¦   ¦   page.js.map
 ¦   ¦   ¦   ¦       ¦   ¦   page.js.nft.json
+¦   ¦   ¦   ¦       ¦   ¦   page_client-reference-manifest.js
 ¦   ¦   ¦   ¦       ¦   ¦   
+¦   ¦   ¦   ¦       ¦   +---page
+¦   ¦   ¦   ¦       ¦   ¦       app-build-manifest.json
+¦   ¦   ¦   ¦       ¦   ¦       app-paths-manifest.json
+¦   ¦   ¦   ¦       ¦   ¦       build-manifest.json
+¦   ¦   ¦   ¦       ¦   ¦       next-font-manifest.json
+¦   ¦   ¦   ¦       ¦   ¦       react-loadable-manifest.json
+¦   ¦   ¦   ¦       ¦   ¦       server-reference-manifest.json
+¦   ¦   ¦   ¦       ¦   ¦       
 ¦   ¦   ¦   ¦       ¦   +---[userId]
 ¦   ¦   ¦   ¦       ¦           page.js
 ¦   ¦   ¦   ¦       ¦           page.js.nft.json
 ¦   ¦   ¦   ¦       ¦           
 ¦   ¦   ¦   ¦       +---reviews
-¦   ¦   ¦   ¦       ¦       page.js
-¦   ¦   ¦   ¦       ¦       page.js.nft.json
-¦   ¦   ¦   ¦       ¦       
+¦   ¦   ¦   ¦       ¦   ¦   page.js
+¦   ¦   ¦   ¦       ¦   ¦   page.js.map
+¦   ¦   ¦   ¦       ¦   ¦   page.js.nft.json
+¦   ¦   ¦   ¦       ¦   ¦   page_client-reference-manifest.js
+¦   ¦   ¦   ¦       ¦   ¦   
+¦   ¦   ¦   ¦       ¦   +---page
+¦   ¦   ¦   ¦       ¦           app-build-manifest.json
+¦   ¦   ¦   ¦       ¦           app-paths-manifest.json
+¦   ¦   ¦   ¦       ¦           build-manifest.json
+¦   ¦   ¦   ¦       ¦           next-font-manifest.json
+¦   ¦   ¦   ¦       ¦           react-loadable-manifest.json
+¦   ¦   ¦   ¦       ¦           server-reference-manifest.json
+¦   ¦   ¦   ¦       ¦           
 ¦   ¦   ¦   ¦       +---saved-cards
-¦   ¦   ¦   ¦       ¦       page.js
-¦   ¦   ¦   ¦       ¦       page.js.nft.json
-¦   ¦   ¦   ¦       ¦       
+¦   ¦   ¦   ¦       ¦   ¦   page.js
+¦   ¦   ¦   ¦       ¦   ¦   page.js.map
+¦   ¦   ¦   ¦       ¦   ¦   page.js.nft.json
+¦   ¦   ¦   ¦       ¦   ¦   page_client-reference-manifest.js
+¦   ¦   ¦   ¦       ¦   ¦   
+¦   ¦   ¦   ¦       ¦   +---page
+¦   ¦   ¦   ¦       ¦           app-build-manifest.json
+¦   ¦   ¦   ¦       ¦           app-paths-manifest.json
+¦   ¦   ¦   ¦       ¦           build-manifest.json
+¦   ¦   ¦   ¦       ¦           next-font-manifest.json
+¦   ¦   ¦   ¦       ¦           react-loadable-manifest.json
+¦   ¦   ¦   ¦       ¦           server-reference-manifest.json
+¦   ¦   ¦   ¦       ¦           
 ¦   ¦   ¦   ¦       +---wishlist
-¦   ¦   ¦   ¦               page.js
-¦   ¦   ¦   ¦               page.js.nft.json
-¦   ¦   ¦   ¦               
+¦   ¦   ¦   ¦           ¦   page.js
+¦   ¦   ¦   ¦           ¦   page.js.map
+¦   ¦   ¦   ¦           ¦   page.js.nft.json
+¦   ¦   ¦   ¦           ¦   page_client-reference-manifest.js
+¦   ¦   ¦   ¦           ¦   
+¦   ¦   ¦   ¦           +---page
+¦   ¦   ¦   ¦                   app-build-manifest.json
+¦   ¦   ¦   ¦                   app-paths-manifest.json
+¦   ¦   ¦   ¦                   build-manifest.json
+¦   ¦   ¦   ¦                   next-font-manifest.json
+¦   ¦   ¦   ¦                   react-loadable-manifest.json
+¦   ¦   ¦   ¦                   server-reference-manifest.json
+¦   ¦   ¦   ¦                   
 ¦   ¦   ¦   +---(shop)
 ¦   ¦   ¦   ¦   +---cart
+¦   ¦   ¦   ¦   ¦   ¦   page.js
+¦   ¦   ¦   ¦   ¦   ¦   page.js.map
+¦   ¦   ¦   ¦   ¦   ¦   page.js.nft.json
+¦   ¦   ¦   ¦   ¦   ¦   page_client-reference-manifest.js
+¦   ¦   ¦   ¦   ¦   ¦   
+¦   ¦   ¦   ¦   ¦   +---page
+¦   ¦   ¦   ¦   ¦           app-build-manifest.json
+¦   ¦   ¦   ¦   ¦           app-paths-manifest.json
+¦   ¦   ¦   ¦   ¦           build-manifest.json
+¦   ¦   ¦   ¦   ¦           next-font-manifest.json
+¦   ¦   ¦   ¦   ¦           react-loadable-manifest.json
+¦   ¦   ¦   ¦   ¦           server-reference-manifest.json
+¦   ¦   ¦   ¦   ¦           
+¦   ¦   ¦   ¦   +---checkout-process
 ¦   ¦   ¦   ¦       ¦   page.js
 ¦   ¦   ¦   ¦       ¦   page.js.map
-¦   ¦   ¦   ¦       ¦   page.js.nft.json
 ¦   ¦   ¦   ¦       ¦   page_client-reference-manifest.js
 ¦   ¦   ¦   ¦       ¦   
 ¦   ¦   ¦   ¦       +---page
@@ -498,9 +651,19 @@ C:.
 ¦   ¦   ¦   ¦           
 ¦   ¦   ¦   +---auth
 ¦   ¦   ¦   ¦   +---login
-¦   ¦   ¦   ¦   ¦       page.js
-¦   ¦   ¦   ¦   ¦       page.js.nft.json
-¦   ¦   ¦   ¦   ¦       
+¦   ¦   ¦   ¦   ¦   ¦   page.js
+¦   ¦   ¦   ¦   ¦   ¦   page.js.map
+¦   ¦   ¦   ¦   ¦   ¦   page.js.nft.json
+¦   ¦   ¦   ¦   ¦   ¦   page_client-reference-manifest.js
+¦   ¦   ¦   ¦   ¦   ¦   
+¦   ¦   ¦   ¦   ¦   +---page
+¦   ¦   ¦   ¦   ¦           app-build-manifest.json
+¦   ¦   ¦   ¦   ¦           app-paths-manifest.json
+¦   ¦   ¦   ¦   ¦           build-manifest.json
+¦   ¦   ¦   ¦   ¦           next-font-manifest.json
+¦   ¦   ¦   ¦   ¦           react-loadable-manifest.json
+¦   ¦   ¦   ¦   ¦           server-reference-manifest.json
+¦   ¦   ¦   ¦   ¦           
 ¦   ¦   ¦   ¦   +---verify-otp
 ¦   ¦   ¦   ¦           page.js
 ¦   ¦   ¦   ¦           page.js.nft.json
@@ -576,6 +739,32 @@ C:.
 ¦   ¦   ¦   ¦       react-loadable-manifest.json
 ¦   ¦   ¦   ¦       server-reference-manifest.json
 ¦   ¦   ¦   ¦       
+¦   ¦   ¦   +---payment
+¦   ¦   ¦   ¦   ¦   page.js
+¦   ¦   ¦   ¦   ¦   page.js.map
+¦   ¦   ¦   ¦   ¦   page_client-reference-manifest.js
+¦   ¦   ¦   ¦   ¦   
+¦   ¦   ¦   ¦   +---page
+¦   ¦   ¦   ¦   ¦       app-build-manifest.json
+¦   ¦   ¦   ¦   ¦       app-paths-manifest.json
+¦   ¦   ¦   ¦   ¦       build-manifest.json
+¦   ¦   ¦   ¦   ¦       next-font-manifest.json
+¦   ¦   ¦   ¦   ¦       react-loadable-manifest.json
+¦   ¦   ¦   ¦   ¦       server-reference-manifest.json
+¦   ¦   ¦   ¦   ¦       
+¦   ¦   ¦   ¦   +---success
+¦   ¦   ¦   ¦       ¦   page.js
+¦   ¦   ¦   ¦       ¦   page.js.map
+¦   ¦   ¦   ¦       ¦   page_client-reference-manifest.js
+¦   ¦   ¦   ¦       ¦   
+¦   ¦   ¦   ¦       +---page
+¦   ¦   ¦   ¦               app-build-manifest.json
+¦   ¦   ¦   ¦               app-paths-manifest.json
+¦   ¦   ¦   ¦               build-manifest.json
+¦   ¦   ¦   ¦               next-font-manifest.json
+¦   ¦   ¦   ¦               react-loadable-manifest.json
+¦   ¦   ¦   ¦               server-reference-manifest.json
+¦   ¦   ¦   ¦               
 ¦   ¦   ¦   +---privacy-policy
 ¦   ¦   ¦   ¦   ¦   page.js
 ¦   ¦   ¦   ¦   ¦   page.js.map
@@ -663,9 +852,19 @@ C:.
 ¦   ¦   ¦   ¦           server-reference-manifest.json
 ¦   ¦   ¦   ¦           
 ¦   ¦   ¦   +---shopping-cart
-¦   ¦   ¦   ¦       page.js
-¦   ¦   ¦   ¦       page.js.nft.json
-¦   ¦   ¦   ¦       
+¦   ¦   ¦   ¦   ¦   page.js
+¦   ¦   ¦   ¦   ¦   page.js.map
+¦   ¦   ¦   ¦   ¦   page.js.nft.json
+¦   ¦   ¦   ¦   ¦   page_client-reference-manifest.js
+¦   ¦   ¦   ¦   ¦   
+¦   ¦   ¦   ¦   +---page
+¦   ¦   ¦   ¦           app-build-manifest.json
+¦   ¦   ¦   ¦           app-paths-manifest.json
+¦   ¦   ¦   ¦           build-manifest.json
+¦   ¦   ¦   ¦           next-font-manifest.json
+¦   ¦   ¦   ¦           react-loadable-manifest.json
+¦   ¦   ¦   ¦           server-reference-manifest.json
+¦   ¦   ¦   ¦           
 ¦   ¦   ¦   +---terms-and-conditions
 ¦   ¦   ¦   ¦   ¦   page.js
 ¦   ¦   ¦   ¦   ¦   page.js.map
@@ -733,6 +932,8 @@ C:.
 ¦   ¦   ¦           node_modules_7d323679._.js.map
 ¦   ¦   ¦           node_modules_8cd2f199._.js
 ¦   ¦   ¦           node_modules_8cd2f199._.js.map
+¦   ¦   ¦           node_modules_9b1aade9._.js
+¦   ¦   ¦           node_modules_9b1aade9._.js.map
 ¦   ¦   ¦           node_modules_@heroicons_react_24_outline_esm_47e60766._.js
 ¦   ¦   ¦           node_modules_@heroicons_react_24_outline_esm_47e60766._.js.map
 ¦   ¦   ¦           node_modules_@heroicons_react_24_solid_esm_f4f9cd57._.js
@@ -749,6 +950,8 @@ C:.
 ¦   ¦   ¦           node_modules_lodash_84097691._.js.map
 ¦   ¦   ¦           node_modules_lucide-react_dist_esm_e9a34606._.js
 ¦   ¦   ¦           node_modules_lucide-react_dist_esm_e9a34606._.js.map
+¦   ¦   ¦           node_modules_lucide-react_dist_esm_f1f21e1f._.js
+¦   ¦   ¦           node_modules_lucide-react_dist_esm_f1f21e1f._.js.map
 ¦   ¦   ¦           node_modules_lucide-react_dist_esm_fea197b1._.js
 ¦   ¦   ¦           node_modules_lucide-react_dist_esm_fea197b1._.js.map
 ¦   ¦   ¦           node_modules_next_4fddc522._.js
@@ -767,6 +970,8 @@ C:.
 ¦   ¦   ¦           node_modules_next_dist_0cb6d831._.js.map
 ¦   ¦   ¦           node_modules_next_dist_0df8ce55._.js
 ¦   ¦   ¦           node_modules_next_dist_0df8ce55._.js.map
+¦   ¦   ¦           node_modules_next_dist_179b6ff3._.js
+¦   ¦   ¦           node_modules_next_dist_179b6ff3._.js.map
 ¦   ¦   ¦           node_modules_next_dist_1a46588b._.js
 ¦   ¦   ¦           node_modules_next_dist_1a46588b._.js.map
 ¦   ¦   ¦           node_modules_next_dist_265c28fc._.js
@@ -775,8 +980,12 @@ C:.
 ¦   ¦   ¦           node_modules_next_dist_2c0ef512._.js.map
 ¦   ¦   ¦           node_modules_next_dist_2e3611fc._.js
 ¦   ¦   ¦           node_modules_next_dist_2e3611fc._.js.map
+¦   ¦   ¦           node_modules_next_dist_30e8008b._.js
+¦   ¦   ¦           node_modules_next_dist_30e8008b._.js.map
 ¦   ¦   ¦           node_modules_next_dist_33982d0f._.js
 ¦   ¦   ¦           node_modules_next_dist_33982d0f._.js.map
+¦   ¦   ¦           node_modules_next_dist_34fd71fe._.js
+¦   ¦   ¦           node_modules_next_dist_34fd71fe._.js.map
 ¦   ¦   ¦           node_modules_next_dist_3d37ee5e._.js
 ¦   ¦   ¦           node_modules_next_dist_3d37ee5e._.js.map
 ¦   ¦   ¦           node_modules_next_dist_457756d4._.js
@@ -787,6 +996,12 @@ C:.
 ¦   ¦   ¦           node_modules_next_dist_491020db._.js.map
 ¦   ¦   ¦           node_modules_next_dist_571100c7._.js
 ¦   ¦   ¦           node_modules_next_dist_571100c7._.js.map
+¦   ¦   ¦           node_modules_next_dist_5735a714._.js
+¦   ¦   ¦           node_modules_next_dist_5735a714._.js.map
+¦   ¦   ¦           node_modules_next_dist_5bf8f3b5._.js
+¦   ¦   ¦           node_modules_next_dist_5bf8f3b5._.js.map
+¦   ¦   ¦           node_modules_next_dist_61f853b8._.js
+¦   ¦   ¦           node_modules_next_dist_61f853b8._.js.map
 ¦   ¦   ¦           node_modules_next_dist_69a2461e._.js
 ¦   ¦   ¦           node_modules_next_dist_69a2461e._.js.map
 ¦   ¦   ¦           node_modules_next_dist_69d4c4b9._.js
@@ -797,28 +1012,54 @@ C:.
 ¦   ¦   ¦           node_modules_next_dist_6c806ec7._.js.map
 ¦   ¦   ¦           node_modules_next_dist_6ca8991a._.js
 ¦   ¦   ¦           node_modules_next_dist_6ca8991a._.js.map
+¦   ¦   ¦           node_modules_next_dist_716d1fd2._.js
+¦   ¦   ¦           node_modules_next_dist_716d1fd2._.js.map
+¦   ¦   ¦           node_modules_next_dist_725c4575._.js
+¦   ¦   ¦           node_modules_next_dist_725c4575._.js.map
 ¦   ¦   ¦           node_modules_next_dist_74f48fbc._.js
 ¦   ¦   ¦           node_modules_next_dist_74f48fbc._.js.map
 ¦   ¦   ¦           node_modules_next_dist_7da66d96._.js
 ¦   ¦   ¦           node_modules_next_dist_7da66d96._.js.map
+¦   ¦   ¦           node_modules_next_dist_822dc2b7._.js
+¦   ¦   ¦           node_modules_next_dist_822dc2b7._.js.map
 ¦   ¦   ¦           node_modules_next_dist_82d02d8c._.js
 ¦   ¦   ¦           node_modules_next_dist_82d02d8c._.js.map
+¦   ¦   ¦           node_modules_next_dist_857301a6._.js
+¦   ¦   ¦           node_modules_next_dist_857301a6._.js.map
 ¦   ¦   ¦           node_modules_next_dist_939bc8d7._.js
 ¦   ¦   ¦           node_modules_next_dist_939bc8d7._.js.map
+¦   ¦   ¦           node_modules_next_dist_9860a398._.js
+¦   ¦   ¦           node_modules_next_dist_9860a398._.js.map
 ¦   ¦   ¦           node_modules_next_dist_9fd9c4e2._.js
 ¦   ¦   ¦           node_modules_next_dist_9fd9c4e2._.js.map
 ¦   ¦   ¦           node_modules_next_dist_a2cbc7aa._.js
 ¦   ¦   ¦           node_modules_next_dist_a2cbc7aa._.js.map
 ¦   ¦   ¦           node_modules_next_dist_a4868426._.js
 ¦   ¦   ¦           node_modules_next_dist_a4868426._.js.map
+¦   ¦   ¦           node_modules_next_dist_ad6da9ab._.js
+¦   ¦   ¦           node_modules_next_dist_ad6da9ab._.js.map
+¦   ¦   ¦           node_modules_next_dist_b1958037._.js
+¦   ¦   ¦           node_modules_next_dist_b1958037._.js.map
+¦   ¦   ¦           node_modules_next_dist_b22a42dc._.js
+¦   ¦   ¦           node_modules_next_dist_b22a42dc._.js.map
+¦   ¦   ¦           node_modules_next_dist_b525338a._.js
+¦   ¦   ¦           node_modules_next_dist_b525338a._.js.map
+¦   ¦   ¦           node_modules_next_dist_b5d135b1._.js
+¦   ¦   ¦           node_modules_next_dist_b5d135b1._.js.map
+¦   ¦   ¦           node_modules_next_dist_b8e4a83f._.js
+¦   ¦   ¦           node_modules_next_dist_b8e4a83f._.js.map
 ¦   ¦   ¦           node_modules_next_dist_b9a5fb8b._.js
 ¦   ¦   ¦           node_modules_next_dist_b9a5fb8b._.js.map
 ¦   ¦   ¦           node_modules_next_dist_bd46fead._.js
 ¦   ¦   ¦           node_modules_next_dist_bd46fead._.js.map
 ¦   ¦   ¦           node_modules_next_dist_c45c6109._.js
 ¦   ¦   ¦           node_modules_next_dist_c45c6109._.js.map
+¦   ¦   ¦           node_modules_next_dist_c8c7b133._.js
+¦   ¦   ¦           node_modules_next_dist_c8c7b133._.js.map
 ¦   ¦   ¦           node_modules_next_dist_client_13db3227._.js
 ¦   ¦   ¦           node_modules_next_dist_client_13db3227._.js.map
+¦   ¦   ¦           node_modules_next_dist_client_87df3779._.js
+¦   ¦   ¦           node_modules_next_dist_client_87df3779._.js.map
 ¦   ¦   ¦           node_modules_next_dist_client_a33b065a._.js
 ¦   ¦   ¦           node_modules_next_dist_client_a33b065a._.js.map
 ¦   ¦   ¦           node_modules_next_dist_client_components_2fffaa3a._.js
@@ -827,6 +1068,8 @@ C:.
 ¦   ¦   ¦           node_modules_next_dist_client_components_builtin_global-error_ece394eb.js.map
 ¦   ¦   ¦           node_modules_next_dist_client_components_builtin_unauthorized_15817684.js
 ¦   ¦   ¦           node_modules_next_dist_client_components_builtin_unauthorized_15817684.js.map
+¦   ¦   ¦           node_modules_next_dist_compiled_6c3ad287._.js
+¦   ¦   ¦           node_modules_next_dist_compiled_6c3ad287._.js.map
 ¦   ¦   ¦           node_modules_next_dist_compiled_af43a439._.js
 ¦   ¦   ¦           node_modules_next_dist_compiled_af43a439._.js.map
 ¦   ¦   ¦           node_modules_next_dist_compiled_b1baabe8._.js
@@ -837,6 +1080,8 @@ C:.
 ¦   ¦   ¦           node_modules_next_dist_d1209eae._.js.map
 ¦   ¦   ¦           node_modules_next_dist_de49e271._.js
 ¦   ¦   ¦           node_modules_next_dist_de49e271._.js.map
+¦   ¦   ¦           node_modules_next_dist_e250df48._.js
+¦   ¦   ¦           node_modules_next_dist_e250df48._.js.map
 ¦   ¦   ¦           node_modules_next_dist_e25daeb9._.js
 ¦   ¦   ¦           node_modules_next_dist_e25daeb9._.js.map
 ¦   ¦   ¦           node_modules_next_dist_e4edf393._.js
@@ -845,6 +1090,8 @@ C:.
 ¦   ¦   ¦           node_modules_next_dist_ea8af028._.js.map
 ¦   ¦   ¦           node_modules_next_dist_eac110bc._.js
 ¦   ¦   ¦           node_modules_next_dist_eac110bc._.js.map
+¦   ¦   ¦           node_modules_next_dist_efc493b7._.js
+¦   ¦   ¦           node_modules_next_dist_efc493b7._.js.map
 ¦   ¦   ¦           node_modules_next_dist_esm_968ff1ee._.js
 ¦   ¦   ¦           node_modules_next_dist_esm_968ff1ee._.js.map
 ¦   ¦   ¦           node_modules_next_dist_f772942e._.js
@@ -863,8 +1110,14 @@ C:.
 ¦   ¦   ¦           node_modules_recharts_es6_c705c767._.js.map
 ¦   ¦   ¦           src_05c35b91._.js
 ¦   ¦   ¦           src_05c35b91._.js.map
+¦   ¦   ¦           src_0c55197a._.js
+¦   ¦   ¦           src_0c55197a._.js.map
 ¦   ¦   ¦           src_120a3e77._.js
 ¦   ¦   ¦           src_120a3e77._.js.map
+¦   ¦   ¦           src_14f785b1._.js
+¦   ¦   ¦           src_14f785b1._.js.map
+¦   ¦   ¦           src_17c2ef85._.js
+¦   ¦   ¦           src_17c2ef85._.js.map
 ¦   ¦   ¦           src_251c0e6f._.js
 ¦   ¦   ¦           src_251c0e6f._.js.map
 ¦   ¦   ¦           src_2a47461a._.js
@@ -885,12 +1138,18 @@ C:.
 ¦   ¦   ¦           src_5aa93e3a._.js.map
 ¦   ¦   ¦           src_609ba164._.js
 ¦   ¦   ¦           src_609ba164._.js.map
+¦   ¦   ¦           src_61faeb51._.js
+¦   ¦   ¦           src_61faeb51._.js.map
 ¦   ¦   ¦           src_6dac9303._.js
 ¦   ¦   ¦           src_6dac9303._.js.map
 ¦   ¦   ¦           src_77141512._.js
 ¦   ¦   ¦           src_77141512._.js.map
 ¦   ¦   ¦           src_8acb2bd8._.js
 ¦   ¦   ¦           src_8acb2bd8._.js.map
+¦   ¦   ¦           src_8ba37bf7._.js
+¦   ¦   ¦           src_8ba37bf7._.js.map
+¦   ¦   ¦           src_8c75af8a._.js
+¦   ¦   ¦           src_8c75af8a._.js.map
 ¦   ¦   ¦           src_8ce93a1d._.js
 ¦   ¦   ¦           src_8ce93a1d._.js.map
 ¦   ¦   ¦           src_8df82c8a._.js
@@ -907,6 +1166,20 @@ C:.
 ¦   ¦   ¦           src_app_(dashboard)_admin-dashboard_layout_tsx_b7d0264a._.js.map
 ¦   ¦   ¦           src_app_(dashboard)_admin-dashboard_page_tsx_e8c22068._.js
 ¦   ¦   ¦           src_app_(dashboard)_admin-dashboard_page_tsx_e8c22068._.js.map
+¦   ¦   ¦           src_app_(dashboard)_dashboard_page_tsx_aa560eba._.js
+¦   ¦   ¦           src_app_(dashboard)_dashboard_page_tsx_aa560eba._.js.map
+¦   ¦   ¦           src_app_(dashboard)_user-dashboard_layout_tsx_1cc88d15._.js
+¦   ¦   ¦           src_app_(dashboard)_user-dashboard_layout_tsx_1cc88d15._.js.map
+¦   ¦   ¦           src_app_(dashboard)_user-dashboard_orders_page_tsx_8502077c._.js
+¦   ¦   ¦           src_app_(dashboard)_user-dashboard_orders_page_tsx_8502077c._.js.map
+¦   ¦   ¦           src_app_(dashboard)_user-dashboard_profile_page_tsx_38a63956._.js
+¦   ¦   ¦           src_app_(dashboard)_user-dashboard_profile_page_tsx_38a63956._.js.map
+¦   ¦   ¦           src_app_(dashboard)_user-dashboard_reviews_page_tsx_91ed750a._.js
+¦   ¦   ¦           src_app_(dashboard)_user-dashboard_reviews_page_tsx_91ed750a._.js.map
+¦   ¦   ¦           src_app_(dashboard)_user-dashboard_wishlist_page_tsx_473cb131._.js
+¦   ¦   ¦           src_app_(dashboard)_user-dashboard_wishlist_page_tsx_473cb131._.js.map
+¦   ¦   ¦           src_app_auth_layout_tsx_78c8f8d5._.js
+¦   ¦   ¦           src_app_auth_layout_tsx_78c8f8d5._.js.map
 ¦   ¦   ¦           src_app_home_e4ebb8e2._.js
 ¦   ¦   ¦           src_app_home_e4ebb8e2._.js.map
 ¦   ¦   ¦           src_app_not-found_tsx_08bf5e76._.js
@@ -917,12 +1190,18 @@ C:.
 ¦   ¦   ¦           src_b01f99e7._.js.map
 ¦   ¦   ¦           src_b88b9d69._.js
 ¦   ¦   ¦           src_b88b9d69._.js.map
+¦   ¦   ¦           src_b8f60d2d._.js
+¦   ¦   ¦           src_b8f60d2d._.js.map
+¦   ¦   ¦           src_babc940c._.js
+¦   ¦   ¦           src_babc940c._.js.map
 ¦   ¦   ¦           src_bbc46a0a._.js
 ¦   ¦   ¦           src_bbc46a0a._.js.map
 ¦   ¦   ¦           src_c7035a7f._.js
 ¦   ¦   ¦           src_c7035a7f._.js.map
 ¦   ¦   ¦           src_c9d8ddc6._.js
 ¦   ¦   ¦           src_c9d8ddc6._.js.map
+¦   ¦   ¦           src_cf0aa4d0._.js
+¦   ¦   ¦           src_cf0aa4d0._.js.map
 ¦   ¦   ¦           src_cf15a5a5._.js
 ¦   ¦   ¦           src_cf15a5a5._.js.map
 ¦   ¦   ¦           src_components_common_8377c9d7._.js
@@ -937,20 +1216,30 @@ C:.
 ¦   ¦   ¦           src_components_common_Header_tsx_1c3d6f20._.js.map
 ¦   ¦   ¦           src_components_common_Header_tsx_72da8a11._.js
 ¦   ¦   ¦           src_components_common_Header_tsx_72da8a11._.js.map
+¦   ¦   ¦           src_components_d2744a1a._.js
+¦   ¦   ¦           src_components_d2744a1a._.js.map
+¦   ¦   ¦           src_components_layout_header_Navbar_tsx_c7e0c8a9._.js
+¦   ¦   ¦           src_components_layout_header_Navbar_tsx_c7e0c8a9._.js.map
 ¦   ¦   ¦           src_d07f99ce._.js
 ¦   ¦   ¦           src_d07f99ce._.js.map
 ¦   ¦   ¦           src_db217770._.js
 ¦   ¦   ¦           src_db217770._.js.map
+¦   ¦   ¦           src_df194c57._.js
+¦   ¦   ¦           src_df194c57._.js.map
 ¦   ¦   ¦           src_e00c2371._.js
 ¦   ¦   ¦           src_e00c2371._.js.map
 ¦   ¦   ¦           src_e29db5b7._.js
 ¦   ¦   ¦           src_e29db5b7._.js.map
+¦   ¦   ¦           src_e67776e0._.js
+¦   ¦   ¦           src_e67776e0._.js.map
 ¦   ¦   ¦           src_ea5a6dff._.js
 ¦   ¦   ¦           src_ea5a6dff._.js.map
 ¦   ¦   ¦           src_eb5485a7._.js
 ¦   ¦   ¦           src_eb5485a7._.js.map
 ¦   ¦   ¦           src_efb723c6._.js
 ¦   ¦   ¦           src_efb723c6._.js.map
+¦   ¦   ¦           src_f6fec193._.js
+¦   ¦   ¦           src_f6fec193._.js.map
 ¦   ¦   ¦           src_fcb0fab9._.js
 ¦   ¦   ¦           src_fcb0fab9._.js.map
 ¦   ¦   ¦           src_features_auth_f5766209._.js
@@ -959,8 +1248,12 @@ C:.
 ¦   ¦   ¦           src_ffb12b68._.js.map
 ¦   ¦   ¦           [externals]_next_dist_shared_lib_no-fallback-error_external_59b92b38.js
 ¦   ¦   ¦           [externals]_next_dist_shared_lib_no-fallback-error_external_59b92b38.js.map
+¦   ¦   ¦           [root-of-the-server]__006e8f09._.js
+¦   ¦   ¦           [root-of-the-server]__006e8f09._.js.map
 ¦   ¦   ¦           [root-of-the-server]__03d8ff7d._.js
 ¦   ¦   ¦           [root-of-the-server]__03d8ff7d._.js.map
+¦   ¦   ¦           [root-of-the-server]__04e9de28._.js
+¦   ¦   ¦           [root-of-the-server]__04e9de28._.js.map
 ¦   ¦   ¦           [root-of-the-server]__087ef8d1._.js
 ¦   ¦   ¦           [root-of-the-server]__087ef8d1._.js.map
 ¦   ¦   ¦           [root-of-the-server]__0d4be376._.js
@@ -969,14 +1262,26 @@ C:.
 ¦   ¦   ¦           [root-of-the-server]__1056b746._.js.map
 ¦   ¦   ¦           [root-of-the-server]__12608719._.js
 ¦   ¦   ¦           [root-of-the-server]__12608719._.js.map
+¦   ¦   ¦           [root-of-the-server]__1302fc41._.js
+¦   ¦   ¦           [root-of-the-server]__1302fc41._.js.map
+¦   ¦   ¦           [root-of-the-server]__151ad054._.js
+¦   ¦   ¦           [root-of-the-server]__151ad054._.js.map
 ¦   ¦   ¦           [root-of-the-server]__16a9a6b6._.js
 ¦   ¦   ¦           [root-of-the-server]__16a9a6b6._.js.map
+¦   ¦   ¦           [root-of-the-server]__18f4eaaa._.js
+¦   ¦   ¦           [root-of-the-server]__18f4eaaa._.js.map
+¦   ¦   ¦           [root-of-the-server]__1c712717._.js
+¦   ¦   ¦           [root-of-the-server]__1c712717._.js.map
 ¦   ¦   ¦           [root-of-the-server]__28abc6f9._.js
 ¦   ¦   ¦           [root-of-the-server]__28abc6f9._.js.map
 ¦   ¦   ¦           [root-of-the-server]__2a9500da._.js
 ¦   ¦   ¦           [root-of-the-server]__2a9500da._.js.map
 ¦   ¦   ¦           [root-of-the-server]__2f417e51._.js
 ¦   ¦   ¦           [root-of-the-server]__2f417e51._.js.map
+¦   ¦   ¦           [root-of-the-server]__32773be3._.js
+¦   ¦   ¦           [root-of-the-server]__32773be3._.js.map
+¦   ¦   ¦           [root-of-the-server]__3dbb3937._.js
+¦   ¦   ¦           [root-of-the-server]__3dbb3937._.js.map
 ¦   ¦   ¦           [root-of-the-server]__41398361._.js
 ¦   ¦   ¦           [root-of-the-server]__41398361._.js.map
 ¦   ¦   ¦           [root-of-the-server]__41c84623._.js
@@ -997,24 +1302,50 @@ C:.
 ¦   ¦   ¦           [root-of-the-server]__577d2021._.js.map
 ¦   ¦   ¦           [root-of-the-server]__59de20f0._.js
 ¦   ¦   ¦           [root-of-the-server]__59de20f0._.js.map
+¦   ¦   ¦           [root-of-the-server]__5ae99e86._.js
+¦   ¦   ¦           [root-of-the-server]__5ae99e86._.js.map
+¦   ¦   ¦           [root-of-the-server]__5bf17b3a._.js
+¦   ¦   ¦           [root-of-the-server]__5bf17b3a._.js.map
 ¦   ¦   ¦           [root-of-the-server]__5d0c2d5f._.js
 ¦   ¦   ¦           [root-of-the-server]__5d0c2d5f._.js.map
 ¦   ¦   ¦           [root-of-the-server]__613798f3._.js
 ¦   ¦   ¦           [root-of-the-server]__613798f3._.js.map
+¦   ¦   ¦           [root-of-the-server]__6844087b._.js
+¦   ¦   ¦           [root-of-the-server]__6844087b._.js.map
 ¦   ¦   ¦           [root-of-the-server]__69010a7e._.js
 ¦   ¦   ¦           [root-of-the-server]__69010a7e._.js.map
+¦   ¦   ¦           [root-of-the-server]__6a54a9ac._.js
+¦   ¦   ¦           [root-of-the-server]__6a54a9ac._.js.map
 ¦   ¦   ¦           [root-of-the-server]__6d575272._.js
 ¦   ¦   ¦           [root-of-the-server]__6d575272._.js.map
+¦   ¦   ¦           [root-of-the-server]__6e8d7eca._.js
+¦   ¦   ¦           [root-of-the-server]__6e8d7eca._.js.map
 ¦   ¦   ¦           [root-of-the-server]__70a73b34._.js
 ¦   ¦   ¦           [root-of-the-server]__70a73b34._.js.map
+¦   ¦   ¦           [root-of-the-server]__7815fd4c._.js
+¦   ¦   ¦           [root-of-the-server]__7815fd4c._.js.map
+¦   ¦   ¦           [root-of-the-server]__7d6d0b99._.js
+¦   ¦   ¦           [root-of-the-server]__7d6d0b99._.js.map
 ¦   ¦   ¦           [root-of-the-server]__7f148858._.js
 ¦   ¦   ¦           [root-of-the-server]__7f148858._.js.map
+¦   ¦   ¦           [root-of-the-server]__804c336d._.js
+¦   ¦   ¦           [root-of-the-server]__804c336d._.js.map
+¦   ¦   ¦           [root-of-the-server]__85c6b2c4._.js
+¦   ¦   ¦           [root-of-the-server]__85c6b2c4._.js.map
 ¦   ¦   ¦           [root-of-the-server]__879b899e._.js
 ¦   ¦   ¦           [root-of-the-server]__879b899e._.js.map
+¦   ¦   ¦           [root-of-the-server]__8e1342a2._.js
+¦   ¦   ¦           [root-of-the-server]__8e1342a2._.js.map
 ¦   ¦   ¦           [root-of-the-server]__90b5d5f1._.js
 ¦   ¦   ¦           [root-of-the-server]__90b5d5f1._.js.map
 ¦   ¦   ¦           [root-of-the-server]__945c80a3._.js
 ¦   ¦   ¦           [root-of-the-server]__945c80a3._.js.map
+¦   ¦   ¦           [root-of-the-server]__9578f765._.js
+¦   ¦   ¦           [root-of-the-server]__9578f765._.js.map
+¦   ¦   ¦           [root-of-the-server]__a3ed833d._.js
+¦   ¦   ¦           [root-of-the-server]__a3ed833d._.js.map
+¦   ¦   ¦           [root-of-the-server]__a4df9825._.js
+¦   ¦   ¦           [root-of-the-server]__a4df9825._.js.map
 ¦   ¦   ¦           [root-of-the-server]__a61fe970._.js
 ¦   ¦   ¦           [root-of-the-server]__a61fe970._.js.map
 ¦   ¦   ¦           [root-of-the-server]__a8210165._.js
@@ -1025,12 +1356,20 @@ C:.
 ¦   ¦   ¦           [root-of-the-server]__a9bbb90c._.js.map
 ¦   ¦   ¦           [root-of-the-server]__acf49a4d._.js
 ¦   ¦   ¦           [root-of-the-server]__acf49a4d._.js.map
+¦   ¦   ¦           [root-of-the-server]__b09102ef._.js
+¦   ¦   ¦           [root-of-the-server]__b09102ef._.js.map
 ¦   ¦   ¦           [root-of-the-server]__b0d7b0b9._.js
 ¦   ¦   ¦           [root-of-the-server]__b0d7b0b9._.js.map
+¦   ¦   ¦           [root-of-the-server]__b6b5dbac._.js
+¦   ¦   ¦           [root-of-the-server]__b6b5dbac._.js.map
+¦   ¦   ¦           [root-of-the-server]__b84c464d._.js
+¦   ¦   ¦           [root-of-the-server]__b84c464d._.js.map
 ¦   ¦   ¦           [root-of-the-server]__c7cdf34c._.js
 ¦   ¦   ¦           [root-of-the-server]__c7cdf34c._.js.map
 ¦   ¦   ¦           [root-of-the-server]__cfa4cc57._.js
 ¦   ¦   ¦           [root-of-the-server]__cfa4cc57._.js.map
+¦   ¦   ¦           [root-of-the-server]__d6856d9c._.js
+¦   ¦   ¦           [root-of-the-server]__d6856d9c._.js.map
 ¦   ¦   ¦           [root-of-the-server]__dc3c96a8._.js
 ¦   ¦   ¦           [root-of-the-server]__dc3c96a8._.js.map
 ¦   ¦   ¦           [root-of-the-server]__e17f7999._.js
@@ -1041,6 +1380,8 @@ C:.
 ¦   ¦   ¦           [root-of-the-server]__e6a4d965._.js.map
 ¦   ¦   ¦           [root-of-the-server]__e8bd9965._.js
 ¦   ¦   ¦           [root-of-the-server]__e8bd9965._.js.map
+¦   ¦   ¦           [root-of-the-server]__ee0033ec._.js
+¦   ¦   ¦           [root-of-the-server]__ee0033ec._.js.map
 ¦   ¦   ¦           [root-of-the-server]__ef08711d._.js
 ¦   ¦   ¦           [root-of-the-server]__ef08711d._.js.map
 ¦   ¦   ¦           [root-of-the-server]__f0cfcbef._.js
@@ -1059,18 +1400,28 @@ C:.
 ¦   ¦   ¦           [turbopack]_browser_dev_hmr-client_hmr-client_ts_89c5f8e8._.js.map
 ¦   ¦   ¦           [turbopack]_runtime.js
 ¦   ¦   ¦           [turbopack]_runtime.js.map
+¦   ¦   ¦           _02ce5163._.js
+¦   ¦   ¦           _02ce5163._.js.map
+¦   ¦   ¦           _4b7a8bae._.js
+¦   ¦   ¦           _4b7a8bae._.js.map
 ¦   ¦   ¦           _580987f8._.js
 ¦   ¦   ¦           _580987f8._.js.map
 ¦   ¦   ¦           _58bac80f._.js
 ¦   ¦   ¦           _58bac80f._.js.map
 ¦   ¦   ¦           _707efc5f._.js
 ¦   ¦   ¦           _707efc5f._.js.map
+¦   ¦   ¦           _767620e0._.js
+¦   ¦   ¦           _767620e0._.js.map
 ¦   ¦   ¦           _78814ed5._.js
 ¦   ¦   ¦           _78814ed5._.js.map
 ¦   ¦   ¦           _8767f7d0._.js
 ¦   ¦   ¦           _8767f7d0._.js.map
+¦   ¦   ¦           _e43f16a1._.js
+¦   ¦   ¦           _e43f16a1._.js.map
 ¦   ¦   ¦           _edccbd5a._.js
 ¦   ¦   ¦           _edccbd5a._.js.map
+¦   ¦   ¦           _f3c99c87._.js
+¦   ¦   ¦           _f3c99c87._.js.map
 ¦   ¦   ¦           
 ¦   ¦   +---edge
 ¦   ¦   ¦   +---chunks
@@ -1150,8 +1501,12 @@ C:.
 ¦   ¦   ¦   ¦   node_modules_lodash_0ce7be08._.js.map
 ¦   ¦   ¦   ¦   node_modules_lucide-react_dist_esm_7df37e90._.js
 ¦   ¦   ¦   ¦   node_modules_lucide-react_dist_esm_7df37e90._.js.map
+¦   ¦   ¦   ¦   node_modules_lucide-react_dist_esm_8132131f._.js
+¦   ¦   ¦   ¦   node_modules_lucide-react_dist_esm_8132131f._.js.map
 ¦   ¦   ¦   ¦   node_modules_lucide-react_dist_esm_bc03d299._.js
 ¦   ¦   ¦   ¦   node_modules_lucide-react_dist_esm_bc03d299._.js.map
+¦   ¦   ¦   ¦   node_modules_next_3914e31f._.js
+¦   ¦   ¦   ¦   node_modules_next_3914e31f._.js.map
 ¦   ¦   ¦   ¦   node_modules_next_a6415a62._.js
 ¦   ¦   ¦   ¦   node_modules_next_a6415a62._.js.map
 ¦   ¦   ¦   ¦   node_modules_next_app_72f3d36f.js
@@ -1165,13 +1520,17 @@ C:.
 ¦   ¦   ¦   ¦   node_modules_next_dist_build_polyfills_polyfill-nomodule.js
 ¦   ¦   ¦   ¦   node_modules_next_dist_client_cf1d9188._.js
 ¦   ¦   ¦   ¦   node_modules_next_dist_client_cf1d9188._.js.map
+¦   ¦   ¦   ¦   node_modules_next_dist_client_components_builtin_global-error_0b591751.js
+¦   ¦   ¦   ¦   node_modules_next_dist_client_components_builtin_global-error_1917c4fa.js
 ¦   ¦   ¦   ¦   node_modules_next_dist_client_components_builtin_global-error_3067dc7d.js
 ¦   ¦   ¦   ¦   node_modules_next_dist_client_components_builtin_global-error_318ed3aa.js
 ¦   ¦   ¦   ¦   node_modules_next_dist_client_components_builtin_global-error_363bfdc9.js
 ¦   ¦   ¦   ¦   node_modules_next_dist_client_components_builtin_global-error_36734450.js
 ¦   ¦   ¦   ¦   node_modules_next_dist_client_components_builtin_global-error_403641fe.js
+¦   ¦   ¦   ¦   node_modules_next_dist_client_components_builtin_global-error_69fea264.js
 ¦   ¦   ¦   ¦   node_modules_next_dist_client_components_builtin_global-error_bcc1f264.js
 ¦   ¦   ¦   ¦   node_modules_next_dist_client_components_builtin_global-error_c367d4b4.js
+¦   ¦   ¦   ¦   node_modules_next_dist_client_components_builtin_global-error_d6b53c05.js
 ¦   ¦   ¦   ¦   node_modules_next_dist_client_d0aa886c._.js
 ¦   ¦   ¦   ¦   node_modules_next_dist_client_d0aa886c._.js.map
 ¦   ¦   ¦   ¦   node_modules_next_dist_compiled_5150ccfd._.js
@@ -1212,14 +1571,26 @@ C:.
 ¦   ¦   ¦   ¦   src_00272306._.js.map
 ¦   ¦   ¦   ¦   src_00f41e85._.js
 ¦   ¦   ¦   ¦   src_00f41e85._.js.map
+¦   ¦   ¦   ¦   src_038ef026._.js
+¦   ¦   ¦   ¦   src_038ef026._.js.map
+¦   ¦   ¦   ¦   src_04dc52b6._.js
+¦   ¦   ¦   ¦   src_04dc52b6._.js.map
+¦   ¦   ¦   ¦   src_07726530._.js
+¦   ¦   ¦   ¦   src_07726530._.js.map
 ¦   ¦   ¦   ¦   src_0f6d6c2f._.js
 ¦   ¦   ¦   ¦   src_0f6d6c2f._.js.map
 ¦   ¦   ¦   ¦   src_16a54389._.js
 ¦   ¦   ¦   ¦   src_16a54389._.js.map
 ¦   ¦   ¦   ¦   src_16e3116b._.js
 ¦   ¦   ¦   ¦   src_16e3116b._.js.map
+¦   ¦   ¦   ¦   src_170f73b8._.js
+¦   ¦   ¦   ¦   src_170f73b8._.js.map
 ¦   ¦   ¦   ¦   src_21dee663._.js
 ¦   ¦   ¦   ¦   src_21dee663._.js.map
+¦   ¦   ¦   ¦   src_2a5261ea._.js
+¦   ¦   ¦   ¦   src_2a5261ea._.js.map
+¦   ¦   ¦   ¦   src_2ca950bb._.js
+¦   ¦   ¦   ¦   src_2ca950bb._.js.map
 ¦   ¦   ¦   ¦   src_31050b0d._.js
 ¦   ¦   ¦   ¦   src_31050b0d._.js.map
 ¦   ¦   ¦   ¦   src_354d4a50._.js
@@ -1242,8 +1613,12 @@ C:.
 ¦   ¦   ¦   ¦   src_551fda65._.js.map
 ¦   ¦   ¦   ¦   src_5e9c647e._.js
 ¦   ¦   ¦   ¦   src_5e9c647e._.js.map
+¦   ¦   ¦   ¦   src_6075d29b._.js
+¦   ¦   ¦   ¦   src_6075d29b._.js.map
 ¦   ¦   ¦   ¦   src_63f61b2c._.js
 ¦   ¦   ¦   ¦   src_63f61b2c._.js.map
+¦   ¦   ¦   ¦   src_641c500f._.js
+¦   ¦   ¦   ¦   src_641c500f._.js.map
 ¦   ¦   ¦   ¦   src_64ef1614._.js
 ¦   ¦   ¦   ¦   src_64ef1614._.js.map
 ¦   ¦   ¦   ¦   src_6b40e0d1._.js
@@ -1252,23 +1627,40 @@ C:.
 ¦   ¦   ¦   ¦   src_707fbc1c._.js.map
 ¦   ¦   ¦   ¦   src_7191f11d._.js
 ¦   ¦   ¦   ¦   src_7191f11d._.js.map
+¦   ¦   ¦   ¦   src_743ad460._.js
+¦   ¦   ¦   ¦   src_743ad460._.js.map
 ¦   ¦   ¦   ¦   src_7544ab28._.js
 ¦   ¦   ¦   ¦   src_7544ab28._.js.map
+¦   ¦   ¦   ¦   src_7648165c._.js
+¦   ¦   ¦   ¦   src_7648165c._.js.map
 ¦   ¦   ¦   ¦   src_7a6910f5._.js
 ¦   ¦   ¦   ¦   src_7a6910f5._.js.map
+¦   ¦   ¦   ¦   src_7dc59691._.js
+¦   ¦   ¦   ¦   src_7dc59691._.js.map
 ¦   ¦   ¦   ¦   src_8097b795._.js
 ¦   ¦   ¦   ¦   src_8097b795._.js.map
 ¦   ¦   ¦   ¦   src_8abd5f98._.js
 ¦   ¦   ¦   ¦   src_8abd5f98._.js.map
+¦   ¦   ¦   ¦   src_8b950349._.js
+¦   ¦   ¦   ¦   src_8b950349._.js.map
 ¦   ¦   ¦   ¦   src_910d713b._.js
 ¦   ¦   ¦   ¦   src_910d713b._.js.map
+¦   ¦   ¦   ¦   src_9d2b0797._.js
+¦   ¦   ¦   ¦   src_9d2b0797._.js.map
 ¦   ¦   ¦   ¦   src_a6aa50da._.js
 ¦   ¦   ¦   ¦   src_a6aa50da._.js.map
+¦   ¦   ¦   ¦   src_a6bf1fe9._.js
+¦   ¦   ¦   ¦   src_a6bf1fe9._.js.map
 ¦   ¦   ¦   ¦   src_a88c66ad._.js
 ¦   ¦   ¦   ¦   src_a88c66ad._.js.map
+¦   ¦   ¦   ¦   src_app_(auth)_login-otp_page_tsx_3067dc7d._.js
 ¦   ¦   ¦   ¦   src_app_(auth)_login_page_tsx_3067dc7d._.js
 ¦   ¦   ¦   ¦   src_app_(auth)_login_page_tsx_318ed3aa._.js
 ¦   ¦   ¦   ¦   src_app_(auth)_login_page_tsx_363bfdc9._.js
+¦   ¦   ¦   ¦   src_app_(auth)_login_page_tsx_69fea264._.js
+¦   ¦   ¦   ¦   src_app_(auth)_login_page_tsx_d6b53c05._.js
+¦   ¦   ¦   ¦   src_app_(auth)_register_page_tsx_3067dc7d._.js
+¦   ¦   ¦   ¦   src_app_(auth)_verify-otp_page_tsx_3067dc7d._.js
 ¦   ¦   ¦   ¦   src_app_(dashboard)_admin-dashboard_addProduct_page_tsx_2390bc0c._.js
 ¦   ¦   ¦   ¦   src_app_(dashboard)_admin-dashboard_addProduct_page_tsx_74ec3e05._.js
 ¦   ¦   ¦   ¦   src_app_(dashboard)_admin-dashboard_addProduct_page_tsx_a7a6ef48._.js
@@ -1276,6 +1668,7 @@ C:.
 ¦   ¦   ¦   ¦   src_app_(dashboard)_admin-dashboard_blog_page_tsx_2390bc0c._.js
 ¦   ¦   ¦   ¦   src_app_(dashboard)_admin-dashboard_brands_page_tsx_2390bc0c._.js
 ¦   ¦   ¦   ¦   src_app_(dashboard)_admin-dashboard_bulk-upload_page_tsx_2390bc0c._.js
+¦   ¦   ¦   ¦   src_app_(dashboard)_admin-dashboard_bulk-upload_page_tsx_74ec3e05._.js
 ¦   ¦   ¦   ¦   src_app_(dashboard)_admin-dashboard_bulk-upload_page_tsx_f736deba._.js
 ¦   ¦   ¦   ¦   src_app_(dashboard)_admin-dashboard_categories_page_tsx_2390bc0c._.js
 ¦   ¦   ¦   ¦   src_app_(dashboard)_admin-dashboard_contact_page_tsx_2390bc0c._.js
@@ -1288,30 +1681,62 @@ C:.
 ¦   ¦   ¦   ¦   src_app_(dashboard)_admin-dashboard_layout_tsx_318ed3aa._.js
 ¦   ¦   ¦   ¦   src_app_(dashboard)_admin-dashboard_layout_tsx_363bfdc9._.js
 ¦   ¦   ¦   ¦   src_app_(dashboard)_admin-dashboard_layout_tsx_36734450._.js
+¦   ¦   ¦   ¦   src_app_(dashboard)_admin-dashboard_layout_tsx_d6b53c05._.js
 ¦   ¦   ¦   ¦   src_app_(dashboard)_admin-dashboard_notifications_page_tsx_2390bc0c._.js
 ¦   ¦   ¦   ¦   src_app_(dashboard)_admin-dashboard_orders_page_tsx_2390bc0c._.js
+¦   ¦   ¦   ¦   src_app_(dashboard)_admin-dashboard_orders_page_tsx_74ec3e05._.js
 ¦   ¦   ¦   ¦   src_app_(dashboard)_admin-dashboard_page_tsx_2390bc0c._.js
 ¦   ¦   ¦   ¦   src_app_(dashboard)_admin-dashboard_page_tsx_2bc5ab75._.js
 ¦   ¦   ¦   ¦   src_app_(dashboard)_admin-dashboard_page_tsx_2bc5ab75._.js.map
+¦   ¦   ¦   ¦   src_app_(dashboard)_admin-dashboard_page_tsx_34e2d704._.js
 ¦   ¦   ¦   ¦   src_app_(dashboard)_admin-dashboard_page_tsx_74ec3e05._.js
 ¦   ¦   ¦   ¦   src_app_(dashboard)_admin-dashboard_page_tsx_a7a6ef48._.js
 ¦   ¦   ¦   ¦   src_app_(dashboard)_admin-dashboard_page_tsx_cb29d759._.js
 ¦   ¦   ¦   ¦   src_app_(dashboard)_admin-dashboard_page_tsx_f736deba._.js
 ¦   ¦   ¦   ¦   src_app_(dashboard)_admin-dashboard_products_page_tsx_2390bc0c._.js
+¦   ¦   ¦   ¦   src_app_(dashboard)_admin-dashboard_products_page_tsx_74ec3e05._.js
 ¦   ¦   ¦   ¦   src_app_(dashboard)_admin-dashboard_products_page_tsx_a7a6ef48._.js
 ¦   ¦   ¦   ¦   src_app_(dashboard)_admin-dashboard_return_page_tsx_2390bc0c._.js
 ¦   ¦   ¦   ¦   src_app_(dashboard)_admin-dashboard_revenue_page_tsx_2390bc0c._.js
 ¦   ¦   ¦   ¦   src_app_(dashboard)_admin-dashboard_subscription_page_tsx_2390bc0c._.js
 ¦   ¦   ¦   ¦   src_app_(dashboard)_admin-dashboard_users_page_tsx_2390bc0c._.js
+¦   ¦   ¦   ¦   src_app_(dashboard)_admin-dashboard_users_page_tsx_74ec3e05._.js
+¦   ¦   ¦   ¦   src_app_(dashboard)_dashboard_page_tsx_0090e117._.js
+¦   ¦   ¦   ¦   src_app_(dashboard)_dashboard_page_tsx_0090e117._.js.map
 ¦   ¦   ¦   ¦   src_app_(dashboard)_dashboard_page_tsx_3067dc7d._.js
 ¦   ¦   ¦   ¦   src_app_(dashboard)_dashboard_page_tsx_318ed3aa._.js
 ¦   ¦   ¦   ¦   src_app_(dashboard)_dashboard_page_tsx_363bfdc9._.js
+¦   ¦   ¦   ¦   src_app_(dashboard)_dashboard_page_tsx_69fea264._.js
+¦   ¦   ¦   ¦   src_app_(dashboard)_dashboard_page_tsx_d6b53c05._.js
+¦   ¦   ¦   ¦   src_app_(dashboard)_user-dashboard_addresses_page_tsx_a085606d._.js
+¦   ¦   ¦   ¦   src_app_(dashboard)_user-dashboard_bulk-inquiries_page_tsx_a085606d._.js
+¦   ¦   ¦   ¦   src_app_(dashboard)_user-dashboard_layout_tsx_3067dc7d._.js
+¦   ¦   ¦   ¦   src_app_(dashboard)_user-dashboard_layout_tsx_d6b53c05._.js
+¦   ¦   ¦   ¦   src_app_(dashboard)_user-dashboard_notifications_page_tsx_a085606d._.js
+¦   ¦   ¦   ¦   src_app_(dashboard)_user-dashboard_orders_page_tsx_a085606d._.js
+¦   ¦   ¦   ¦   src_app_(dashboard)_user-dashboard_orders_page_tsx_a40a67c3._.js
+¦   ¦   ¦   ¦   src_app_(dashboard)_user-dashboard_orders_page_tsx_a40a67c3._.js.map
+¦   ¦   ¦   ¦   src_app_(dashboard)_user-dashboard_orders_page_tsx_b254678c._.js
+¦   ¦   ¦   ¦   src_app_(dashboard)_user-dashboard_page_tsx_a085606d._.js
+¦   ¦   ¦   ¦   src_app_(dashboard)_user-dashboard_profile_page_tsx_7d2ed5a7._.js
+¦   ¦   ¦   ¦   src_app_(dashboard)_user-dashboard_profile_page_tsx_7d2ed5a7._.js.map
+¦   ¦   ¦   ¦   src_app_(dashboard)_user-dashboard_profile_page_tsx_a085606d._.js
+¦   ¦   ¦   ¦   src_app_(dashboard)_user-dashboard_reviews_page_tsx_a085606d._.js
+¦   ¦   ¦   ¦   src_app_(dashboard)_user-dashboard_reviews_page_tsx_bc45d771._.js
+¦   ¦   ¦   ¦   src_app_(dashboard)_user-dashboard_reviews_page_tsx_bc45d771._.js.map
+¦   ¦   ¦   ¦   src_app_(dashboard)_user-dashboard_wishlist_page_tsx_9c8efbbd._.js
+¦   ¦   ¦   ¦   src_app_(dashboard)_user-dashboard_wishlist_page_tsx_9c8efbbd._.js.map
+¦   ¦   ¦   ¦   src_app_(dashboard)_user-dashboard_wishlist_page_tsx_a085606d._.js
 ¦   ¦   ¦   ¦   src_app_(shop)_cart_page_tsx_3067dc7d._.js
 ¦   ¦   ¦   ¦   src_app_(shop)_cart_page_tsx_318ed3aa._.js
 ¦   ¦   ¦   ¦   src_app_(shop)_cart_page_tsx_363bfdc9._.js
+¦   ¦   ¦   ¦   src_app_(shop)_cart_page_tsx_69fea264._.js
+¦   ¦   ¦   ¦   src_app_(shop)_cart_page_tsx_d6b53c05._.js
+¦   ¦   ¦   ¦   src_app_(shop)_checkout-process_page_tsx_d6b53c05._.js
 ¦   ¦   ¦   ¦   src_app_about_page_tsx_3067dc7d._.js
 ¦   ¦   ¦   ¦   src_app_about_page_tsx_318ed3aa._.js
 ¦   ¦   ¦   ¦   src_app_about_page_tsx_363bfdc9._.js
+¦   ¦   ¦   ¦   src_app_auth_login_page_tsx_3067dc7d._.js
 ¦   ¦   ¦   ¦   src_app_checkout-process_page_tsx_3067dc7d._.js
 ¦   ¦   ¦   ¦   src_app_contact_page_tsx_318ed3aa._.js
 ¦   ¦   ¦   ¦   src_app_contact_page_tsx_363bfdc9._.js
@@ -1320,40 +1745,59 @@ C:.
 ¦   ¦   ¦   ¦   src_app_home_1c3d61e1._.js
 ¦   ¦   ¦   ¦   src_app_home_1c3d61e1._.js.map
 ¦   ¦   ¦   ¦   src_app_layout_tsx_0a548d63._.js
+¦   ¦   ¦   ¦   src_app_not-found_tsx_0b591751._.js
+¦   ¦   ¦   ¦   src_app_not-found_tsx_1917c4fa._.js
 ¦   ¦   ¦   ¦   src_app_not-found_tsx_3067dc7d._.js
 ¦   ¦   ¦   ¦   src_app_not-found_tsx_318ed3aa._.js
 ¦   ¦   ¦   ¦   src_app_not-found_tsx_363bfdc9._.js
 ¦   ¦   ¦   ¦   src_app_not-found_tsx_36734450._.js
 ¦   ¦   ¦   ¦   src_app_not-found_tsx_403641fe._.js
+¦   ¦   ¦   ¦   src_app_not-found_tsx_69fea264._.js
 ¦   ¦   ¦   ¦   src_app_not-found_tsx_bcc1f264._.js
 ¦   ¦   ¦   ¦   src_app_not-found_tsx_c19c9edf._.js
 ¦   ¦   ¦   ¦   src_app_not-found_tsx_c19c9edf._.js.map
 ¦   ¦   ¦   ¦   src_app_not-found_tsx_c367d4b4._.js
+¦   ¦   ¦   ¦   src_app_not-found_tsx_d6b53c05._.js
 ¦   ¦   ¦   ¦   src_app_order-tracking_page_tsx_3067dc7d._.js
 ¦   ¦   ¦   ¦   src_app_order-tracking_page_tsx_363bfdc9._.js
+¦   ¦   ¦   ¦   src_app_order-tracking_page_tsx_d6b53c05._.js
+¦   ¦   ¦   ¦   src_app_page_tsx_0b591751._.js
+¦   ¦   ¦   ¦   src_app_page_tsx_1917c4fa._.js
 ¦   ¦   ¦   ¦   src_app_page_tsx_3067dc7d._.js
 ¦   ¦   ¦   ¦   src_app_page_tsx_318ed3aa._.js
 ¦   ¦   ¦   ¦   src_app_page_tsx_363bfdc9._.js
 ¦   ¦   ¦   ¦   src_app_page_tsx_403641fe._.js
+¦   ¦   ¦   ¦   src_app_page_tsx_69fea264._.js
 ¦   ¦   ¦   ¦   src_app_page_tsx_bcc1f264._.js
 ¦   ¦   ¦   ¦   src_app_page_tsx_c367d4b4._.js
+¦   ¦   ¦   ¦   src_app_page_tsx_d6b53c05._.js
+¦   ¦   ¦   ¦   src_app_payment_page_tsx_d6b53c05._.js
+¦   ¦   ¦   ¦   src_app_payment_success_page_tsx_d6b53c05._.js
 ¦   ¦   ¦   ¦   src_app_privacy-policy_page_tsx_3067dc7d._.js
 ¦   ¦   ¦   ¦   src_app_privacy-policy_page_tsx_363bfdc9._.js
 ¦   ¦   ¦   ¦   src_app_products_page_tsx_3067dc7d._.js
 ¦   ¦   ¦   ¦   src_app_products_page_tsx_318ed3aa._.js
 ¦   ¦   ¦   ¦   src_app_products_page_tsx_363bfdc9._.js
+¦   ¦   ¦   ¦   src_app_products_page_tsx_d6b53c05._.js
 ¦   ¦   ¦   ¦   src_app_products_[category]_page_tsx_3067dc7d._.js
 ¦   ¦   ¦   ¦   src_app_products_[category]_page_tsx_318ed3aa._.js
 ¦   ¦   ¦   ¦   src_app_products_[category]_page_tsx_363bfdc9._.js
+¦   ¦   ¦   ¦   src_app_products_[category]_page_tsx_d6b53c05._.js
 ¦   ¦   ¦   ¦   src_app_product_[slug]_page_tsx_3067dc7d._.js
 ¦   ¦   ¦   ¦   src_app_product_[slug]_page_tsx_318ed3aa._.js
 ¦   ¦   ¦   ¦   src_app_return-policy_page_tsx_363bfdc9._.js
+¦   ¦   ¦   ¦   src_app_return-policy_page_tsx_d6b53c05._.js
 ¦   ¦   ¦   ¦   src_app_shipping-delivery_page_tsx_363bfdc9._.js
+¦   ¦   ¦   ¦   src_app_shopping-cart_page_tsx_d6b53c05._.js
 ¦   ¦   ¦   ¦   src_app_terms-and-conditions_page_tsx_363bfdc9._.js
 ¦   ¦   ¦   ¦   src_b01d964b._.js
 ¦   ¦   ¦   ¦   src_b01d964b._.js.map
+¦   ¦   ¦   ¦   src_b62c74c3._.js
+¦   ¦   ¦   ¦   src_b62c74c3._.js.map
 ¦   ¦   ¦   ¦   src_c38d7998._.js
 ¦   ¦   ¦   ¦   src_c38d7998._.js.map
+¦   ¦   ¦   ¦   src_c5c764b4._.js
+¦   ¦   ¦   ¦   src_c5c764b4._.js.map
 ¦   ¦   ¦   ¦   src_components_common_Breadcrumb_tsx_9154450d._.js
 ¦   ¦   ¦   ¦   src_components_common_Breadcrumb_tsx_9154450d._.js.map
 ¦   ¦   ¦   ¦   src_ddef61cf._.js
@@ -1398,10 +1842,18 @@ C:.
 ¦   ¦   ¦   ¦   [turbopack]_browser_dev_hmr-client_hmr-client_ts_c8c997ce._.js.map
 ¦   ¦   ¦   ¦   _02ac8224._.js
 ¦   ¦   ¦   ¦   _02ac8224._.js.map
+¦   ¦   ¦   ¦   _0bdffe4c._.js
+¦   ¦   ¦   ¦   _0bdffe4c._.js.map
 ¦   ¦   ¦   ¦   _2f074104._.js
 ¦   ¦   ¦   ¦   _2f074104._.js.map
+¦   ¦   ¦   ¦   _4585f892._.js
+¦   ¦   ¦   ¦   _4585f892._.js.map
 ¦   ¦   ¦   ¦   _4e1fb09f._.js
 ¦   ¦   ¦   ¦   _4e1fb09f._.js.map
+¦   ¦   ¦   ¦   _5f11bc8e._.js
+¦   ¦   ¦   ¦   _5f11bc8e._.js.map
+¦   ¦   ¦   ¦   _8dbb3551._.js
+¦   ¦   ¦   ¦   _8dbb3551._.js.map
 ¦   ¦   ¦   ¦   _99efddc8._.js
 ¦   ¦   ¦   ¦   _99efddc8._.js.map
 ¦   ¦   ¦   ¦   _9a7cf1af._.css
@@ -1410,6 +1862,8 @@ C:.
 ¦   ¦   ¦   ¦   _af6e72ef._.js
 ¦   ¦   ¦   ¦   _af6e72ef._.js.map
 ¦   ¦   ¦   ¦   _cdba956c._.js.map
+¦   ¦   ¦   ¦   _fe98052b._.js
+¦   ¦   ¦   ¦   _fe98052b._.js.map
 ¦   ¦   ¦   ¦   
 ¦   ¦   ¦   +---pages
 ¦   ¦   ¦           _app.js
@@ -38292,6 +38746,23 @@ C:.
 ¦   ¦           react-is.development.js
 ¦   ¦           react-is.production.min.js
 ¦   ¦           
+¦   +---react-razorpay
+¦   ¦   ¦   package.json
+¦   ¦   ¦   README.md
+¦   ¦   ¦   
+¦   ¦   +---dist
+¦   ¦       ¦   index.d.ts
+¦   ¦       ¦   index.js
+¦   ¦       ¦   index.js.map
+¦   ¦       ¦   razorpay.d.ts
+¦   ¦       ¦   razorpay.js
+¦   ¦       ¦   razorpay.js.map
+¦   ¦       ¦   
+¦   ¦       +---constants
+¦   ¦               currency.d.ts
+¦   ¦               currency.js
+¦   ¦               currency.js.map
+¦   ¦               
 ¦   +---react-redux
 ¦   ¦   ¦   LICENSE.md
 ¦   ¦   ¦   package.json
@@ -43617,8 +44088,10 @@ C:.
 ¦   ¦       ¦       deal-plants.jpg
 ¦   ¦       ¦       
 ¦   ¦       +---hero
+¦   ¦       ¦       flower-gold.jpg
 ¦   ¦       ¦       hero-banner-1.jpg
 ¦   ¦       ¦       hero-banner-2.jpg
+¦   ¦       ¦       mirror-ornate.jpg
 ¦   ¦       ¦       
 ¦   ¦       +---products
 ¦   ¦           +---candles
@@ -44173,6 +44646,12 @@ C:.
     ¦   ¦   ¦   +---orders
     ¦   ¦   ¦   ¦       page.tsx
     ¦   ¦   ¦   ¦       
+    ¦   ¦   ¦   +---payment-history
+    ¦   ¦   ¦   ¦       page.tsx
+    ¦   ¦   ¦   ¦       
+    ¦   ¦   ¦   +---payment-logs
+    ¦   ¦   ¦   ¦       page.tsx
+    ¦   ¦   ¦   ¦       
     ¦   ¦   ¦   +---products
     ¦   ¦   ¦   ¦       page.tsx
     ¦   ¦   ¦   ¦       
@@ -44234,6 +44713,9 @@ C:.
     ¦   ¦       +---orders
     ¦   ¦       ¦       page.tsx
     ¦   ¦       ¦       
+    ¦   ¦       +---payment-history
+    ¦   ¦       ¦       page.tsx
+    ¦   ¦       ¦       
     ¦   ¦       +---profile
     ¦   ¦       ¦   ¦   page.tsx
     ¦   ¦       ¦   ¦   
@@ -44251,15 +44733,25 @@ C:.
     ¦   ¦               
     ¦   +---(shop)
     ¦   ¦   +---cart
+    ¦   ¦   ¦   ¦   page.tsx
+    ¦   ¦   ¦   ¦   
+    ¦   ¦   ¦   +---components
+    ¦   ¦   ¦           CartItem.tsx
+    ¦   ¦   ¦           ClearCartModal.tsx
+    ¦   ¦   ¦           EmptyCart.tsx
+    ¦   ¦   ¦           OrderSummary.tsx
+    ¦   ¦   ¦           RelatedProducts.tsx
+    ¦   ¦   ¦           ShoppingCartInteractive.tsx
+    ¦   ¦   ¦           
+    ¦   ¦   +---checkout-process
     ¦   ¦       ¦   page.tsx
     ¦   ¦       ¦   
     ¦   ¦       +---components
-    ¦   ¦               CartItem.tsx
-    ¦   ¦               ClearCartModal.tsx
-    ¦   ¦               EmptyCart.tsx
-    ¦   ¦               OrderSummary.tsx
-    ¦   ¦               RelatedProducts.tsx
-    ¦   ¦               ShoppingCartInteractive.tsx
+    ¦   ¦               CheckoutInteractive.tsx
+    ¦   ¦               CheckoutProgress.tsx
+    ¦   ¦               DeliveryAddressForm.tsx
+    ¦   ¦               OrderReviewSection.tsx
+    ¦   ¦               PaymentMethodSelector.tsx
     ¦   ¦               
     ¦   +---about
     ¦   ¦       page.tsx
@@ -44279,15 +44771,9 @@ C:.
     ¦   ¦   +---[slug]
     ¦   ¦           page.tsx
     ¦   ¦           
-    ¦   +---checkout-process
-    ¦   ¦   ¦   page.tsx
-    ¦   ¦   ¦   
-    ¦   ¦   +---components
-    ¦   ¦           CheckoutInteractive.tsx
-    ¦   ¦           CheckoutProgress.tsx
-    ¦   ¦           DeliveryAddressForm.tsx
-    ¦   ¦           OrderReviewSection.tsx
-    ¦   ¦           PaymentMethodSelector.tsx
+    ¦   +---components
+    ¦   ¦   +---common
+    ¦   ¦           Header.tsx
     ¦   ¦           
     ¦   +---contact
     ¦   ¦   ¦   page.tsx
@@ -44327,6 +44813,15 @@ C:.
     ¦   ¦           OrderTrackingInteractive.tsx
     ¦   ¦           RelatedOrders.tsx
     ¦   ¦           TrackingTimeline.tsx
+    ¦   ¦           
+    ¦   +---payment
+    ¦   ¦   ¦   page.tsx
+    ¦   ¦   ¦   
+    ¦   ¦   +---failure
+    ¦   ¦   ¦       page.tsx
+    ¦   ¦   ¦       
+    ¦   ¦   +---success
+    ¦   ¦           page.tsx
     ¦   ¦           
     ¦   +---privacy-policy
     ¦   ¦       page.tsx
@@ -44414,13 +44909,19 @@ C:.
     ¦   ¦           Header.tsx
     ¦   ¦           Navbar.tsx
     ¦   ¦           
+    ¦   +---payment
+    ¦   ¦       index.ts
+    ¦   ¦       PaymentButton.tsx
+    ¦   ¦       PaymentModal.tsx
+    ¦   ¦       PaymentStatus.tsx
+    ¦   ¦       PaymentSummary.tsx
+    ¦   ¦       RazorpayPayment.tsx
+    ¦   ¦       
     ¦   +---ui
     ¦       ¦   AppIcon.tsx
     ¦       ¦   AppImage.tsx
     ¦       ¦   ProductCard.tsx
     ¦       ¦   
-    ¦       +---button
-    ¦       +---input
     ¦       +---modal
     ¦               BulkOrderContext.tsx
     ¦               BulkOrderModal.tsx
@@ -44472,11 +44973,31 @@ C:.
     ¦   ¦           index.ts
     ¦   ¦           
     ¦   +---orders
-    ¦   ¦   +---components
     ¦   ¦   +---hooks
-    ¦   ¦   ¦       useOrders.ts
+    ¦   ¦           useOrders.ts
+    ¦   ¦           
+    ¦   +---payment
+    ¦   ¦   +---components
+    ¦   ¦   ¦   ¦   index.ts
+    ¦   ¦   ¦   ¦   PaymentMethod.tsx
+    ¦   ¦   ¦   ¦   
+    ¦   ¦   ¦   +---hooks
+    ¦   ¦   ¦           usePayment.ts
+    ¦   ¦   ¦           useWebhook.ts
+    ¦   ¦   ¦           
+    ¦   ¦   +---hooks
+    ¦   ¦   ¦       usePayment.ts
+    ¦   ¦   ¦       
+    ¦   ¦   +---success
+    ¦   ¦   ¦       page.tsx
     ¦   ¦   ¦       
     ¦   ¦   +---types
+    ¦   ¦   ¦       index.ts
+    ¦   ¦   ¦       
+    ¦   ¦   +---utils
+    ¦   ¦           paymentValidator.ts
+    ¦   ¦           razorpayLoader.ts
+    ¦   ¦           
     ¦   +---products
     ¦       ¦   index.ts
     ¦       ¦   
@@ -44533,6 +45054,7 @@ C:.
     ¦   ¦       notificationApi.ts
     ¦   ¦       orderApi.ts
     ¦   ¦       ordersApi.ts
+    ¦   ¦       paymentApi.ts
     ¦   ¦       productsApi.ts
     ¦   ¦       reviewsApi.ts
     ¦   ¦       subscriptionApi.ts
@@ -44544,6 +45066,7 @@ C:.
     ¦           auth.ts
     ¦           bulkOrder.ts
     ¦           cart.ts
+    ¦           payment.ts
     ¦           wishlist.ts
     ¦           
     +---styles
@@ -44555,4 +45078,5 @@ C:.
             bulkUpload.ts
             css.d.ts
             index.ts
+            payment.ts
             

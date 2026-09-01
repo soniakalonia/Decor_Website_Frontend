@@ -14,16 +14,15 @@ export const PaymentStatus: React.FC<PaymentStatusProps> = ({ orderId }) => {
   const searchParams = useSearchParams();
   const status = searchParams?.get('status');
 
-  const { data, isLoading, error, refetch } = useGetPaymentStatusQuery(orderId, {
-    refetchInterval: 5000, // Check every 5 seconds
+  const { data, isLoading, error } = useGetPaymentStatusQuery(orderId, {
+    pollingInterval: 5000, // ✅ Correct option
     skip: !orderId,
   });
 
   useEffect(() => {
     // If status is already success/failure from URL, stop polling
     if (status === 'success' || status === 'failure') {
-      // Stop polling by skipping
-      return;
+      // Stop polling by skipping – handled by the hook's skip option
     }
   }, [status]);
 

@@ -5,11 +5,14 @@ import authSlice from './slices/auth'
 import bulkOrderSlice from './slices/bulkOrder'
 import wishlistSlice from './slices/wishlist'
 import paymentSlice from './slices/payment'
+import setuPaymentSlice from './slices/setuPayment'   // ✅ only one import
+
 import { baseApi } from './api/baseApi'
 import { blogApi } from './api/blogApi'
 import { orderApi } from './api/orderApi'
 import { reviewsApi } from './api/reviewsApi'
 import { bulkProductApi } from './api/bulkProductApi'
+// ❌ Do NOT import setuApi – it's already injected into baseApi
 
 export const store = configureStore({
   reducer: {
@@ -18,11 +21,13 @@ export const store = configureStore({
     bulkOrder: bulkOrderSlice,
     wishlist: wishlistSlice,
     payment: paymentSlice,
-    [baseApi.reducerPath]: baseApi.reducer,
+    setuPayment: setuPaymentSlice,
+    [baseApi.reducerPath]: baseApi.reducer,          // baseApi + injected endpoints (setuApi)
     [blogApi.reducerPath]: blogApi.reducer,
     [orderApi.reducerPath]: orderApi.reducer,
     [reviewsApi.reducerPath]: reviewsApi.reducer,
     [bulkProductApi.reducerPath]: bulkProductApi.reducer,
+    // ❌ No [setuApi.reducerPath] here
   },
   middleware: (getDefaultMiddleware) =>
     getDefaultMiddleware({
@@ -30,11 +35,12 @@ export const store = configureStore({
         ignoredActions: ['persist/PERSIST', 'persist/REHYDRATE'],
       },
     }).concat(
-      baseApi.middleware,
+      baseApi.middleware,        // includes setuApi endpoints
       blogApi.middleware,
       orderApi.middleware,
       reviewsApi.middleware,
       bulkProductApi.middleware,
+      // ❌ No setuApi.middleware here
     ),
 })
 

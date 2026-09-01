@@ -44,6 +44,16 @@ const Header = () => {
     { href: '/contact', label: 'Contact' },
   ];
 
+  // Helper to compare paths robustly
+const isActiveLink = (href: string) => {
+  if (!isMounted) return false;
+  const normalize = (str: string) => str.replace(/\/$/, '') || '/';
+  const current = normalize(pathname || '');
+  const link = normalize(href);
+  if (link === '/') return current === '/';
+  return current === link || current.startsWith(link + '/');
+};
+
   if (isAdminPage) {
     return (
       <header className="sticky top-0 z-50 bg-white border-b border-border h-16">
@@ -95,20 +105,17 @@ const Header = () => {
           </Link>
 
           <nav className="hidden lg:flex items-center space-x-8">
-            {navLinks.map((link) => {
-              const isActive = pathname === link.href;
-              return (
-                <Link
-                  key={link.href}
-                  href={link.href}
-                  className={`text-sm font-medium transition-smooth hover:text-[#D4AF37] ${
-                    isActive ? 'text-[#D4AF37]' : 'text-[#1A1A2E]'
-                  }`}
-                >
-                  {link.label}
-                </Link>
-              );
-            })}
+            {navLinks.map((link) => (
+              <Link
+                key={link.href}
+                href={link.href}
+                className={`text-sm font-medium transition-smooth hover:text-[#D4AF37] ${
+                  isActiveLink(link.href) ? 'text-[#D4AF37]' : 'text-[#1A1A2E]'
+                }`}
+              >
+                {link.label}
+              </Link>
+            ))}
           </nav>
 
           <div className="flex items-center gap-2">
@@ -199,21 +206,18 @@ const Header = () => {
 
         {!isAdminPage && isMobileMenuOpen && (
           <div className="lg:hidden border-t border-[#E8E4E0] py-4 space-y-3">
-            {navLinks.map((link) => {
-              const isActive = pathname === link.href;
-              return (
-                <Link
-                  key={link.href}
-                  href={link.href}
-                  className={`block text-sm font-medium transition-smooth ${
-                    isActive ? 'text-[#D4AF37]' : 'text-[#1A1A2E]'
-                  }`}
-                  onClick={() => setIsMobileMenuOpen(false)}
-                >
-                  {link.label}
-                </Link>
-              );
-            })}
+            {navLinks.map((link) => (
+              <Link
+                key={link.href}
+                href={link.href}
+                className={`block text-sm font-medium transition-smooth ${
+                  isActiveLink(link.href) ? 'text-[#D4AF37]' : 'text-[#1A1A2E]'
+                }`}
+                onClick={() => setIsMobileMenuOpen(false)}
+              >
+                {link.label}
+              </Link>
+            ))}
             <div className="pt-2 border-t border-[#E8E4E0]">
               {isMounted && isAuthenticated ? (
                 <button

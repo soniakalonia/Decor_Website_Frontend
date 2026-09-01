@@ -25,6 +25,13 @@ const paymentMethods: PaymentMethod[] = [
     isAvailable: true,
   },
   {
+    id: 'setu',
+    name: 'Setu (UPI / QR)',
+    icon: 'QrCodeIcon', // or use a custom icon
+    description: 'Pay instantly via UPI / QR code using Setu',
+    isAvailable: true,
+  },
+  {
     id: 'cod',
     name: 'Cash on Delivery',
     icon: 'WalletIcon',
@@ -53,11 +60,10 @@ const PaymentMethodSelector: React.FC<PaymentMethodSelectorProps> = ({
             key={method.id}
             onClick={() => handleSelect(method.id)}
             disabled={!method.isAvailable}
-            className={`flex w-full items-center gap-4 rounded-lg border-2 p-4 transition-all duration-200 ${
-              selectedMethodId === method.id
+            className={`flex w-full items-center gap-4 rounded-lg border-2 p-4 transition-all duration-200 ${selectedMethodId === method.id
                 ? 'border-[#FF6B8A] bg-[#FFE0E8] shadow-sm'
                 : 'border-gray-200 bg-white hover:border-[#FF6B8A] hover:bg-[#FFF5F7]'
-            } ${!method.isAvailable && 'cursor-not-allowed opacity-50'}`}
+              } ${!method.isAvailable && 'cursor-not-allowed opacity-50'}`}
           >
             <div className="flex h-12 w-12 shrink-0 items-center justify-center rounded-full bg-gray-100">
               <Icon name={method.icon} size={24} className="text-[#FF6B8A]" />
@@ -87,6 +93,20 @@ const PaymentMethodSelector: React.FC<PaymentMethodSelectorProps> = ({
               <p className="font-medium">Secure Payment</p>
               <p className="text-blue-600">
                 Your payment is encrypted and secure. Powered by Razorpay.
+              </p>
+            </div>
+          </div>
+        </div>
+      )}
+      {/* Setu Info */}
+      {selectedMethodId === 'setu' && (
+        <div className="mt-4 rounded-lg bg-purple-50 p-3 text-sm text-purple-700">
+          <div className="flex items-start gap-2">
+            <Icon name="QrCodeIcon" size={20} className="mt-0.5" />
+            <div>
+              <p className="font-medium">Pay via UPI / QR</p>
+              <p className="text-purple-600">
+                You will be redirected to Setu to complete your payment securely.
               </p>
             </div>
           </div>

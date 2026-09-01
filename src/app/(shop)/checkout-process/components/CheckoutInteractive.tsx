@@ -6,13 +6,14 @@ import { useSelector, useDispatch } from 'react-redux';
 import { RootState } from '@/store/store';
 import { syncCart } from '@/store/slices/cart';
 import { useCreateOrderMutation, useGetUserAddressesQuery } from '@/store/api/orderApi';
+import { useInitiatePaymentMutation } from '@/store/api/paymentApi';
+import { useInitiateSetuPaymentMutation } from '@/store/api/setuApi';    // ✅ Setu import
 import Icon from '@/components/ui/AppIcon';
 import DeliveryAddressForm from './DeliveryAddressForm';
 import PaymentMethodSelector from './PaymentMethodSelector';
 import OrderReviewSection from './OrderReviewSection';
 import CheckoutProgress from './CheckoutProgress';
 import { toast } from 'react-toastify';
-import { useInitiatePaymentMutation } from '@/store/api/paymentApi';
 
 interface Address {
     id: string;
@@ -43,6 +44,7 @@ const CheckoutInteractive = () => {
     useGetUserAddressesQuery(undefined, { skip: !isAuthenticated });
     const [createOrder, { isLoading: isPlacingOrder }] = useCreateOrderMutation();
     const [initiatePayment] = useInitiatePaymentMutation();
+    const [initiateSetuPayment] = useInitiateSetuPaymentMutation();      // ✅ Setu hook
 
     useEffect(() => {
         setIsHydrated(true);
@@ -93,9 +95,8 @@ const CheckoutInteractive = () => {
             return;
         }
 
-        const isRazorpayMethod = selectedPaymentMethod === 'razorpay';
-
         try {
+            // Prepare order data
             const orderData = {
                 items: cartItems,
                 address: selectedAddress,
@@ -107,13 +108,15 @@ const CheckoutInteractive = () => {
                 total,
             };
 
+            // ✅ Create order (backend sets status based on payment method)
             const orderResult = await createOrder(orderData).unwrap();
+            const orderId = orderResult.orderId;
 
-            if (isRazorpayMethod && orderResult.orderId) {
+            // ✅ Route based on payment method
+            if (selectedPaymentMethod === 'razorpay') {
                 setIsProcessingPayment(true);
-
                 const paymentResult = await initiatePayment({
-                    orderId: orderResult.orderId,
+                    orderId,
                     amount: total,
                     currency: 'INR',
                     paymentMethod: 'razorpay',
@@ -121,16 +124,35 @@ const CheckoutInteractive = () => {
 
                 if (paymentResult.success && paymentResult.data) {
                     router.push(
-                        `/payment?orderId=${orderResult.orderId}&amount=${total}&razorpayOrderId=${paymentResult.data.razorpayOrder.id}`
+                        `/payment?orderId=${orderId}&amount=${total}&razorpayOrderId=${paymentResult.data.razorpayOrder.id}`
                     );
+                } else {
+                    throw new Error(paymentResult.message || 'Razorpay initiation failed');
                 }
-            } else {
+            } 
+            else if (selectedPaymentMethod === 'setu') {
+                setIsProcessingPayment(true);
+                const result = await initiateSetuPayment({
+                    orderId,
+                    amount: total,
+                    currency: 'INR',
+                }).unwrap();
+
+                if (result.success && result.data.paymentLink) {
+                    // ✅ Redirect to Setu payment page
+                    window.location.href = result.data.paymentLink;
+                } else {
+                    throw new Error(result.message || 'Setu payment initiation failed');
+                }
+            }
+            else {
+                // ✅ Cash on Delivery or other offline methods
                 dispatch(syncCart([]));
                 toast.success('Order placed successfully!');
-                router.push(`/order-tracking?orderId=${orderResult.orderId}`);
+                router.push(`/order-tracking?orderId=${orderId}`);
             }
         } catch (error: any) {
-            toast.error(error?.data?.message || 'Failed to place order. Please try again.');
+            toast.error(error?.data?.message || error?.message || 'Failed to place order. Please try again.');
             setIsProcessingPayment(false);
         }
     };
@@ -234,7 +256,7 @@ const CheckoutInteractive = () => {
                                 </div>
                             )}
 
-                            {/* Step 3: Review - NO Order Summary here */}
+                            {/* Step 3: Review */}
                             {currentStep === 3 && (
                                 <div className="space-y-6">
                                     {/* Delivery Address */}
@@ -271,6 +293,7 @@ const CheckoutInteractive = () => {
                                         <div className="rounded-md bg-muted p-4">
                                             <p className="font-medium text-foreground">
                                                 {selectedPaymentMethod === 'razorpay' && 'Razorpay (Card/UPI/Net Banking)'}
+                                                {selectedPaymentMethod === 'setu' && 'Setu (UPI / QR)'}
                                                 {selectedPaymentMethod === 'cod' && 'Cash on Delivery'}
                                             </p>
                                             <button
@@ -317,12 +340,16 @@ const CheckoutInteractive = () => {
                                             {(isPlacingOrder || isProcessingPayment) ? (
                                                 <>
                                                     <Icon name="ArrowPathIcon" size={20} className="animate-spin" />
-                                                    <span>{isProcessingPayment ? 'Redirecting to Payment...' : 'Processing...'}</span>
+                                                    <span>{isProcessingPayment ? 'Redirecting...' : 'Processing...'}</span>
                                                 </>
                                             ) : (
                                                 <>
                                                     <Icon name={selectedPaymentMethod === 'cod' ? 'CheckCircleIcon' : 'LockClosedIcon'} size={20} />
-                                                    <span>{selectedPaymentMethod === 'cod' ? 'Place Order' : 'Pay & Place Order'}</span>
+                                                    <span>
+                                                        {selectedPaymentMethod === 'cod' && 'Place Order'}
+                                                        {selectedPaymentMethod === 'razorpay' && 'Pay & Place Order'}
+                                                        {selectedPaymentMethod === 'setu' && 'Pay with Setu'}
+                                                    </span>
                                                 </>
                                             )}
                                         </button>
@@ -332,7 +359,7 @@ const CheckoutInteractive = () => {
                         </div>
                     </div>
 
-                    {/* ✅ Right Column - Order Summary (ONLY on Review Step) */}
+                    {/* Right Column - Order Summary (only on Review Step) */}
                     {currentStep === 3 && (
                         <div className="lg:col-span-1">
                             <div className="sticky top-20 rounded-md bg-card p-6 shadow-elevation-2">
@@ -349,7 +376,7 @@ const CheckoutInteractive = () => {
                 </div>
             </div>
 
-            {/* Mobile Order Summary Button - Only on Review Step */}
+            {/* Mobile Order Summary Button - only on Review Step */}
             {currentStep === 3 && (
                 <div className="fixed bottom-0 left-0 right-0 z-50 bg-card p-4 shadow-elevation-4 lg:hidden">
                     <button

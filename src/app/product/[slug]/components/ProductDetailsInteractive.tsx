@@ -268,7 +268,7 @@ const ProductDetailsInteractive = () => {
           dbVariants = [];
         }
       }
-      
+
       const variantImages: ProductImage[] = [];
 
       dbVariants.forEach((v: any, variantIndex: number) => {
@@ -296,7 +296,7 @@ const ProductDetailsInteractive = () => {
           productImages = [];
         }
       }
-      
+
       const defaultImages = productImages.map((url: string, index: number) => ({
         id: `product-${index + 1}`,
         url,
@@ -329,7 +329,7 @@ const ProductDetailsInteractive = () => {
         variantData = [];
       }
     }
-    
+
     const matchingVariant = variantData.find((v: any) =>
       v.color?.code === variant.colorHex && v.size === variant.size
     );
@@ -374,7 +374,9 @@ const ProductDetailsInteractive = () => {
         variant: variantLabel,
       }));
 
-      toast.success(`Added ${quantity} item(s) to cart!`);
+      toast.success(`Added ${quantity} item(s) to cart!`, {
+        autoClose: 350, // ← 0.5 seconds
+      });
     } catch (error) {
       console.error('Add to cart failed:', error);
       toast.error('Order failed to sync with server, but saved locally.');

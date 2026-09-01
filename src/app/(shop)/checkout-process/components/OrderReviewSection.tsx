@@ -1,7 +1,6 @@
 'use client';
 
 import Image from 'next/image';
-import Link from 'next/link';
 import Icon from '@/components/ui/AppIcon';
 
 interface CartItem {
@@ -107,13 +106,7 @@ const OrderReviewSection: React.FC<OrderReviewSectionProps> = ({
                 </div>
             </div>
 
-            {/* Continue to checkout button for mobile view */}
-            <Link
-                href="/checkout-process"
-                className="mt-4 block w-full rounded-md bg-[#FF6B8A] py-3 text-center text-sm font-medium text-white transition-all hover:scale-[0.98]"
-            >
-                Proceed to Checkout
-            </Link>
+            {/* ✅ PROCEED TO CHECKOUT BUTTON REMOVED */}
         </div>
     );
 };

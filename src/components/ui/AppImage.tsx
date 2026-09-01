@@ -36,16 +36,20 @@ function AppImage({
     fallbackSrc = '/assets/images/no_image.svg',
     ...props
 }: AppImageProps) {
-    const [imageSrc, setImageSrc] = useState(src);
+    // ✅ Fix: If src is empty/null/undefined, use fallback immediately
+    const initialSrc = (src && src !== '' && src !== 'null' && src !== 'undefined') ? src : fallbackSrc;
+    
+    const [imageSrc, setImageSrc] = useState(initialSrc);
     const [isLoading, setIsLoading] = useState(true);
     const [hasError, setHasError] = useState(false);
 
     // Update imageSrc when src prop changes
     useEffect(() => {
-        setImageSrc(src);
+        const newSrc = (src && src !== '' && src !== 'null' && src !== 'undefined') ? src : fallbackSrc;
+        setImageSrc(newSrc);
         setIsLoading(true);
         setHasError(false);
-    }, [src]);
+    }, [src, fallbackSrc]);
 
     // More reliable external URL detection
     const isExternal = imageSrc.startsWith('http://') || imageSrc.startsWith('https://');
@@ -107,7 +111,7 @@ function AppImage({
     // For local images and data URLs, use Next.js Image component
     const imageProps: any = {
         src: imageSrc,
-        alt,
+        alt: alt || 'Image',
         className: commonClassName,
         priority,
         quality,
@@ -146,6 +150,3 @@ function AppImage({
 }
 
 export default AppImage;
-
-
-

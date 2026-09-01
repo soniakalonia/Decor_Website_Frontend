@@ -120,13 +120,11 @@ const CheckoutInteractive = () => {
                 }).unwrap();
 
                 if (paymentResult.success && paymentResult.data) {
-                    // Redirect to payment page
                     router.push(
                         `/payment?orderId=${orderResult.orderId}&amount=${total}&razorpayOrderId=${paymentResult.data.razorpayOrder.id}`
                     );
                 }
             } else {
-                // COD or other methods
                 dispatch(syncCart([]));
                 toast.success('Order placed successfully!');
                 router.push(`/order-tracking?orderId=${orderResult.orderId}`);
@@ -179,8 +177,10 @@ const CheckoutInteractive = () => {
                 <CheckoutProgress currentStep={currentStep} />
 
                 <div className="grid gap-6 lg:grid-cols-3">
+                    {/* Left Column - Forms */}
                     <div className="lg:col-span-2">
                         <div className="space-y-6">
+                            {/* Step 1: Address */}
                             {currentStep === 1 && (
                                 <div className="rounded-md bg-card p-6 shadow-elevation-2">
                                     <DeliveryAddressForm
@@ -207,6 +207,7 @@ const CheckoutInteractive = () => {
                                 </div>
                             )}
 
+                            {/* Step 2: Payment */}
                             {currentStep === 2 && (
                                 <div className="rounded-md bg-card p-6 shadow-elevation-2">
                                     <PaymentMethodSelector
@@ -233,8 +234,10 @@ const CheckoutInteractive = () => {
                                 </div>
                             )}
 
+                            {/* Step 3: Review - NO Order Summary here */}
                             {currentStep === 3 && (
                                 <div className="space-y-6">
+                                    {/* Delivery Address */}
                                     <div className="rounded-md bg-card p-6 shadow-elevation-2">
                                         <h2 className="mb-4 font-heading text-xl font-semibold text-foreground">
                                             Delivery Address
@@ -260,6 +263,7 @@ const CheckoutInteractive = () => {
                                         )}
                                     </div>
 
+                                    {/* Payment Method */}
                                     <div className="rounded-md bg-card p-6 shadow-elevation-2">
                                         <h2 className="mb-4 font-heading text-xl font-semibold text-foreground">
                                             Payment Method
@@ -278,6 +282,7 @@ const CheckoutInteractive = () => {
                                         </div>
                                     </div>
 
+                                    {/* Terms */}
                                     <div className="rounded-md bg-card p-6 shadow-elevation-2">
                                         <div className="flex items-start space-x-3">
                                             <input
@@ -295,6 +300,7 @@ const CheckoutInteractive = () => {
                                         </div>
                                     </div>
 
+                                    {/* Buttons */}
                                     <div className="flex items-center justify-between">
                                         <button
                                             onClick={handleBackStep}
@@ -326,33 +332,38 @@ const CheckoutInteractive = () => {
                         </div>
                     </div>
 
-                    <div className="lg:col-span-1">
-                        <div className="sticky top-20 hidden rounded-md bg-card p-6 shadow-elevation-2 lg:block">
-                            <OrderReviewSection
-                                cartItems={cartItems as any}
-                                subtotal={subtotal}
-                                gst={gst}
-                                deliveryCharges={deliveryCharges}
-                                discount={discount}
-                            />
+                    {/* ✅ Right Column - Order Summary (ONLY on Review Step) */}
+                    {currentStep === 3 && (
+                        <div className="lg:col-span-1">
+                            <div className="sticky top-20 rounded-md bg-card p-6 shadow-elevation-2">
+                                <OrderReviewSection
+                                    cartItems={cartItems as any}
+                                    subtotal={subtotal}
+                                    gst={gst}
+                                    deliveryCharges={deliveryCharges}
+                                    discount={discount}
+                                />
+                            </div>
                         </div>
-                    </div>
+                    )}
                 </div>
             </div>
 
-            {/* Mobile Order Summary Button */}
-            <div className="fixed bottom-0 left-0 right-0 z-50 bg-card p-4 shadow-elevation-4 lg:hidden">
-                <button
-                    onClick={() => setShowOrderSummary(!showOrderSummary)}
-                    className="flex w-full items-center justify-between rounded-md bg-primary px-4 py-3 text-sm font-medium text-primary-foreground transition-smooth hover:scale-[0.98]"
-                >
-                    <span>Order Summary</span>
-                    <Icon name={showOrderSummary ? 'ChevronDownIcon' : 'ChevronUpIcon'} size={20} />
-                </button>
-            </div>
+            {/* Mobile Order Summary Button - Only on Review Step */}
+            {currentStep === 3 && (
+                <div className="fixed bottom-0 left-0 right-0 z-50 bg-card p-4 shadow-elevation-4 lg:hidden">
+                    <button
+                        onClick={() => setShowOrderSummary(!showOrderSummary)}
+                        className="flex w-full items-center justify-between rounded-md bg-primary px-4 py-3 text-sm font-medium text-primary-foreground transition-smooth hover:scale-[0.98]"
+                    >
+                        <span>Order Summary</span>
+                        <Icon name={showOrderSummary ? 'ChevronDownIcon' : 'ChevronUpIcon'} size={20} />
+                    </button>
+                </div>
+            )}
 
             {/* Mobile Order Summary Modal */}
-            {showOrderSummary && (
+            {showOrderSummary && currentStep === 3 && (
                 <>
                     <div
                         className="fixed inset-0 z-[100] bg-background/80 lg:hidden"

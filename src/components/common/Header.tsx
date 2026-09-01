@@ -16,10 +16,6 @@ const Header = () => {
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
   const [isUserMenuOpen, setIsUserMenuOpen] = useState(false);
   const [isMounted, setIsMounted] = useState(false);
-  const [isClient, setIsClient] = useState(false);
-  const [isHydrated, setIsHydrated] = useState(false);
-  // ✅ Add this to track active link on client only
-  const [activePath, setActivePath] = useState('');
 
   const totalItems = items.reduce((sum, item) => sum + item.quantity, 0);
   const userName = user?.fullName || user?.email || 'User';
@@ -28,16 +24,12 @@ const Header = () => {
 
   useEffect(() => {
     setIsMounted(true);
-    setIsClient(true);
-    setIsHydrated(true);
-    // ✅ Set active path after hydration
-    setActivePath(pathname || '');
     const handleScroll = () => {
       setIsScrolled(window.scrollY > 10);
     };
     window.addEventListener('scroll', handleScroll);
     return () => window.removeEventListener('scroll', handleScroll);
-  }, [pathname]);
+  }, []);
 
   const handleLogout = () => {
     authLogout();
@@ -86,22 +78,17 @@ const Header = () => {
     }`}>
       <div className="container mx-auto px-4">
         <div className="flex h-16 items-center justify-between gap-4">
-          {/* Logo with image in circle - Hydration safe */}
           <Link href="/" className="flex items-center space-x-2 flex-shrink-0">
-            {isHydrated ? (
-              <div className="h-10 w-10 rounded-full overflow-hidden border-2 border-[#D4AF37] shadow-sm flex-shrink-0 bg-white">
-                <Image
-                  src="/assets/images/logo.png"
-                  alt="DecorVault"
-                  width={40}
-                  height={40}
-                  className="object-cover w-full h-full"
-                  priority
-                />
-              </div>
-            ) : (
-              <div className="h-10 w-10 rounded-full border-2 border-[#D4AF37] flex-shrink-0 bg-white"></div>
-            )}
+            <div className="h-10 w-10 rounded-full overflow-hidden border-2 border-[#D4AF37] shadow-sm flex-shrink-0 bg-white">
+              <Image
+                src="/assets/images/logo.png"
+                alt="DecorVault"
+                width={40}
+                height={40}
+                className="object-cover w-full h-full"
+                priority
+              />
+            </div>
             <span className="font-heading text-lg font-bold text-[#1A1A2E] md:text-xl hidden sm:block">
               Decor<span className="text-[#D4AF37]">Vault</span>
             </span>
@@ -109,9 +96,7 @@ const Header = () => {
 
           <nav className="hidden lg:flex items-center space-x-8">
             {navLinks.map((link) => {
-              // ✅ Use activePath after hydration, fallback to pathname
-              const currentPath = isHydrated ? activePath : pathname;
-              const isActive = currentPath === link.href;
+              const isActive = pathname === link.href;
               return (
                 <Link
                   key={link.href}
@@ -156,7 +141,7 @@ const Header = () => {
               )}
             </Link>
 
-            {isClient ? (
+            {isMounted ? (
               isAuthenticated ? (
                 <div className="relative">
                   <button
@@ -215,8 +200,7 @@ const Header = () => {
         {!isAdminPage && isMobileMenuOpen && (
           <div className="lg:hidden border-t border-[#E8E4E0] py-4 space-y-3">
             {navLinks.map((link) => {
-              const currentPath = isHydrated ? activePath : pathname;
-              const isActive = currentPath === link.href;
+              const isActive = pathname === link.href;
               return (
                 <Link
                   key={link.href}
@@ -231,7 +215,7 @@ const Header = () => {
               );
             })}
             <div className="pt-2 border-t border-[#E8E4E0]">
-              {isClient && isAuthenticated ? (
+              {isMounted && isAuthenticated ? (
                 <button
                   onClick={handleLogout}
                   className="block w-full text-left text-sm font-medium text-[#E74C3C] transition-smooth"
